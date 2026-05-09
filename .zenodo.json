@@ -1,0 +1,40 @@
+{
+  "title": "academic-writer: A Claude Skill for Humanities and Social-Science Academic Writing",
+  "description": "<p>A Claude Code / Claude Agent SDK skill that turns Claude into a thinking partner for humanities and social-science academic writing — not a polishing tool, but an interlocutor that engages with arguments, concepts, and voice. Features four-layer critique (foundation/structure/paragraph/sentence), devil's-advocate mode with anti-sycophancy thresholds, deep-style preservation, reflexive-writing support for human-AI co-authoring research, ADHD-friendly interaction design, and engineering-grade infrastructure (version control, systematic validation, AI-trace scanning scripts).</p>",
+  "creators": [
+    {
+      "name": "tizzy916",
+      "affiliation": ""
+    }
+  ],
+  "keywords": [
+    "claude-skill",
+    "claude-code",
+    "academic-writing",
+    "humanities",
+    "social-sciences",
+    "human-ai-collaboration",
+    "reflexive-writing",
+    "devil-advocate",
+    "argument-critique",
+    "voice-preservation",
+    "prompt-engineering"
+  ],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "zho",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/tizzy916/claude-skill-academic-writer",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "references": [
+    "Christou, P. A. (2026). Reconfiguring Reflexivity in the Era of AI: From 'Turning Back' to 'Looking Forward' Through Constructivist and Posthumanist Lenses. Qualitative Inquiry. https://doi.org/10.1177/10778004261445052",
+    "Wiles, F. (2025). Recursive Cognition in Practice: How AI Dialogue Generated and Analyzed Its Own Methodology. International Journal of Qualitative Methods. https://doi.org/10.1177/16094069251381709",
+    "Panke, S. (2025). How Can (A)I Research This? An Autoethnographic Exploration of Generative AI in Research, Teaching and Instructional Design. https://doi.org/10.1177/00224871251325065"
+  ]
+}
