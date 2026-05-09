@@ -1,0 +1,56 @@
+cff-version: 1.2.0
+message: "If you use this skill in your research or writing, please cite it as below."
+type: software
+title: "academic-writer: A Claude Skill for Humanities and Social-Science Academic Writing"
+version: 1.0.0
+date-released: 2026-05-09
+authors:
+  - alias: tizzy916
+abstract: >
+  A Claude Code / Claude Agent SDK skill that turns Claude into a thinking partner
+  for humanities and social-science academic writing — not a polishing tool,
+  but an interlocutor that engages with arguments, concepts, and voice.
+  Features four-layer critique (foundation/structure/paragraph/sentence),
+  devil's-advocate mode with anti-sycophancy thresholds, deep-style preservation
+  ("write as I speak"), reflexive-writing support for human-AI co-authoring research,
+  ADHD-friendly interaction design, and engineering-grade infrastructure
+  (version control, systematic validation, AI-trace scanning scripts).
+keywords:
+  - claude-skill
+  - academic-writing
+  - humanities
+  - social-sciences
+  - human-ai-collaboration
+  - reflexive-writing
+  - devil-advocate
+  - argument-critique
+  - voice-preservation
+  - prompt-engineering
+license: MIT
+repository-code: "https://github.com/tizzy916/claude-skill-academic-writer"
+url: "https://github.com/tizzy916/claude-skill-academic-writer"
+
+references:
+  - type: article
+    authors:
+      - family-names: Christou
+        given-names: Prokopis A.
+    title: "Reconfiguring Reflexivity in the Era of AI: From 'Turning Back' to 'Looking Forward' Through Constructivist and Posthumanist Lenses"
+    journal: "Qualitative Inquiry"
+    year: 2026
+    doi: "10.1177/10778004261445052"
+  - type: article
+    authors:
+      - family-names: Wiles
+        given-names: Fenix
+    title: "Recursive Cognition in Practice: How AI Dialogue Generated and Analyzed Its Own Methodology"
+    journal: "International Journal of Qualitative Methods"
+    year: 2025
+    doi: "10.1177/16094069251381709"
+  - type: article
+    authors:
+      - family-names: Panke
+        given-names: Stefanie
+    title: "How Can (A)I Research This? An Autoethnographic Exploration of Generative AI in Research, Teaching and Instructional Design"
+    year: 2025
+    doi: "10.1177/00224871251325065"

@@ -1,0 +1,33 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.venv/
+venv/
+
+# Test outputs
+*.log
+test-output/
+
+# User data leak prevention
+# (skill 应保持通用——不要 commit 任何用户的论文项目内容)
+_drafts/
+_meta/
+_writing-config/
+attachments/
+*.docx
+*.pdf
