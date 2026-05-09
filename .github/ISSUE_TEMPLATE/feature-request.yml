@@ -1,0 +1,50 @@
+name: 💡 Feature Request · 新功能或新模式
+description: 提议新的工作模式 / 新的批判维度 / 新的脚本工具
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        skill 的目标是成为人文社科学术写作的**思想对话伙伴**。提议新功能时，请说明它如何服务于这个目标——而不是让 skill 变成另一个通用润色工具。
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么写作场景的问题？
+      description: 现有 skill 在哪个场景下不够用？
+      placeholder: |
+        例如：我在写一篇民族志，需要 skill 在审读时区分"参与者陈述"和"研究者分析"两种语态，但当前模式 B 没有这个能力。
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你提议怎么做？
+      description: 是新增工作模式？扩充 ai-trace-checklist？还是新脚本？
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 已经考虑过的替代方案
+      description: 用现有 skill 的某个模式能不能做到？为什么不行？
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 影响范围
+      options:
+        - 通用功能（适用于所有人文社科作者）
+        - 学科特定（请说明哪个学科）
+        - 个人偏好（仅自己用）
+    validations:
+      required: true
+
+  - type: textarea
+    id: voluntered
+    attributes:
+      label: 愿意贡献吗？
+      description: 你愿意自己提交 PR 吗？还是希望维护者来做？

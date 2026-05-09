@@ -1,0 +1,68 @@
+name: 🐛 Bug Report · Skill 出错
+description: skill 在某个场景下行为不符合 SKILL.md 描述
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢汇报问题。请尽量提供可复现的最小场景——最好是一段触发 skill 的 prompt + skill 实际给出的输出。
+
+  - type: textarea
+    id: trigger
+    attributes:
+      label: 触发场景
+      description: 你说了什么让 skill 进入这个状态？
+      placeholder: |
+        例如：我对 Claude 说"帮我看看这一章"，然后贴入了一段 markdown。
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+      description: 根据 SKILL.md 的哪一节，你预期 skill 会怎么做？
+      placeholder: |
+        SKILL.md "工作模式" 节的"模式 B"应该生成 blocker/major/minor/question 四级反馈报告。
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: skill 实际怎么做了？
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model
+    attributes:
+      label: Claude 模型
+      options:
+        - Claude 4.5 Sonnet
+        - Claude 4.5 Haiku
+        - Claude Opus 4.7 (1M context)
+        - Claude 4.7 Sonnet
+        - 其他（请在备注中说明）
+    validations:
+      required: true
+
+  - type: dropdown
+    id: client
+    attributes:
+      label: 接入方式
+      options:
+        - Claude Code CLI
+        - Claude Agent SDK
+        - Claude.ai 网页 / 手机端
+        - 自建客户端
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 其他
+      description: 任何上下文、截图、相关文件的链接
