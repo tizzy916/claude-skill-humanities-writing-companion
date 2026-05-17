@@ -1,6 +1,6 @@
 {
-  "title": "academic-writer: A Claude Skill for Humanities and Social-Science Academic Writing",
-  "description": "<p>A Claude Code / Claude Agent SDK skill that turns Claude into a thinking partner for humanities and social-science academic writing — not a polishing tool, but an interlocutor that engages with arguments, concepts, and voice. Features four-layer critique (foundation/structure/paragraph/sentence), devil's-advocate mode with anti-sycophancy thresholds, deep-style preservation, reflexive-writing support for human-AI co-authoring research, ADHD-friendly interaction design, and engineering-grade infrastructure (version control, systematic validation, AI-trace scanning scripts).</p>",
+  "title": "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing",
+  "description": "<p>A Claude Code / Claude Agent SDK skill for humanities scholars (history, philosophy, literature, cultural studies, art history, religious studies, classics) whose primary deliverable is a long-form argumentative text. Not a research pipeline, not a polishing tool, but an interlocutor that engages with arguments, concepts, and stylistic voice. Features four-layer critique (foundation/structure/paragraph/sentence), devil's-advocate mode with anti-sycophancy thresholds, deep-voice preservation, reflexive-writing support for human-AI co-authoring research, discipline-specific critique dimensions, ADHD-friendly interaction design, and engineering-grade infrastructure. Bilingual: SKILL.md and README in English and Chinese. Designed as a humanities-side complement to academic-research-skills (Imbad0202) for the empirical research pipeline.</p>",
   "creators": [
     {
       "name": "tizzy916",
@@ -10,24 +10,28 @@
   "keywords": [
     "claude-skill",
     "claude-code",
-    "academic-writing",
     "humanities",
-    "social-sciences",
+    "academic-writing",
+    "voice-preservation",
     "human-ai-collaboration",
     "reflexive-writing",
     "devil-advocate",
     "argument-critique",
-    "voice-preservation",
-    "prompt-engineering"
+    "history",
+    "philosophy",
+    "literary-criticism",
+    "cultural-studies",
+    "prompt-engineering",
+    "bilingual"
   ],
   "license": "MIT",
   "upload_type": "software",
   "access_right": "open",
-  "language": "zho",
+  "language": "mul",
   "related_identifiers": [
     {
       "scheme": "url",
-      "identifier": "https://github.com/tizzy916/claude-skill-academic-writer",
+      "identifier": "https://github.com/tizzy916/claude-skill-humanities-writing-companion",
       "relation": "isSupplementTo",
       "resource_type": "software"
     }

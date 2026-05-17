@@ -25,30 +25,33 @@
 
 ### Step 3 · 在 Zenodo 中"打开" 本仓库
 
-授权后，Zenodo 会列出你的全部 GitHub 仓库。找到 `claude-skill-academic-writer`，把右侧开关从 **OFF** 切到 **ON**。
+授权后，Zenodo 会列出你的全部 GitHub 仓库。找到 `claude-skill-humanities-writing-companion`，把右侧开关从 **OFF** 切到 **ON**。
 
 > ⚠️ 重要：开关打开**之后**创建的 release 才会被 Zenodo 自动 archive 并 mint DOI。已经存在的 v1.0.0 release **不会**被自动处理——下一步会重新发个 release。
 
-### Step 4 · 创建 v1.0.1 release 触发 Zenodo 处理
+### Step 4 · 创建 v2.0.0 release 触发 Zenodo 处理
 
 在本地执行：
 
 ```bash
-cd ~/Desktop/claude-skill-academic-writer
-git tag -a v1.0.1 -m "v1.0.1 — first Zenodo-archived release"
-git push origin v1.0.1
+cd ~/Desktop/claude-skill-humanities-writing-companion
+git tag -a v2.0.0 -m "v2.0.0 — humanities pivot + bilingual + first Zenodo-archived release"
+git push origin v2.0.0
 
-gh release create v1.0.1 \
-  --title "v1.0.1 · first Zenodo-archived release" \
-  --notes "Functional changes since v1.0.0: none.
-
-This release exists to trigger Zenodo's first archive + DOI mint. \
-All future releases will receive their own DOI via the .zenodo.json config."
+gh release create v2.0.0 \
+  --title "v2.0.0 · humanities pivot + bilingual" \
+  --notes "Major repositioning: from 人文社科 broad-scope to 人文学科 (humanities-only). \
+Added bilingual SKILL.md (EN) + SKILL.zh.md (CN) + README.md + README.zh.md. \
+Expanded discipline-specific dimensions to 7 areas (history, philosophy, literature, \
+cultural studies, art history, religious studies, classics, case analysis). \
+Added positioning statement as humanities-side complement to academic-research-skills (Imbad0202)."
 ```
 
 ### Step 5 · 等 1-2 分钟，回 Zenodo 看 DOI
 
-回到 https://zenodo.org/account/settings/github/，找到 `claude-skill-academic-writer` 行——会出现一个 DOI 链接（形如 `10.5281/zenodo.NNNNNNN`）。
+回到 https://zenodo.org/account/settings/github/，找到 `claude-skill-humanities-writing-companion` 行——会出现一个 DOI 链接（形如 `10.5281/zenodo.NNNNNNN`）。
+
+> ⚠️ **如果你之前以旧名 `claude-skill-academic-writer` 已经在 Zenodo 注册过**：rename 之后旧名可能仍出现在 Zenodo 仓库列表里（Zenodo 缓存）。需要 disconnect 再 reconnect GitHub 集成才能让 Zenodo 看到新名。或者直接在新仓库下创建 release，Zenodo 会按新仓库名建立新记录。
 
 点击进入，确认元数据正确（应该用了 `.zenodo.json` 里的内容）。
 
@@ -100,19 +103,19 @@ identifiers:
 未来在自己的论文中（特别是论文的"研究方法"或"工具说明"节）可以这样引用：
 
 ```
-本研究使用了 academic-writer Claude Skill (tizzy916, 2026, doi:10.5281/zenodo.NNNNNNN)
+本研究使用了 humanities-writing-companion Claude Skill (tizzy916, 2026, doi:10.5281/zenodo.NNNNNNN)
 作为人-AI 协作写作的辅助框架……
 ```
 
 或者 BibTeX：
 
 ```bibtex
-@software{academic_writer_2026,
+@software{humanities_writing_companion_2026,
   author    = {tizzy916},
-  title     = {academic-writer: A Claude Skill for Humanities and Social-Science Academic Writing},
+  title     = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year      = 2026,
   publisher = {Zenodo},
-  version   = {v1.0.1},
+  version   = {v2.0.0},
   doi       = {10.5281/zenodo.NNNNNNN},
   url       = {https://doi.org/10.5281/zenodo.NNNNNNN}
 }
@@ -149,7 +152,7 @@ ORCID（https://orcid.org）是学术界的"作者唯一身份证"，绑定后 D
 ## 你的具体下一步
 
 1. 打开 https://zenodo.org/account/settings/github/
-2. 找到 `claude-skill-academic-writer`，开关打 ON
+2. 找到 `claude-skill-humanities-writing-companion`，开关打 ON
 3. 回到本地终端，执行 Step 4 中的命令创建 v1.0.1 release
 4. 等 1-2 分钟，记下你拿到的 DOI 数字
 5. 告诉我你的 DOI（或贴 Zenodo 链接给我），我帮你更新 README 的 badge + CITATION.cff

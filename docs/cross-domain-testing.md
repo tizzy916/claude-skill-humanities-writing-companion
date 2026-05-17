@@ -176,7 +176,7 @@ skill 可能在短篇写作上"过度工程化"——一篇 8000 字的论文不
 
 ## 测试报告模板
 
-请使用以下模板提交跨学科测试报告（在 [Discussions / Show and tell](https://github.com/tizzy916/claude-skill-academic-writer/discussions/categories/show-and-tell) 中开新主题）：
+请使用以下模板提交跨学科测试报告（在 [Discussions / Show and tell](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/show-and-tell) 中开新主题）：
 
 ```markdown
 # 跨学科测试报告 · [你的学科 / 写作类型]

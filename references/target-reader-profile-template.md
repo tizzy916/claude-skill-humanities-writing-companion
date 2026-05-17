@@ -5,8 +5,8 @@
 > - 写作风格档案告诉它"作者怎么说话"
 > - 目标读者档案告诉它"对谁说"
 >
-> 这份模板由 academic-writer skill 在 onboarding 时复制到论文项目的
-> `_writing-config/目标读者档案.md`，由作者增量填写。
+> 这份模板由 humanities-writing-companion skill 在 onboarding 时复制到论文项目的
+> `_writing-config/目标读者档案.md`（或英文路径 `_writing-config/reader-profile.md`），由作者增量填写。
 > **不需要等"齐全"——空白格也比没有档案好**。
 
 ---

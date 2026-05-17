@@ -1,34 +1,44 @@
 cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
-title: "academic-writer: A Claude Skill for Humanities and Social-Science Academic Writing"
-version: 1.0.0
-date-released: 2026-05-09
+title: "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing"
+version: 2.0.0
+date-released: 2026-05-17
 authors:
   - alias: tizzy916
 abstract: >
-  A Claude Code / Claude Agent SDK skill that turns Claude into a thinking partner
-  for humanities and social-science academic writing — not a polishing tool,
-  but an interlocutor that engages with arguments, concepts, and voice.
-  Features four-layer critique (foundation/structure/paragraph/sentence),
-  devil's-advocate mode with anti-sycophancy thresholds, deep-style preservation
-  ("write as I speak"), reflexive-writing support for human-AI co-authoring research,
-  ADHD-friendly interaction design, and engineering-grade infrastructure
-  (version control, systematic validation, AI-trace scanning scripts).
+  A Claude Code / Claude Agent SDK skill for humanities scholars (history,
+  philosophy, literature, cultural studies, art history, religious studies,
+  classics) whose primary deliverable is a long-form argumentative text.
+  Not a research pipeline, not a polishing tool, but an interlocutor that
+  engages with arguments, concepts, and stylistic voice. Features four-layer
+  critique (foundation/structure/paragraph/sentence), devil's-advocate mode
+  with anti-sycophancy thresholds, deep-voice preservation ("my hand writes
+  my voice"), reflexive-writing support for human-AI co-authoring research,
+  discipline-specific critique dimensions, ADHD-friendly interaction design,
+  and engineering-grade infrastructure (version control, systematic validation,
+  AI-trace scanning scripts). Bilingual: SKILL.md and README in English
+  and Chinese. Designed as a humanities-side complement to
+  academic-research-skills (Imbad0202) for the empirical research pipeline.
 keywords:
   - claude-skill
-  - academic-writing
+  - claude-code
   - humanities
-  - social-sciences
+  - academic-writing
+  - voice-preservation
   - human-ai-collaboration
   - reflexive-writing
   - devil-advocate
   - argument-critique
-  - voice-preservation
+  - history
+  - philosophy
+  - literary-criticism
+  - cultural-studies
   - prompt-engineering
+  - bilingual
 license: MIT
-repository-code: "https://github.com/tizzy916/claude-skill-academic-writer"
-url: "https://github.com/tizzy916/claude-skill-academic-writer"
+repository-code: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
+url: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
 
 references:
   - type: article
