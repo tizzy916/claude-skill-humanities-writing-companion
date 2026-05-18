@@ -323,6 +323,16 @@ See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
 ---
 
+## About the Author
+
+Shen Cong — BFA, Experimental Art, Central Academy of Fine Arts (CAFA); MA, History of Science, Tsinghua University (advisor: [Hu Yilin](https://yilinhut.net/author/admin)); Founder & CEO of [Tianyu Vision](https://tianyu.art/), a sci-art studio working on scientific visualization, science communication, and sci-art convergence.
+
+This skill came out of writing the author's own MA thesis, *Technical Liberalism*. He noticed that almost every AI writing tool on the market pulled toward **polishing and averaging** — whereas humanities scholarship needs the opposite: protecting the author's scholarly voice, stress-testing argumentative rigor, and surviving adversarial peer review. So he built this skill — not to write *for* him, but to *read* for him, delivering at each of four layers (basic rigor / argument development / paragraph function / sentence-level expression) the kind of critique a real humanities scholar would actually give.
+
+📮 [GitHub @tizzy916](https://github.com/tizzy916) · shencong916@gmail.com · Corrections, collaboration, and conversation welcome.
+
+---
+
 ## License
 
 [MIT](./LICENSE) — free to use, modify, distribute.

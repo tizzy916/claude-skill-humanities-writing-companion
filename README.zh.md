@@ -319,6 +319,16 @@ humanities-writing-companion/
 
 ---
 
+## 关于作者 / About the Author
+
+沈聪,中央美术学院实验艺术学院本科,清华大学科学史系硕士(导师 [胡翌霖](https://yilinhut.net/author/admin)),科技文创公司 [天与视界 TIANYU VISION](https://tianyu.art/) 创始人 & CEO。
+
+本 skill 诞生于学位论文《技术自由主义》的写作过程——作者发现市面上的 AI 写作工具几乎都偏向"润色与平均化",而人文学术写作真正需要的是**反向的能力**:保护作者的学术声音、检验论证的严密性、扛住真实审稿人的对抗。所以做了这个 skill——不是替自己写,而是替自己读,在四个层级(基础严密性 / 论证展开 / 段落功能 / 句子措辞)分别提供一个真实人文学者会给出的批评。
+
+📮 [GitHub @tizzy916](https://github.com/tizzy916) · shencong916@gmail.com · 论文、合作、纠错欢迎来信
+
+---
+
 ## License
 
 [MIT](./LICENSE) — 自由使用、修改、分发。

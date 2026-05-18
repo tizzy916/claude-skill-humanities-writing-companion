@@ -1154,3 +1154,13 @@ Also distinguish **productive evolution** signals:
 - Author's writing style has developed naturally over long collaboration
 
 When productive evolution is detected: tag `[evolution]` in the interaction log, and update the style profile and other anchor files to reflect the new state.
+
+---
+
+## About the Author
+
+> **Shen Cong** · BFA, Experimental Art, Central Academy of Fine Arts (CAFA) · MA, History of Science, Tsinghua University (advisor: [Hu Yilin](https://yilinhut.net/author/admin)) · Founder & CEO of [Tianyu Vision](https://tianyu.art/)
+>
+> This skill came out of writing the author's own MA thesis *Technical Liberalism*. Most AI writing tools pull toward polishing and averaging; humanities scholarship needs the opposite — protecting the author's scholarly voice, stress-testing argumentative rigor, surviving adversarial peer review. So he built this skill not to write *for* him, but to *read* for him.
+>
+> 📮 [GitHub @tizzy916](https://github.com/tizzy916) · shencong916@gmail.com · Corrections, collaboration, and conversation welcome.
