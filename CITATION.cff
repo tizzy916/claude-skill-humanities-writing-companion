@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
 title: "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing"
-version: 3.0.0
+version: 4.0.0
 date-released: 2026-05-19
 authors:
   - family-names: Shen
@@ -11,19 +11,23 @@ authors:
     affiliation: "Tianyu Vision (TIANYU VISION); MA, History of Science, Tsinghua University"
     website: "https://tianyu.art/"
 abstract: >
-  A Claude Code / Claude Agent SDK skill for humanities scholars (history,
-  philosophy, literature, cultural studies, art history, religious studies,
-  classics) whose primary deliverable is a long-form argumentative text.
-  Not a research pipeline, not a polishing tool, but an interlocutor that
-  engages with arguments, concepts, and stylistic voice. Features four-layer
-  critique (foundation/structure/paragraph/sentence), devil's-advocate mode
-  with anti-sycophancy thresholds, deep-voice preservation ("my hand writes
-  my voice"), reflexive-writing support for human-AI co-authoring research,
-  discipline-specific critique dimensions, ADHD-friendly interaction design,
-  and engineering-grade infrastructure (version control, systematic validation,
-  AI-trace scanning scripts). Bilingual: SKILL.md and README in English
-  and Chinese. Designed as a humanities-side complement to
-  academic-research-skills (Imbad0202) for the empirical research pipeline.
+  An end-to-end Claude Code / Claude Agent SDK skill for humanities
+  scholars (history, philosophy, literature, cultural studies, art history,
+  religious studies, classics, intellectual history, science studies) whose
+  primary deliverable is a long-form argumentative text. Covers the full
+  writing lifecycle: research-question sharpening (Mode H Socratic),
+  literature mapping (Mode I), plan-only outlining (Mode J), conception
+  and drafting (Mode C), paragraph dialogue (Mode A), chapter review
+  (Mode B four-layer critique), devil's advocate with 1-5 calibration and
+  methodology-focus sub-mode (Mode D), writing-bottleneck assistance
+  (Mode E), draft revision with revision-coach sub-mode (Mode F), blind
+  reading (Mode G), and AI-use disclosure for humanities journals
+  (Mode K). Deep-voice preservation ("my hand writes my voice"), discipline-
+  specific critique routing (seven main humanities disciplines + cross-
+  disciplinary case), ADHD-friendly interaction design, and engineering-
+  grade infrastructure (version control, systematic validation, AI-trace
+  scanning, citation toolchain with format conversion and Crossref
+  verification). Bilingual: SKILL.md and README in English and Chinese.
 keywords:
   - claude-skill
   - claude-code
@@ -51,14 +55,15 @@ references:
         given-names: Cheng-I
     title: "Academic Research Skills for Claude Code"
     url: "https://github.com/Imbad0202/academic-research-skills"
-    repository-code: "https://github.com/Imbad0202/academic-research-skills"
     license: "CC-BY-NC-4.0"
     year: 2025
     notes: >
-      Upstream design influence. The Concession Threshold pattern in ARS's
-      reviewer module inspired Mode D's "minimum standard before conceding"
-      anti-sycophancy mechanism. The Companion-skill framing in this README
-      follows ARS's own `Companion: Experiment Agent` structural example.
+      Acknowledged design influence on early versions. The Concession
+      Threshold pattern in ARS's reviewer module inspired Mode D's anti-
+      sycophancy mechanism. This skill is an independent project with
+      different scope (end-to-end humanities writing assistance vs.
+      empirical-research pipeline) and entirely independently authored
+      content.
   - type: article
     authors:
       - family-names: Christou

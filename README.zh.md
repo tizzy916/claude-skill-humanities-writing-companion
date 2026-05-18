@@ -12,39 +12,28 @@
 
 ## 定位
 
-本 skill 是**人文学科一侧的写作伙伴**：服务于"文字本身就是论证"的领域——历史、哲学、文学、文化研究、艺术史、宗教学、古典学——提供以保护作者声音为核心的写作辅助。本 skill **不是**研究流水线;实证研究流水线需求请见下方 [Companion 节](#companion-academic-research-skills)。
-
----
-
-## Companion: academic-research-skills
-
-本 skill 设计为 [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)(以下简称 ARS)的**人文学科一侧互补工具**。ARS 是覆盖"文献检索 → 写作 → 审稿 → 修订 → 定稿"全流程的实证研究综合套件,两者设计为并用关系。
-
-### 分工
+**人文学者的端到端写作助手**——覆盖一篇人文论文从研究问题到投稿披露的完整生命周期:
 
 ```
-academic-research-skills (Imbad0202)         humanities-writing-companion (本 skill)
-─────────────────────────────────────        ──────────────────────────────────────
-实证研究流水线                                人文写作的声音
-数据 → 结果 → 写作                             构思 → 论证 → 散文
-引用幻觉审计                                  声音保持 + 风格学习
-PRISMA / RAISE / Material Passport          魔鬼代言人 + 自反性写作
+研究问题 → 文献地图 → 规划 → 起草 → 修订 →
+对抗性审稿 → AI 痕迹清理 → 盲读核对 → AI 使用披露
 ```
 
-典型工作流:用 ARS 做文献发现、引用审计、方法论合规、流水线编排;切换到本 skill 来写真正以"论证性散文为交付物"的人文章节。
+服务于**"文字本身就是论证"**的领域——历史、哲学、文学、文化研究、艺术史、宗教学、古典学、思想史、科学史以及相邻的人文导向学科。
 
-### 设计借鉴(显式署名)
+本 skill 不是润色工具,不是引用管理器,也不是研究流水线。**本 skill 是一个陪你走完整个写作弧线的思维伙伴。**
 
-本 skill 借鉴了 ARS 的若干设计模式,在此显式致谢:
+### 覆盖写作全生命周期的 11 个模式
 
-- **Concession Threshold 模式**(来自 ARS 的 reviewer 模块)→ 启发了本 skill Mode D 中"让步前最低标准"的抗谄媚机制
-- Companion-skill 的并列说明结构,本身也参照了 ARS 自身的 `Companion: Experiment Agent` 结构
+| 阶段 | 模式 |
+|---|---|
+| **写作前** | Mode H · 研究问题 sharpening · Mode I · 文献脉络梳理 · Mode J · 规划专项模式 |
+| **起草** | Mode C · 构思 → 新内容写作 · Mode A · 段落对话 |
+| **审读** | Mode B · 章节审读(四层批判) · Mode D · 魔鬼代言人(1-5 级 calibration + 方法论专项) |
+| **修订** | Mode E · 写作瓶颈辅助 · Mode F · 底稿修订(含 revision-coach 子模式) |
+| **投稿前** | Mode G · 盲读核对 · Mode K · AI 使用披露 |
 
-> Based on **Academic Research Skills** by Cheng-I Wu(吳政宜) — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0)
-
-### License 注意
-
-ARS 与本 skill 现在均采用 **CC BY-NC 4.0**(本 skill 自 2026-05-19 起从 MIT 改为 CC BY-NC 4.0,详见下方 [License 节](#license))。两者协议一致,组合使用 license-stacking 平凡:均禁止商业用途,均要求 attribution。如需对两者中任一进行商业使用,请分别联系各自作者。
+外加**引用工具链**(`scripts/`):格式一致性扫描、格式转换(Chicago / MLA / APA / GB7714)、Crossref 文献验证。
 
 ---
 
@@ -307,14 +296,15 @@ skill 进入 onboarding：确认引用格式、目标读者、已有写作样本
 
 ## 与同类工具的差异
 
-| 工具 | 核心定位 | 与本 skill 的差异 |
+| 工具 | 它的定位 | 本 skill 与之差异 |
 |------|---------|------------------|
-| **academic-research-skills (Imbad0202)** | 完整的实证研究流水线 | 流水线导向；本 skill 是写作声音导向。两者并用可全覆盖。 |
-| **Jenni AI** | 实时自动续写 + 文献发现 | 本 skill 不做续写，专注思想对话 |
-| **Paperpal** | 学术语言润色（理科为主） | 本 skill 是架构而非单点能力 |
-| **Yomu AI** | Sourcely 文献引擎 + 段落反馈 | 本 skill 不做文献检索，假设作者自管（Zotero/Drive） |
-| **Thesify** | Paper Digest + Purpose-Check | 本 skill 的模式 G 借鉴了 Purpose-Check 的设计哲学 |
-| **HyperWrite Devil's Advocate** | 单点反方论证生成 | 本 skill 的魔鬼代言人是完整模式 + 抗谄媚 |
+| **Jenni AI** | 实时自动续写 + 文献发现 | 我们做思想对话,不做续写。实时预测会跳过人文论证所需的认知工作 |
+| **Paperpal** | 学术语言润色(偏理科/生医) | 我们是写作架构(11 个模式 + 四层批判 + 学科路由),不是单点润色工具 |
+| **Yomu AI** | Sourcely 文献引擎 + 段落反馈 | 文献由作者自管(Zotero / Drive)。Mode I 帮你整理读过的,从不替你读你没读的 |
+| **Thesify** | Paper Digest + Purpose-Check | Mode G 借鉴了 Purpose-Check,但放在四层批判 + reviewer calibration 的更大工作流里 |
+| **HyperWrite Devil's Advocate** | 单点反方论证生成 | Mode D 是完整模式:1-5 级 calibration + 方法论专项 + Concession Threshold(抗谄媚) |
+| **Grammarly / DeepL Write** | 语法 / 翻译润色 | 我们绝不为了"清晰"牺牲声音。「我手写我口」是核心原则不是可选项 |
+| **通用 ChatGPT / Claude(无 skill)** | 通用对话 | 我们跨对话持续维护:写作风格档案、读者档案、修改日志、四层批判、学科路由、AI 痕迹清单、引用工具链 |
 
 ---
 
@@ -322,19 +312,22 @@ skill 进入 onboarding：确认引用格式、目标读者、已有写作样本
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← 主 skill 文件（英文，约 900 行）
+├── SKILL.md                          ← 主 skill 文件(英文,约 1400 行,11 个模式)
 ├── SKILL.zh.md                       ← 中文镜像版
 ├── references/
-│   ├── ai-trace-checklist.md         ← AI 痕迹排查清单（当前中文为主；英文翻译 TODO）
+│   ├── ai-trace-checklist.md         ← AI 痕迹排查清单(当前中文为主;英文翻译 TODO)
 │   ├── project-management.md         ← 项目文件夹 + 版本管理规范
 │   └── target-reader-profile-template.md  ← 目标读者档案模板
-├── scripts/
+├── scripts/                          ← 工程工具链(零依赖)
 │   ├── README.md                     ← 脚本使用说明
-│   ├── ai-trace-scan.sh              ← AI 套话扫描（zsh）
-│   ├── pending-checks.sh             ← 待办标记汇总（zsh）
-│   └── citation-consistency.py       ← 引用格式一致性（Python 3）
+│   ├── ai-trace-scan.sh              ← AI 套话扫描(zsh)
+│   ├── pending-checks.sh             ← 待办标记汇总(zsh)
+│   ├── citation-consistency.py       ← 引用格式一致性(Python 3)
+│   ├── citation-format-convert.py    ← Chicago/MLA/APA/GB7714 转换(v4.0+)
+│   └── citation-verify.py            ← Crossref 引用核查(v4.0+)
 ├── README.md                         ← 英文 README
 ├── README.zh.md                      ← 本文件
+├── CHANGELOG.md                      ← 版本历史
 ├── LICENSE                           ← CC BY-NC 4.0
 └── CITATION.cff                      ← 学术引用元数据
 ```
@@ -377,7 +370,7 @@ humanities-writing-companion/
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {3.0.0}
+  version      = {4.0.0}
 }
 ```
 

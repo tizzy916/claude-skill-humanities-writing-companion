@@ -12,39 +12,28 @@
 
 ## Positioning
 
-This skill is the **humanities-side companion** for academic writing: voice-preserving assistance for fields where prose IS the argument — history, philosophy, literature, cultural studies, art history, religious studies, classics. It is **not** a research pipeline. For empirical-research workflows, see the [Companion section](#companion-academic-research-skills) below.
-
----
-
-## Companion: academic-research-skills
-
-This skill is designed as the **humanities-side complement** to [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) (ARS), the comprehensive empirical-research pipeline suite. The two are intended to be used together.
-
-### Division of labor
+**End-to-end writing assistant for humanities scholars** — covering the full lifecycle of a humanities paper from research question to submission disclosure:
 
 ```
-academic-research-skills (Imbad0202)        humanities-writing-companion (this)
-─────────────────────────────────────       ────────────────────────────────
-empirical research pipeline                 humanities writing voice
-data → results → write-up                   conception → argument → prose
-citation hallucination audit                voice preservation + style learning
-PRISMA / RAISE / Material Passport          devil's advocate + reflexive writing
+research question → literature map → planning → drafting → revision →
+adversarial review → AI-trace cleanup → blind-reading check → AI-use disclosure
 ```
 
-A typical workflow: use ARS for literature discovery, citation auditing, methodology compliance, and pipeline orchestration; then switch to this skill when you sit down to write the humanities chapter where argumentative prose IS the deliverable.
+Built for fields where **prose IS the argument** — history, philosophy, literature, cultural studies, art history, religious studies, classics, intellectual history, science studies, and adjacent humanities-aligned fields.
 
-### Design lineage
+Not a polishing tool. Not a citation manager. Not a research pipeline. **A thinking partner that stays with you across the whole arc.**
 
-This skill borrows specific design patterns from ARS, with attribution:
+### 11 modes covering the writing lifecycle
 
-- **Concession Threshold pattern** (from ARS's reviewer module) → inspired Mode D's "minimum standard before conceding" (anti-sycophancy)
-- The companion-skill framing itself follows ARS's own structural example (`Companion: Experiment Agent`)
+| Stage | Modes |
+|---|---|
+| **Pre-writing** | Mode H · Research-question sharpening · Mode I · Literature mapping · Mode J · Plan-only outlining |
+| **Drafting** | Mode C · Conception → new content · Mode A · Paragraph dialogue |
+| **Review** | Mode B · Chapter review (4-layer critique) · Mode D · Devil's advocate (calibratable 1–5 + methodology-focus) |
+| **Revision** | Mode E · Writing-bottleneck assistance · Mode F · Draft revision (with revision-coach sub-mode) |
+| **Pre-submission** | Mode G · Blind reading · Mode K · AI-use disclosure |
 
-> Based on **Academic Research Skills** by Cheng-I Wu (吳政宜) — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0)
-
-### Licensing note
-
-Both ARS and this skill are licensed under **CC BY-NC 4.0** (as of 2026-05-19; this skill was relicensed from MIT — see [License section](#license)). License-stacking is therefore trivial: both prohibit commercial use, both require attribution. For commercial use of either or both, contact the respective authors separately.
+Plus a **citation toolchain** (`scripts/`): consistency checking, format conversion (Chicago / MLA / APA / GB7714), and reference verification against Crossref.
 
 ---
 
@@ -312,14 +301,15 @@ Mode F · draft revision → compare AI-polished vs. original → keep improveme
 
 ## Comparison with adjacent tools
 
-| Tool | Core positioning | Difference from this skill |
-|------|------------------|----------------------------|
-| **academic-research-skills (Imbad0202)** | Full empirical research pipeline | Pipeline-oriented; this is writing-voice-oriented. Use both for full coverage. |
-| **Jenni AI** | Real-time auto-completion + literature discovery | This skill doesn't auto-complete; focuses on thought-dialogue |
-| **Paperpal** | Academic language polishing (STEM-leaning) | This skill is architecture, not point-tool |
-| **Yomu AI** | Sourcely literature engine + paragraph feedback | This skill doesn't search literature; assumes author manages (Zotero/Drive) |
-| **Thesify** | Paper Digest + Purpose-Check | This skill's Mode G is inspired by Purpose-Check design philosophy |
-| **HyperWrite Devil's Advocate** | Point-tool counter-argument generation | This skill's devil's advocate is a full mode with anti-sycophancy |
+| Tool | Their focus | Where this skill differs |
+|------|-------------|--------------------------|
+| **Jenni AI** | Real-time autocompletion + literature search | We do thought-dialogue, not autocompletion. Real-time prediction skips the cognitive work that humanities argument needs. |
+| **Paperpal** | Academic language polishing (STEM/biomed-leaning) | We're a writing architecture (11 modes, 4-layer critique, discipline routing), not a point polishing tool. |
+| **Yomu AI** | Sourcely literature engine + paragraph feedback | We assume the author manages literature (Zotero/Drive). Mode I helps organize what you've already read — never replaces the reading. |
+| **Thesify** | Paper Digest + Purpose-Check | Mode G is inspired by Purpose-Check. We use it within a broader four-layer critique workflow plus reviewer calibration. |
+| **HyperWrite Devil's Advocate** | Point-tool counter-argument generation | Mode D is a full devil's-advocate mode with 1–5 calibration, methodology-focus sub-mode, and a Concession Threshold (anti-sycophancy). |
+| **Grammarly / DeepL Write** | Grammar / translation polishing | We never rewrite for "clarity" at the cost of voice. "My hand writes my voice" is a core principle, not optional. |
+| **Generic ChatGPT / Claude (no skill)** | General-purpose chat | We carry persistent style profile, reader profile, revision log, four-layer critique, discipline routing, AI-trace checklist, and citation toolchain across sessions. |
 
 ---
 
@@ -327,19 +317,22 @@ Mode F · draft revision → compare AI-polished vs. original → keep improveme
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← Main skill file (EN, ~900 lines)
+├── SKILL.md                          ← Main skill file (EN, ~1400 lines, 11 modes)
 ├── SKILL.zh.md                       ← Chinese mirror (中文版)
 ├── references/
 │   ├── ai-trace-checklist.md         ← AI-trace scan checklist (currently Chinese; EN translation TODO)
 │   ├── project-management.md         ← Project folder + version management
 │   └── target-reader-profile-template.md  ← Target reader profile template
-├── scripts/
+├── scripts/                          ← Engineering toolchain (zero deps)
 │   ├── README.md                     ← Script usage
 │   ├── ai-trace-scan.sh              ← AI cliché scan (zsh)
 │   ├── pending-checks.sh             ← Pending marker aggregation (zsh)
-│   └── citation-consistency.py       ← Citation format consistency (Python 3)
+│   ├── citation-consistency.py       ← Citation format consistency (Python 3)
+│   ├── citation-format-convert.py    ← Chicago/MLA/APA/GB7714 converter (v4.0+)
+│   └── citation-verify.py            ← Crossref-based citation verification (v4.0+)
 ├── README.md                         ← This file
 ├── README.zh.md                      ← 中文 README
+├── CHANGELOG.md                      ← Version history
 ├── LICENSE                           ← CC BY-NC 4.0
 └── CITATION.cff                      ← Academic citation metadata
 ```
@@ -382,7 +375,7 @@ If your research uses this skill, please cite it in the methodology section.
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {3.0.0}
+  version      = {4.0.0}
 }
 ```
 

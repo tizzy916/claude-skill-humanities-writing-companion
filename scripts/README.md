@@ -3,9 +3,11 @@
 > 本目录的脚本对应 SKILL.md 中"工程化严谨"原则的具体落地——
 > AI 自觉性是软规范，脚本是硬机制。两者结合，才能真正避免漂移和疏忽。
 
+**v4.0 起新增引用工具链**(citation toolchain):格式转换 + Crossref 核查。
+
 ---
 
-## 三个脚本
+## 五个脚本
 
 ### 1. `ai-trace-scan.sh` · AI 痕迹与学术八股扫描
 
@@ -88,6 +90,74 @@ python3 scripts/citation-consistency.py path/to/paper/main.md
 
 ---
 
+### 4. `citation-format-convert.py` · 引用格式转换(v4.0 新增)
+
+**用途**:把 BibTeX 文献库转换为四种主流学术引用格式之一(用于投稿前的参考文献表准备)。
+
+**支持的格式**:
+- **Chicago Author-Date** —— 历史、人文学科最常用
+- **MLA 9** —— 文学、语言学最常用
+- **APA 7** —— 教育、心理、部分社科最常用
+- **GB/T 7714 顺序编码制** —— 中文期刊国标
+
+**用法**:
+```bash
+# 输出到 stdout
+python3 scripts/citation-format-convert.py refs.bib --to chicago
+
+# 输出到文件
+python3 scripts/citation-format-convert.py refs.bib --to apa --out refs-apa.txt
+
+# 按作者排序(默认)、按年份、按 key、按输入顺序
+python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
+```
+
+**何时运行**:
+- 投稿前准备最终参考文献表(目标期刊有特定格式要求时)
+- 在投稿同一论文到不同期刊间切换时(快速重新生成)
+- 模式 K (AI 使用披露) 输出前
+
+**支持的 BibTeX 类型**:`@book`, `@article`, `@incollection`, `@inbook`, `@inproceedings`, `@thesis`, `@phdthesis`
+
+**重要边界**:
+- **不是 BibLaTeX / CSL 的替代品**——后者支持每个期刊的特异性变体,如果你的工具链可以用 BibLaTeX,优先用那个
+- 此脚本服务于"飞行中"的场景:你手上有 BibTeX 库,想立即生成一份清单为某期刊准备
+- **每种格式有大量微妙规则与期刊特异性变体**——输出永远要对照目标期刊的 style guide 核对,把输出当作起草而非定稿
+- 仅处理参考文献**表**(reference list),不处理散文**内**的 inline 引用(那需要理解文档结构)
+
+---
+
+### 5. `citation-verify.py` · 引用真实性核查(v4.0 新增)
+
+**用途**:扫描 Markdown 草稿中的所有 inline 引用,逐一在 Crossref 公共 API 中核查存在性。**主要用于捕捉 LLM 引用幻觉**(AI 凭"记忆"编造的假期刊文章引用)。
+
+**用法**:
+```bash
+# 人类可读报告
+python3 scripts/citation-verify.py path/to/draft.md
+
+# 静默模式 + JSON 输出(用于 CI / 程序处理)
+python3 scripts/citation-verify.py path/to/draft.md --quiet --json
+```
+
+**核查结果分三类**:
+- **✓ FOUND**:Crossref 有匹配项(高置信度 ≥ 0.85)——通常可信
+- **⚠ FUZZY_MATCH**:有近似匹配但不完全(0.5-0.85)——可能拼写错、年份错、或不同的同名作者著作,需要复核
+- **✗ NOT_FOUND**:Crossref 无匹配——**警惕**,但**未必是幻觉**(见下方边界)
+
+**何时运行**:
+- 模式 B (章节级审读) 之后,模式 G (盲读核对) 之前
+- 任何 AI 起草的章节(模式 C 输出后)
+- 投稿前的最终合规检查
+
+**重要边界**:
+- **Crossref 不索引一切**。许多人文学科作品(尤其:小型大学出版社的专著、未翻译的外文著作、学位论文、档案史料、古典文献)**不在 Crossref 中**——对这些作品,"NOT_FOUND" 是预期结果,**不**代表问题
+- 本脚本擅长的是捕捉 **LLM 幻觉的期刊文章引用**——那是 Crossref 覆盖最好的地方
+- 对专著、档案、古典学引用,正确的工具是 `[VERIFY]` / `[待核对]` 标记协议(参见 SKILL.md),而非本脚本
+- 网络请求,礼貌地限速到 1 次/秒以保护 Crossref 公益服务
+
+---
+
 ## 安装与权限
 
 首次使用前给 shell 脚本加执行权限：
@@ -107,6 +177,8 @@ Python 脚本无需特殊安装——只依赖 Python 3 标准库。
 | `ai-trace-scan.sh` | 文风深层理解 · 未审视表达模式排查 |
 | `pending-checks.sh` | 反馈报告 · 四级分类 + 反漂移协议 |
 | `citation-consistency.py` | 多语言学术写作 · 引用格式一致性验证 + 系统性验证 · 引用完整性验证 |
+| `citation-format-convert.py` | 模式 K (AI 使用披露) 前的格式准备 / 多期刊投稿切换 |
+| `citation-verify.py` | 系统性验证 · 引用真实性 / `[VERIFY]` 标记协议的自动化补充 |
 
 ---
 
