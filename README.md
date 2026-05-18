@@ -181,21 +181,73 @@ Borrowed from software engineering, in service of humanities writing:
 
 ## Supported humanities disciplines
 
-This skill ships with discipline-specific critique dimensions that activate when you declare your discipline at onboarding (or when the skill detects it from your draft). Each discipline has different failure modes that generic AI writing tools miss.
+This skill organizes humanities scholarship in a **three-layer architecture**, so the discipline-routing system can match where the author actually works — not just to one of a flat list of seven slots. Authors declare their discipline at onboarding (or the skill infers from the draft); routing then loads the matching layer.
 
-| Discipline | What this skill watches for |
+### L1 · Six humanities main disciplines
+
+These are the canonical L1 humanities disciplines. Each carries a core set of methodological concerns generic AI writing tools miss.
+
+| L1 discipline | Object of study | Core methodological concerns |
+|---|---|---|
+| **Literature · 文学** | Texts (poetry, fiction, drama, essay) | Close reading vs. interpretation · Genre awareness · Form-meaning fit · Intertextuality |
+| **History · 史学** | Past events, persons, societies | Anachronism · Counterfactual stress · Source handling (primary vs. secondary) · Causal-chain transparency · Historiographical positioning |
+| **Philosophy · 哲学** | Concepts, arguments, normative claims | Conceptual derivation · Argument form (formal vs. material) · Cross-theoretical transport cost · Steel-manning the strongest objection · Modal scope |
+| **Linguistics · 语言学** | Language structure and use | Data source (corpus vs. intuition vs. elicitation) · Form vs. function · Description vs. prescription · Cross-linguistic claim scope |
+| **Art studies · 艺术学** | Art works (painting, sculpture, music, film, architecture) | Description vs. interpretation (keep separate) · Provenance and materiality · Reception history · Medium-specific form analysis |
+| **Religious studies · 宗教学** | Religious traditions, texts, practices | Source-language rigor (original vs. translation) · Tradition position · Insider/outsider (emic vs. etic) · Comparative method |
+
+### L2 · Common subfields (not exhaustive)
+
+Subfields **inherit all the methodological concerns of their parent L1**, plus any specific constraints the author declares at onboarding. Examples — many more possible:
+
+| Parent L1 | Example subfields |
 |---|---|
-| **History · 历史** | Anachronism (retrojecting modern concepts into the past); counterfactual stress (could events have gone otherwise?); source-handling discipline (primary vs. secondary, source-internal voice); causal-chain transparency |
-| **Philosophy · 哲学** | Conceptual derivation chain (where does this concept come from, how is it deformed); cross-theoretical transplantation (importing concepts from tradition A into B without paying transport costs); steel-manning the strongest objection before refute |
-| **Literature & literary criticism · 文学批评** | Close reading vs. interpretation (is interpretation anchored in textual evidence?); genre awareness (the genre is half the meaning); form-meaning fit (does formal observation actually carry the interpretive load) |
-| **Cultural studies · 文化研究** | Power-knowledge framing (who speaks, who is spoken about); positionality (the author's own location); generalization range (does this case warrant the universal claim) |
-| **Art history · 艺术史** | Description vs. interpretation (keep them separate); provenance and material history (the object's life); reception history (was the work read this way at its moment, or only now) |
-| **Religious studies & classics · 宗教学与古典学** | Source-language rigor (is the original consulted, or only translation?); tradition awareness (which traditional reading is presupposed); insider-outsider position (etic vs. emic) |
-| **Cross-disciplinary case studies** | Why this case (typicality vs. exception); what it can and cannot generalize to; case-as-narrative vs. case-as-argument |
+| Literature | Classical Chinese literature · Modern Chinese literature · Comparative literature · Literary theory · Literary criticism · Foreign-language literatures |
+| History | Chinese history · World history · Economic history · Social history · Cultural history · Urban history · Periodized fields (Tang history, early modern Europe, etc.) |
+| Philosophy | Chinese philosophy · Western philosophy (analytic vs. continental) · Ethics · Aesthetics · Political philosophy · Philosophy of science · Phenomenology |
+| Linguistics | Historical linguistics · Sociolinguistics · Pragmatics · Typology · Discourse analysis |
+| Art studies | Art history · Musicology · Film studies · Theatre studies · Architectural history |
+| Religious studies | Christian studies · Buddhist studies · Daoist studies · Comparative religion |
 
-**Don't see your subfield?** Most subfields (medieval studies, intellectual history, science studies, ethnomusicology, art conservation, …) inherit from one or two of these main disciplines. Either declare the inheritance at onboarding (`"I'm doing intellectual history — inherit from History + Philosophy"`) or open an Issue to propose a new dimension.
+If your subfield isn't listed, declare it at onboarding — it inherits from its parent L1 automatically.
 
-The full critique dimensions for each discipline live in `SKILL.md` § *Humanities Discipline-Specific Dimensions* — this table is the README-level surface; the skill itself carries the full rubric.
+### L3 · Cross-disciplinary fields (explicit multi-inheritance)
+
+These are humanities fields that explicitly draw from multiple L1s. The skill loads the methodological concerns of **all parent L1s plus the L3-specific overlay**.
+
+| L3 field | Inherits from | L3-specific overlay |
+|---|---|---|
+| **Cultural studies · 文化研究** | Literature + History + Sociology | Power/knowledge framing · Positionality · Generalization range |
+| **Classics · 古典学** | Literature + History + Philosophy + Religious studies + Archaeology | Textual criticism (manuscript tradition) · Philological rigor · Reception history |
+| **Intellectual history · 思想史** | History + Philosophy | Begriffsgeschichte vs. Cambridge School · Context vs. text · Avoiding presentism |
+| **History of science · 科学史** | History + Science + Philosophy | Internal vs. external history · Whig-history vigilance · Technical accuracy · Case-study calibration |
+| **Media studies · 媒介研究** | Literature + Cultural studies + Philosophy of technology | Medium-morphology · Reception studies · Tech-social co-construction |
+| **Digital humanities · 数字人文** | Any L1 + Computation | Data reproducibility · Tool transparency · Algorithmic bias · Methodological disclosure of computational choices |
+| **Gender studies · 性别研究** | Literature + History + Cultural studies | Gender ontology · Historicizing gender · Intersectionality |
+| **Postcolonial studies · 后殖民研究** | Literature + History + Cultural studies | Positionality · Translation politics · Resisting Eurocentrism |
+| **Environmental humanities · 环境人文** | Literature + History + Science | Anthropocene framing · Multi-species perspective · Scale problems (local vs. planetary) |
+
+### Humanities-adjacent fields (welcome with scope note)
+
+Some fields are formally classified as social science but include strong humanities-style sub-traditions (where prose IS the argument). This skill welcomes such work:
+
+| Field | What we serve | What we don't serve |
+|---|---|---|
+| **Communication studies · 传播学** (humanities-style) | Media ecology school (Innis / McLuhan / Postman / Carey); critical communication; humanities-aligned cultural-media research | Empirical/experimental communication research, content analysis as quantitative method |
+| **Educational research · 教育学** (humanities-style) | History of education · Philosophy of education · Curriculum theory in humanities mode · Critical pedagogy | Quantitative educational psychology · Empirical learning-outcomes research |
+
+Inheritance: communication studies (humanities-style) ← Media studies + Philosophy + Cultural studies. Educational research (humanities-style) ← History + Philosophy + Cultural studies.
+
+### Fallback protocol — if you still don't see your field
+
+Tell the skill at onboarding:
+
+1. **Object of study**: text / past event / concept / phenomenon / artifact / practice / language structure / …
+2. **Primary method**: close reading / archival research / argument analysis / ethnography / comparison / philological work / …
+
+The skill will infer your closest L1 + any relevant L3 overlays, write it to `_writing-config/discipline.md`, and proceed. You can refine the declaration anytime.
+
+The full methodology rubric for each L1 / L3 entry lives in `SKILL.md` § *Humanities Discipline-Specific Dimensions* — this README table is the surface map; the skill carries the full rubric.
 
 ---
 
@@ -375,7 +427,7 @@ If your research uses this skill, please cite it in the methodology section.
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {4.0.0}
+  version      = {4.1.0}
 }
 ```
 

@@ -124,7 +124,39 @@ When working with a new user for the first time, establish the writing environme
 
 1. **What are you writing?** — Paper title, **discipline**, approximate length, current stage (topic selection / first draft / revision / submission)
 
-   ⚠️ **Discipline is routing-critical, not metadata.** Ask explicitly for one of: *history / philosophy / literature / cultural studies / art history / religious studies / classics / cross-disciplinary case*. If the author's subfield is narrower (e.g., medieval studies, intellectual history, science studies, ethnomusicology), ask which of the seven main disciplines it **inherits from** (often one or two: "intellectual history inherits from history + philosophy"). Record this in `_writing-config/discipline.md` (Chinese: `学科档案.md`) with the declared main discipline(s) + any subfield notes. **For every subsequent critique, the corresponding subsection of `## Humanities Discipline-Specific Dimensions` must be prioritized over generic critique.**
+   ⚠️ **Discipline is routing-critical, not metadata.** Three-layer elicitation:
+
+   **(a) L1 main discipline** (one required): Literature / History / Philosophy / Linguistics / Art studies / Religious studies. If the author works in a humanities-adjacent field (communication studies humanities-style, educational research humanities-style), ask which L1 they most identify with methodologically — and record the adjacent-field declaration.
+
+   **(b) L2 subfield** (optional but recommended): specific subfield such as 中国古代文学 / 近代史 / 伦理学 / 艺术史 / 音乐学 / 历史语言学 — inherits from L1, may add subfield-specific constraints.
+
+   **(c) L3 cross-disciplinary** (optional, often more than one): cultural studies / classics / intellectual history / history of science / media studies / digital humanities / gender studies / postcolonial studies / environmental humanities / communication studies (humanities-style) / educational research (humanities-style) — each loads multi-L1 inheritance plus an overlay.
+
+   **Fallback**: if none fit, run the fallback protocol from `## Humanities Discipline-Specific Dimensions` (ask `object of study` + `primary method`, infer the closest L1 + relevant overlays).
+
+   Record all three layers in `_writing-config/discipline.md` (Chinese: `学科档案.md`) with the following structure:
+
+   ```markdown
+   # Discipline declaration
+
+   ## L1 (main discipline)
+   [one of: Literature / History / Philosophy / Linguistics / Art studies / Religious studies]
+
+   ## L2 (subfield, optional)
+   [e.g., 中国古代文学; inherits L1 + adds: ...]
+
+   ## L3 (cross-disciplinary fields, optional, may be multiple)
+   - [e.g., Intellectual history: inherits History + Philosophy + overlay]
+   - [e.g., History of science: inherits History + Science + Philosophy + overlay]
+
+   ## Humanities-adjacent (optional)
+   [e.g., Communication studies (humanities-style, media ecology tradition)]
+
+   ## Notes
+   [any author-specific clarifications, e.g., "I do thinking work, not empirical work"]
+   ```
+
+   **For every subsequent critique, the loaded dimensions of L1 (+ L2 constraints + L3 overlays + adjacent overlays) must be prioritized over generic critique.**
 
 2. **Citation format** — Which format are you using?
    - Chicago/Turabian (most common for history and humanities)
@@ -346,56 +378,146 @@ The most error-prone place in mixed-language writing. Verify:
 
 ## Humanities Discipline-Specific Dimensions
 
-Humanities papers are not lab reports. Different chapter types require different assistance strategies. The dimensions below are not mutually exclusive — a chapter on Foucault's *Discipline and Punish* can be philosophical argument AND historical narrative AND case analysis at once.
+Humanities papers are not lab reports. Different traditions require different assistance strategies. The architecture below is **three-layered**: 6 L1 main disciplines, common L2 subfields (inherit from L1), and L3 cross-disciplinary fields (inherit from multiple L1s with overlay-specific concerns). Humanities-adjacent fields with humanities-style sub-traditions (communication studies, educational research) are explicitly welcomed at the bottom. The dimensions across these layers are not mutually exclusive — a chapter on Foucault's *Discipline and Punish* can be philosophical AND historical AND cultural-studies inflected at once.
 
 ### Discipline routing protocol
 
 **Read this every time you give critique.** Discipline is not metadata — it is a routing variable.
 
-1. **Locate the author's declared discipline** in `_writing-config/discipline.md` (created during onboarding). If absent, ask before continuing critique — never proceed with generic critique when the author has a discipline.
-2. **Inheritance handling**: if the declared subfield inherits from multiple main disciplines (e.g., intellectual history = history + philosophy), apply both subsections' dimensions, prioritizing whichever is more relevant to the specific passage being critiqued.
-3. **Discipline-discipline conflicts**: when a passage straddles two disciplines (e.g., a historical narrative making a philosophical argument), name the straddle explicitly in feedback — "this paragraph is doing history at the surface but philosophy at the foundation; let's critique both layers separately."
-4. **Cross-disciplinary case studies**: if the author is doing a case study, the case-analysis dimensions ALWAYS apply, in addition to whichever main discipline the case sits in.
-5. **Discipline override**: if the author later changes the declared discipline (sometimes a thesis migrates from one frame to another mid-revision), update `_writing-config/discipline.md` and log it in the revision log.
+1. **Locate the author's discipline declaration** in `_writing-config/discipline.md` (created during onboarding). The file should contain three fields:
+   - `L1` — the parent main discipline (one of: Literature / History / Philosophy / Linguistics / Art studies / Religious studies)
+   - `L2` (optional) — specific subfield (e.g., 中国古代文学, 近代史, 伦理学, 艺术史)
+   - `L3` (optional) — cross-disciplinary field with multi-inheritance (e.g., 思想史 = History + Philosophy; 文化研究 = Literature + History + Sociology)
+
+   If the file is absent, ask before continuing critique — never proceed with generic critique when the author has a discipline.
+
+2. **Layer composition**:
+   - L1-only → load the parent L1's methodology dimensions
+   - L1 + L2 → load L1's dimensions; apply L2's specific constraints if declared (e.g., 古代文学 adds philological concerns to literature)
+   - L1 + L3 → load **all parent L1s' dimensions for the L3** (intellectual history loads both History and Philosophy), **plus the L3-specific overlay**
+   - Humanities-adjacent declaration → load the closest L1(s) plus the field's documented overlay
+
+3. **Cross-discipline straddle**: when a passage straddles two L1s (e.g., a historical narrative making a philosophical argument), **name the straddle in feedback** — "this paragraph is doing history at the surface but philosophy at the foundation; let's critique both layers separately."
+
+4. **Cross-disciplinary case studies**: if the author is doing a case study (any discipline), the **case-analysis dimensions ALWAYS apply** in addition to whichever main discipline(s) the case sits in.
+
+5. **Discipline migration**: if the author changes the declared discipline mid-project (theses sometimes migrate from one frame to another during revision), update `_writing-config/discipline.md` and log the change in the revision log.
+
+6. **Unknown discipline fallback**: if the author's field doesn't match any L1/L2/L3/humanities-adjacent entry, run the fallback protocol (last section below) — ask for `object of study` + `primary method`, infer the closest L1 + relevant overlays.
 
 **Order of operations in feedback**: discipline dimensions sit at Layer 1 (Foundation). A historical anachronism or a misused source-language reading is a **foundation-level failure**, not a sentence-level fix — handle it before going to Layer 2/3/4.
 
-### Historical narrative chapters · 历史叙事
+---
+
+### L1 · Six main humanities disciplines
+
+#### L1.1 · Literature · 文学
+
+**Object of study**: texts (poetry, fiction, drama, essay, memoir, hybrid forms).
+
+**Focus areas**:
+
+- **Close reading vs. interpretation**: Does the close reading sustain the interpretive claim, or does interpretation float free of the text? Every interpretive claim should have textual anchor points.
+- **Theoretical scaffolding**: When using a theoretical frame (psychoanalytic, postcolonial, deconstructive, etc.), does the frame illuminate the text, or does the text become a pretext for the frame?
+- **Quotation as evidence**: Are quoted passages truly evidentiary, or decorative? Does the analysis after the quote engage what is in the quote, or just orbit it?
+- **Author / implied author / narrator distinction**: Especially in narrative texts — is the chapter conflating author, narrator, and character?
+- **Genre awareness**: Are the conventions of the text's genre being respected, or read against (and if against, is the contrarian reading earned by close attention)?
+- **Form-meaning fit**: Are formal features (meter, narration, structure) read as carrying meaning, or only treated as decoration?
+- **Intertextuality**: Are echoes, allusions, and source-texts identified and analyzed, not just spotted?
+
+#### L1.2 · History · 史学
+
+**Object of study**: past events, persons, societies, structures.
 
 **Focus areas**:
 
 - **Causal reasoning**: Do the causal relations implicit in the narrative hold up? Is temporal sequence being smuggled in as causation?
-- **Source handling**: Primary sources or secondhand reporting? Is attribution clear?
-- **Selective bias**: Does the narrative — consciously or not — omit historical evidence that would weaken the argument?
-- **Anachronism**: Are contemporary categories being applied to historical actors? Are categories like "intellectual," "nation," "individual," or "the public" being used in periods where they did not yet exist in the modern sense?
+- **Source handling**: Primary sources or secondhand reporting? Is attribution clear? Are source biases (the actors' own interests in being remembered a certain way) accounted for?
+- **Selective bias**: Does the narrative — consciously or not — omit evidence that would weaken the argument?
+- **Anachronism**: Are contemporary categories applied to historical actors? Terms like "intellectual," "nation," "individual," "the public" risk anachronism in periods where they did not yet exist in their modern sense.
 - **Narrative vs. analysis ratio**: Has the chapter slipped into "telling a story" while forgetting to "do analysis"?
 - **Counterfactual stress-test**: If the narrative says "X led to Y," what if X had been absent — is the causal claim still defensible, or just a chronicle?
+- **Historiographical positioning**: Which historiographical tradition does the chapter argue with or extend? (Annales? Cambridge School? Subaltern Studies? Marxist? New Cultural History?)
 
-### Philosophical argument chapters · 哲学论证
+#### L1.3 · Philosophy · 哲学
+
+**Object of study**: concepts, arguments, normative claims.
 
 **Focus areas**:
 
 - **Rigor of conceptual derivation**: Is every step from premise to conclusion accounted for? Hidden steps?
 - **Sufficiency of conceptual distinctions**: Are key concepts defined clearly? Are the distinctions among them defensible (i.e., not just verbal)?
-- **Legitimacy of cross-theoretical transplantation**: When a concept from one thinker is grafted onto another framework, has its original meaning been altered? Has the alteration been acknowledged and processed?
-- **Handling the strongest objection**: What is the strongest opposing view? Does the chapter address it head-on, or only engage with weaker objections (strawmanning)?
+- **Cross-theoretical transplantation**: When a concept from one thinker is grafted onto another framework, has its original meaning been altered? Has the alteration been acknowledged?
+- **Steel-manning the strongest objection**: What is the strongest opposing view? Does the chapter address it head-on, or only engage with weaker objections (strawmanning)?
 - **Abstract-concrete respiration**: Are there long stretches of pure abstraction with no example? (Examples are not just illustrations — they test whether the abstract claim has any bite.)
-- **Distinction between exegesis and intervention**: Is this chapter reconstructing what Thinker X said, or arguing for a new position via X? The two have different evidentiary standards — exegesis demands textual fidelity; intervention demands philosophical defensibility.
+- **Exegesis vs. intervention**: Is this chapter reconstructing what Thinker X said, or arguing for a new position via X? The two have different evidentiary standards — exegesis demands textual fidelity; intervention demands philosophical defensibility.
+- **Modal scope**: When the chapter says "necessarily," is it logical necessity, metaphysical necessity, nomological necessity, or moral necessity? Conflation here is a common foundation-level failure.
 
-### Literature and literary criticism chapters · 文学与文学批评
+#### L1.4 · Linguistics · 语言学
+
+**Object of study**: language structure and use.
+
+**Focus areas**:
+
+- **Data source disclosure**: Corpus? Native-speaker intuition? Elicitation? Naturalistic observation? Each has different epistemological standing — and humanities-style linguistics writing should be explicit.
+- **Form vs. function**: Is the chapter making a structural claim (about form) or a usage claim (about function)? These should not be conflated, but each can illuminate the other.
+- **Description vs. prescription**: When a usage is described, is it being described or prescribed? Humanities-style linguistics typically privileges description, but prescriptive moves should be acknowledged when made.
+- **Cross-linguistic claim scope**: Is the claim about this language, this language family, or human language generally? Each scope requires different evidence.
+- **Linguistic vs. literary register**: When working with literary texts, does the chapter distinguish the linguistic claim (about a structure or usage in this text) from the literary claim (about meaning, effect, intent)?
+- **Diachrony vs. synchrony**: Historical linguistic claims and synchronic structural claims have different methods. Is the chapter clear about which it is making?
+
+#### L1.5 · Art studies · 艺术学
+
+**Object of study**: art works across media — painting, sculpture, music, film, architecture, performance, design, etc.
 
 **Focus areas**:
 
-- **Close reading vs. interpretation**: Does the close reading sustain the interpretive claim, or does the interpretation float free of the text?
-- **Theoretical scaffolding**: When using a theoretical frame (psychoanalytic, postcolonial, deconstructive, etc.), does the frame illuminate the text, or does the text become a pretext for the frame?
-- **Quotation as evidence**: Are quoted passages truly evidentiary, or decorative? Does the analysis after the quote engage what is in the quote, or just orbit it?
-- **Distinction between the author and the implied author / narrator**: Especially in narrative texts — is the chapter conflating author, narrator, and character?
-- **Genre awareness**: Are the conventions of the text's genre being respected, or read against (and if against, is the contrarian reading earned)?
-- **Form and meaning**: Are formal features (meter, narration, structure) read as carrying meaning, or only treated as decoration?
+- **Description vs. interpretation**: Does the formal description (composition, material, technique, iconography, sound, movement) sustain the interpretive claim? They should be clearly separable in the chapter's structure.
+- **Provenance and dating**: Are attributional claims supported by evidence, or relying on tradition / catalog convention?
+- **Materiality**: Has the chapter engaged with the work's medium-specific material conditions (paint, marble, celluloid, sound recording, digital substrate), or treated all art as abstract content?
+- **Contextualization**: Patronage, production conditions, intended viewing/listening context — are these treated as constitutive of meaning, or as background decoration?
+- **Reception history**: When relevant, is the work's later reception distinguished from its original context? Are anachronistic readings flagged as such?
+- **Visual / aural evidence in writing**: Are figure references / score citations / shot descriptions doing analytical work, or just illustrating points already made?
+- **Medium-specific form analysis**: Music has different formal vocabulary from cinema, which has different vocabulary from painting. Is the chapter using vocabulary appropriate to the medium?
 
-### Cultural studies and interpretive social science · 文化研究
+#### L1.6 · Religious studies · 宗教学
+
+**Object of study**: religious traditions, texts, practices, institutions.
 
 **Focus areas**:
+
+- **Source-language rigor**: When citing texts in Greek, Latin, Hebrew, Arabic, Sanskrit, Pali, Classical Chinese, etc., are translations checked against the original? Are translation choices flagged where they are interpretive?
+- **Tradition awareness**: Within long interpretive traditions (e.g., Pauline studies, Plato scholarship, Confucian commentaries, Quranic exegesis), is the chapter's position situated relative to existing schools?
+- **Insider-outsider position (emic vs. etic)**: Is the author's stance toward the tradition (devotional, agnostic, critical, comparative) acknowledged where it affects interpretation? Etic claims that ignore emic understanding can misread; emic claims unanalyzed by etic distance can become apologetic.
+- **Cross-tradition comparison**: When making comparative claims, are the categories defined within their respective traditions, not just from the comparison's framework? "Mysticism," "salvation," "ritual" mean different things across traditions.
+- **Practice vs. text**: Does the chapter privilege textual sources where lived practice would be more relevant, or vice versa?
+
+---
+
+### L2 · Subfield inheritance
+
+Subfields **inherit all the L1 concerns of their parent**. The author's onboarding may declare additional subfield-specific constraints (e.g., 古代文学 typically adds philological-textual concerns; 经济史 adds quantitative source handling; 现象学 adds first-person methodological reflexivity). Treat declared subfield constraints as **additive**, not as replacements.
+
+Common subfield-specific overlays the skill should recognize when declared:
+
+- **Literature**: 古代文学 → philological concerns + manuscript tradition · 比较文学 → translation theory + cross-tradition method · 文学理论 → meta-level reflexivity about reading practice
+- **History**: 经济史 → quantitative source handling + economic theory familiarity · 思想史 → see L3 · 城市史 → spatial reasoning + comparative urbanism
+- **Philosophy**: 中国哲学 → classical-text exegesis + tradition · 分析哲学 → formal precision + thought-experiment method · 大陆哲学 → genealogical method + tradition-internal vocabulary
+- **Art studies**: 艺术史 → see L1.5 emphases · 音乐学 → musical-analysis vocabulary + score reading · 电影学 → shot analysis + production context
+
+If the author's subfield isn't on this list, ask in onboarding what specific constraint the subfield adds beyond L1.
+
+---
+
+### L3 · Cross-disciplinary fields
+
+Each L3 entry inherits methodological dimensions from **all listed parent L1s** plus the **L3-specific overlay** below.
+
+#### L3.1 · Cultural studies · 文化研究
+
+**Inheritance**: Literature + History + Sociology (humanities-aligned).
+
+**L3-specific overlay**:
 
 - **Cultural object analysis**: Is the object (a film, a fashion, a ritual, a media practice) being read for what it shows, or projected onto?
 - **Power-knowledge framing**: When invoking power (Foucauldian, Marxist, postcolonial), is the specific mechanism articulated, or is "power" being used as a wand?
@@ -403,33 +525,147 @@ Humanities papers are not lab reports. Different chapter types require different
 - **Generalization range**: From the analyzed cases, what is being claimed about the broader cultural formation? Is the inferential step defended?
 - **Empirical-interpretive boundary**: If empirical material is used (interviews, ethnography, archival), is the interpretive move from material to claim explicit?
 
-### Art history chapters · 艺术史
+#### L3.2 · Classics · 古典学
 
-**Focus areas**:
+**Inheritance**: Literature + History + Philosophy + Religious studies + Archaeology.
 
-- **Description vs. interpretation**: Does the formal description (composition, material, technique, iconography) sustain the interpretive claim?
-- **Provenance and dating**: Are attributional claims supported by evidence or relying on tradition?
-- **Contextualization**: Patronage, workshop conditions, intended viewing context — are these treated as constitutive of meaning, or as background decoration?
-- **Reception history**: When relevant, is the work's later reception distinguished from its original context?
-- **Visual evidence in writing**: Are figure references doing analytical work, or just illustrating points already made?
+**L3-specific overlay**:
 
-### Religious studies, classics, and ancient-text chapters · 宗教学与古典学
+- **Textual criticism**: Is the manuscript tradition acknowledged? Are textual variants relevant to the interpretation discussed?
+- **Philological rigor**: Are translation choices defended? Is the original language consulted where the argument turns on a specific word?
+- **Reception history**: Is the work's later reception (medieval, early modern, modern) distinguished from its ancient context? Is the chapter's own "modern lens" acknowledged?
 
-**Focus areas**:
+#### L3.3 · Intellectual history · 思想史
 
-- **Source-language rigor**: When citing texts in Greek, Latin, Hebrew, Sanskrit, Classical Chinese, etc., are translations checked against the original? Are translation choices flagged where they are interpretive?
-- **Tradition awareness**: Within long interpretive traditions (e.g., Pauline studies, Plato scholarship, Confucian commentaries), is the chapter's position situated relative to existing schools?
-- **Insider-outsider position**: For religious studies in particular, is the author's stance toward the tradition (devotional, agnostic, critical) acknowledged where it affects interpretation?
-- **Cross-tradition comparison**: When making comparative claims, are the categories being compared defined within their respective traditions, not just from the comparison's framework?
+**Inheritance**: History + Philosophy.
 
-### Case analysis (cross-disciplinary) · 案例分析
+**L3-specific overlay**:
 
-**Focus areas**:
+- **Method declaration**: Is the chapter doing Begriffsgeschichte (concept history, Koselleck), Cambridge School (contextualist, Skinner / Pocock), histoire des mentalités, or another method? Each has different evidentiary standards.
+- **Context vs. text balance**: Is the chapter reading the text in its context, or imposing context on the text? Both errors are common.
+- **Avoiding presentism**: Is the chapter judging past thinkers by present concerns, or reconstructing the actual problem-space they were addressing?
+- **Concept migration**: When concepts move across periods/traditions (e.g., medieval → early modern; Greek → Arabic → Latin), are the migration costs tracked?
+
+#### L3.4 · History of science · 科学史
+
+**Inheritance**: History + Science + Philosophy.
+
+**L3-specific overlay**:
+
+- **Internal vs. external history**: Is the chapter doing internalist history (the conceptual development of a science) or externalist history (the social conditions producing the science)? Or arguing they're inseparable?
+- **Whig-history vigilance**: Is the chapter reading past science by present standards (i.e., as a march toward current knowledge)? When unavoidable, is the framing acknowledged?
+- **Technical accuracy**: Does the chapter actually understand the science it's historicizing? Historians of science who get the science wrong lose credibility quickly.
+- **Case-study calibration**: Why this case? What does it illuminate that a different case would not? (Cross-link to the case analysis appendix below.)
+
+#### L3.5 · Media studies · 媒介研究
+
+**Inheritance**: Literature + Cultural studies + Philosophy of technology.
+
+**L3-specific overlay**:
+
+- **Medium-morphology**: Different media have different epistemologies. Is the chapter treating medium as a substantive variable, or just as a channel?
+- **Reception studies**: Is the chapter making claims about how media are received, or only about how they're produced? Each requires different evidence.
+- **Tech-social co-construction**: Is technology treated as deterministic, as socially constructed, or as co-constituted? The chapter should be explicit about its position.
+
+#### L3.6 · Digital humanities · 数字人文
+
+**Inheritance**: Any L1 + Computation.
+
+**L3-specific overlay**:
+
+- **Data reproducibility**: Is the data source documented? Could another researcher reproduce the analysis?
+- **Tool transparency**: What does the algorithm/tool do? Are its assumptions disclosed?
+- **Algorithmic bias**: Are the biases of the computational tool (e.g., a topic model's clustering assumptions, an embedding's training corpus) acknowledged as shaping the findings?
+- **Methodological disclosure**: Is the choice of computational method defended, not just deployed?
+
+#### L3.7 · Gender studies · 性别研究
+
+**Inheritance**: Literature + History + Cultural studies.
+
+**L3-specific overlay**:
+
+- **Gender ontology**: How is gender being conceptualized — as identity, performance, structural position, biological-cultural intersection?
+- **Historicizing gender**: Are present gender categories being read back into historical material that operated with different categories?
+- **Intersectionality**: When relevant, are race, class, sexuality, ability, etc., treated as intersecting axes, not as additive variables?
+
+#### L3.8 · Postcolonial studies · 后殖民研究
+
+**Inheritance**: Literature + History + Cultural studies.
+
+**L3-specific overlay**:
+
+- **Positionality**: Whose voice is centered? Whose voice is theorized about? Is the asymmetry acknowledged?
+- **Translation politics**: When working across languages (especially metropolitan ↔ subaltern), are translation choices flagged as political?
+- **Resisting Eurocentrism**: Is the chapter using European theoretical frameworks (Foucault, Derrida) to read non-European material? If so, is the import cost discussed?
+
+#### L3.9 · Environmental humanities · 环境人文
+
+**Inheritance**: Literature + History + Science.
+
+**L3-specific overlay**:
+
+- **Anthropocene framing**: When invoking the Anthropocene (or Capitalocene, Plantationocene, Chthulucene), is the chapter taking a position in this debate or treating one framing as neutral?
+- **Multi-species / more-than-human**: Are non-human actors treated as agents, as objects, or as both depending on context?
+- **Scale problems**: Is the chapter working at local scale, regional, planetary? Are scale-jumps in the argument justified?
+
+---
+
+### Humanities-adjacent fields (welcome, with scope notes)
+
+Some fields are formally classified as social science but include strong humanities-style sub-traditions where prose IS the argument. This skill explicitly welcomes such work — the methodology dimensions below apply to the humanities-style sub-traditions, not to the empirical / quantitative sub-traditions of these fields.
+
+#### Communication studies · 传播学 (humanities-style)
+
+**What we serve**: Media ecology school (Innis · McLuhan · Postman · Carey · the Toronto tradition); critical communication; humanities-aligned cultural-media research; rhetorical studies; philosophy of communication.
+
+**What we don't serve well**: Empirical / experimental communication research; content analysis as quantitative method; effects studies. (For those, the four-layer critique still works at the prose level, but the discipline-specific dimensions below won't fit.)
+
+**Inheritance**: Media studies (L3.5) + Philosophy (L1.3) + Cultural studies (L3.1).
+
+**Field-specific overlay**:
+
+- **Medium-as-message reflexivity**: When making a McLuhanesque argument, is the chapter exemplifying its claim about media in its own form, or contradicting it?
+- **Speculative-empirical disclosure**: Media ecology is unapologetically speculative. The chapter should not pretend to empirical method when it's doing speculative-philosophical work.
+- **Tradition position**: Is the chapter Innisian (bias of communication), McLuhanesque (medium-effect), Postman (resistance), Carey (ritual view)? Or arguing across these?
+
+#### Educational research · 教育学 (humanities-style)
+
+**What we serve**: History of education; philosophy of education; curriculum theory in humanities mode; critical pedagogy (Freire, hooks, et al.); educational thought of major thinkers.
+
+**What we don't serve well**: Quantitative educational psychology; empirical learning-outcomes research; assessment studies. (For those, the four-layer critique still works at the prose level, but the dimensions below won't fit.)
+
+**Inheritance**: History (L1.2) + Philosophy (L1.3) + Cultural studies (L3.1).
+
+**Field-specific overlay**:
+
+- **Normative grounding**: Educational arguments often involve normative claims (what *should* education do?). Is the normative claim defended, or smuggled?
+- **Tradition position**: Liberal, critical, conservative, progressive? Is the position acknowledged?
+- **Educational-social link**: When linking education to society (reproduction, transformation, mobility, citizenship), is the mechanism articulated?
+
+---
+
+### Cross-disciplinary case analysis (appendix — always applicable when doing a case study)
+
+Whenever the author's work uses **case study** as a method (in any L1 / L2 / L3 / adjacent field), the following dimensions apply **in addition to** whatever discipline-specific dimensions are loaded:
 
 - **Case selection representativeness**: Why these cases and not others? Is the selection criterion explicit?
 - **Two-way movement between case and theory**: Does the theory illuminate aspects of the case otherwise hard to see? Does the case modify or enrich the theory? Or is the case merely an "illustration" of the theory?
 - **Internal diversity**: Are there tensions among the cases? Are those tensions exploited to advance the argument?
 - **Analytical value of detail**: Do narrated details serve analysis? Or is there "encyclopedic" background that could be cut?
+- **Calibrated generalization**: From the case(s), what is being generalized — typicality, exception-illuminating-rule, deviant-case-restructuring-theory? The generalization type should be explicit.
+
+---
+
+### Fallback protocol — when the author's discipline doesn't fit any L1 / L2 / L3 / adjacent entry
+
+In onboarding, ask:
+
+1. **Object of study**: text / past event / concept / phenomenon / artifact / language structure / practice / institution / image / sound / spatial structure / other (specify)
+2. **Primary method**: close reading / archival research / argument analysis / ethnography / comparison / philological work / structural analysis / interpretive analysis / other (specify)
+
+Then propose: "Based on your object + method, your closest L1 is [X], with relevant overlays from [Y, Z]. Write this to `_writing-config/discipline.md`?" Confirm with the author before proceeding.
+
+If the field truly doesn't fit (e.g., a discipline emerging in real time), default to the L1 + method match, plus the case-analysis appendix if case-based, and **explicitly tell the author this is a best-fit approximation; suggest they refine the declaration as the project develops**.
 
 ---
 
@@ -529,19 +765,39 @@ Standard Mode D simulates four reviewers attacking the content of the argument. 
 - Before methods-section submission (some journals require explicit methodology statement)
 - When prior Mode D content-attack revealed surface symptoms but not root cause
 
-**Discipline-specific methodology attacks** (read `_writing-config/discipline.md` to know which to deploy):
+**Discipline-specific methodology attacks** (read `_writing-config/discipline.md` to know which to deploy — load attacks for the declared L1 + any L3 / adjacent-field overlays):
 
-| Discipline | Methodology attacks |
+**L1 attacks**:
+
+| L1 discipline | Methodology attack vectors |
 |---|---|
-| **History** | Source handling: primary vs. secondary distinction maintained? Source bias accounted for? Anachronism: are modern categories silently projected onto historical actors? Counterfactual: would you accept this method of argument from someone making the opposite case? |
-| **Philosophy** | Argument form: is this a formal argument with explicit premises, or material reasoning dressed up as formal? Concept use: are you using "X" in the technical sense or the colloquial sense? Modal scope: when you say "necessarily," in what sense — logical, metaphysical, nomological? Are you smuggling? |
-| **Literature** | Textual grounding: every interpretive claim anchored in textual evidence? Hermeneutic circle: is your interpretation pre-determined by the theoretical frame you brought in? Genre awareness: are you reading the text against its genre conventions or with them? |
-| **Cultural studies** | Positionality: is your own position acknowledged or hidden? Power/knowledge: who is speaking, who is spoken about? Generalization range: this case shows X — does it show X in this site, this period, this population, or universally? |
-| **Art history** | Description vs. interpretation kept separate? Provenance evidence cited? Reception: was the work read this way at its moment, or is this only contemporary reception? Material vs. iconographic claims distinguished? |
-| **Religious studies / classics** | Source language: are you reading the original, or relying on translation? Tradition position: which traditional reading are you presupposing? Insider/outsider: emic claims vs. etic claims clearly distinguished? |
-| **Cross-disciplinary case** | Why this case (typicality, exception, deviant case)? Case-as-narrative vs. case-as-argument — are you using narrative to evade argumentative work? |
+| **Literature** | Textual grounding: every interpretive claim anchored in textual evidence? Hermeneutic circle: is your interpretation pre-determined by the theoretical frame you brought in? Genre awareness: are you reading the text against its genre conventions or with them, and is the contrarian reading earned? Author/narrator conflation: where do you confuse the two? |
+| **History** | Source handling: primary vs. secondary distinction maintained? Source bias accounted for? Anachronism: are modern categories silently projected onto historical actors? Counterfactual: would you accept this method of argument from someone making the opposite case? Historiographical positioning: which tradition do you argue with, and is the disagreement explicit? |
+| **Philosophy** | Argument form: is this a formal argument with explicit premises, or material reasoning dressed up as formal? Concept use: are you using "X" in the technical sense or the colloquial sense? Modal scope: when you say "necessarily," in what sense — logical, metaphysical, nomological, moral? Are you smuggling? Exegesis vs. intervention: which are you doing, and have you applied the right evidentiary standard? |
+| **Linguistics** | Data source: corpus, intuition, elicitation, observation — which, and is the standing of the data acknowledged? Form vs. function: which claim are you making? Cross-linguistic scope: this language, this family, or human language generally — does your evidence support that scope? |
+| **Art studies** | Description vs. interpretation kept separate? Provenance evidence cited? Reception: was the work read this way at its moment, or is this only contemporary reception? Material vs. iconographic claims distinguished? Medium-specific vocabulary appropriate to the art form? |
+| **Religious studies** | Source language: are you reading the original, or relying on translation? Tradition position: which traditional reading are you presupposing? Insider/outsider: emic claims vs. etic claims clearly distinguished? Cross-tradition comparison: are categories defined within each tradition or imposed from the comparison's framework? |
 
-**Output marker**: methodology-focus attacks are tagged in `_meta/interaction-log.md` with `[Mode D · methodology]` so the author can distinguish methodology issues from content issues when responding.
+**L3 overlay attacks** (apply IN ADDITION to parent L1s):
+
+| L3 field | Additional methodology attack vectors |
+|---|---|
+| **Cultural studies** | Positionality: is your own position acknowledged or hidden? Power-as-wand: do you articulate the specific mechanism, or wave "power" as explanation? Generalization range: this case shows X — does it show X in this site, this period, this population, or universally? |
+| **Classics** | Manuscript tradition: are textual variants relevant to your interpretation? Philological choices: are translation decisions defended, or invisible? |
+| **Intellectual history** | Method declared: Begriffsgeschichte? Cambridge School? Presentism: are you judging past thinkers by present standards? Concept migration: have you paid the transport cost? |
+| **History of science** | Internalist or externalist (or both)? Whig history: are you reading the past as march-toward-present? Technical accuracy: do you understand the science you're historicizing? |
+| **Media studies** | Medium-as-variable or medium-as-channel? Tech-social: deterministic, constructionist, or co-constituted — is your position explicit? |
+| **Digital humanities** | Data reproducibility: documented? Tool transparency: assumptions disclosed? Algorithmic bias: acknowledged as shaping findings? |
+| **Gender / postcolonial / environmental** | Positionality and ontology declared? Historicizing (gender) / translation politics (postcolonial) / scale (environmental) handled? Eurocentric framework imposed without acknowledging cost? |
+
+**Humanities-adjacent attacks**:
+
+| Adjacent field | Additional methodology attack vectors |
+|---|---|
+| **Communication studies (humanities-style)** | Speculative-vs-empirical disclosure: are you doing speculative-philosophical work but framing it as empirical? Tradition position (Innis / McLuhan / Postman / Carey) explicit? Medium-as-message reflexivity in your own form? |
+| **Educational research (humanities-style)** | Normative grounding: is the normative claim defended, or smuggled? Tradition position (liberal / critical / conservative / progressive) acknowledged? Educational-social link: mechanism articulated? |
+
+**Output marker**: methodology-focus attacks are tagged in `_meta/interaction-log.md` with `[Mode D · methodology]` so the author can distinguish methodology issues from content issues when responding. When multiple discipline overlays apply (e.g., 思想史 = History + Philosophy + L3 overlay), attacks from each layer should be tagged with their source: `[Mode D · methodology · L1 History]`, `[Mode D · methodology · L1 Philosophy]`, `[Mode D · methodology · L3 Intellectual history]`.
 
 ---
 
@@ -1299,16 +1555,30 @@ Pure outline mode — no draft writing. Extracted from Mode C so the author can 
    - `_writing-config/literature-map.md` if exists (Mode I output)
    - `_writing-config/reader-profile.md` for target audience
 
-3. **Apply discipline-specific arc**. Each main discipline has a recurring rhetorical structure. Use these as starting templates (the author can deviate, but the deviation should be a choice not an oversight):
+3. **Apply discipline-specific arc**. Each L1 main discipline has a recurring rhetorical structure. L3 cross-disciplinary fields and adjacent fields combine multiple L1 arcs with their own overlays. Use these as starting templates (the author can deviate, but the deviation should be a choice not an oversight):
 
-   | Discipline | Standard arc |
+   **L1 arcs** (6):
+
+   | L1 | Standard arc |
    |---|---|
-   | **Philosophy** | Concept-puzzle → conceptual analysis → defense against strongest objection → consequences for downstream debate |
-   | **History** | Historiographical positioning → narrative → analytic argument → broader significance / re-periodization |
    | **Literature** | Theoretical frame → close reading → generalization back to frame / re-reading the frame through the text |
+   | **History** | Historiographical positioning → narrative → analytic argument → broader significance / re-periodization |
+   | **Philosophy** | Concept-puzzle → conceptual analysis → defense against strongest objection → consequences for downstream debate |
+   | **Linguistics** | Research question + data source → linguistic analysis → claim → cross-linguistic / theoretical implication |
+   | **Art studies** | Description → contextualization (provenance, materiality, reception) → interpretation → consequences for history of seeing/hearing/perceiving |
+   | **Religious studies** | Text-philological work → tradition-positioning → interpretive argument → bearings on contemporary scholarship |
+
+   **L3 / adjacent arcs** (selected examples — combine parent L1 arcs with L3-specific moves):
+
+   | L3 / adjacent | Standard arc |
+   |---|---|
    | **Cultural studies** | Case + theoretical lens → analytic unfolding → reflexive turn on the analysis itself |
-   | **Art history** | Description → contextualization (provenance, reception) → interpretation → consequences for history of seeing |
-   | **Religious studies / classics** | Text-philological work → tradition-positioning → interpretive argument → bearings on contemporary scholarship |
+   | **Classics** | Textual criticism → tradition-positioning → interpretive argument → reception consequences |
+   | **Intellectual history** | Method declaration → context reconstruction → text analysis → concept-migration narrative |
+   | **History of science** | Technical contextualization (the science) → historical narrative → analytic argument → relevance to contemporary science / historiography |
+   | **Media studies** | Medium-morphology framing → analytic case → tech-social co-construction argument → consequences for media theory |
+   | **Communication studies (humanities-style, e.g., media ecology)** | Speculative-philosophical framing (e.g., bias of communication, medium-effect) → tradition-positioning → case analysis as illustration / argument → consequences for understanding communication-society relation |
+   | **Educational research (humanities-style, e.g., history/philosophy of education)** | Normative grounding (what should education do) → historical or philosophical case → analytic argument → consequences for practice / theory |
    | **Cross-disciplinary case** | Case → why this case → analytic work → calibrated generalization (with explicit scope limits) |
 
 4. **Build outline section by section**:

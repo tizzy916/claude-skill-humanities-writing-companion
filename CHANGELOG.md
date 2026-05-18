@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.1.0] — 2026-05-19
+
+**Discipline architecture refactor: flat 7-entry list → 3-layer architecture.**
+
+The previous "Supported humanities disciplines" section listed seven entries (history, philosophy, literature, cultural studies, art history, religious studies, classics) as if they were at the same conceptual layer. They were not — three were L1 main disciplines, one was an L2 subfield, two were L3 cross-disciplinary fields. The set also reflected the author's own research range (history of science / technology philosophy / cultural studies) rather than the actual map of humanities scholarship.
+
+This release restructures the discipline architecture so users from any humanities or humanities-adjacent field can find their position.
+
+### Added
+
+- **L1 layer · 6 main humanities disciplines**: Literature, History, Philosophy, Linguistics (new), Art studies (replacing Art history as the broader parent), Religious studies. Each gets a refined methodology rubric with 5-7 core concerns.
+- **L2 layer · subfield inheritance mechanism**: subfields (e.g., 中国古代文学, 经济史, 伦理学, 艺术史, 音乐学) inherit all parent L1 concerns and may add subfield-specific overlays. Documented common subfield overlays for each L1.
+- **L3 layer · 9 cross-disciplinary fields with explicit multi-inheritance**:
+  - Cultural studies (← Literature + History + Sociology)
+  - Classics (← Literature + History + Philosophy + Religious studies + Archaeology)
+  - Intellectual history (← History + Philosophy) — *new entry*
+  - History of science (← History + Science + Philosophy) — *new entry*
+  - Media studies (← Literature + Cultural studies + Philosophy of technology) — *new entry*
+  - Digital humanities (← any L1 + Computation) — *new entry*
+  - Gender studies (← Literature + History + Cultural studies) — *new entry*
+  - Postcolonial studies (← Literature + History + Cultural studies) — *new entry*
+  - Environmental humanities (← Literature + History + Science) — *new entry*
+- **Humanities-adjacent fields · welcomed with explicit scope notes**:
+  - Communication studies (humanities-style, e.g., media ecology school: Innis / McLuhan / Postman / Carey)
+  - Educational research (humanities-style, e.g., history of education, philosophy of education, critical pedagogy)
+  Each comes with explicit "what we serve / what we don't serve" boundaries, inheritance chain, and field-specific overlay.
+- **Fallback protocol**: for any field not on the list — author declares `object of study` + `primary method`, skill infers closest L1 + relevant overlays. Suggests refinement as project develops.
+
+### Changed
+
+- **Onboarding step 1 upgraded to 3-layer elicitation**: now asks separately for L1 (required), L2 (optional), L3 (optional, possibly multiple), and humanities-adjacent declaration. `_writing-config/discipline.md` schema updated.
+- **Discipline routing protocol rewritten** to handle layer composition (L1-only, L1+L2, L1+L3 with multi-inheritance, adjacent-field with documented overlay). Tagged outputs in `_meta/interaction-log.md` now identify which layer each attack originates from (e.g., `[Mode D · methodology · L1 History]`, `[Mode D · methodology · L3 Intellectual history]`).
+- **Mode D methodology-focus attack table** restructured: 6 L1 attack vectors + 9 L3 overlay attacks + 2 humanities-adjacent attacks. Author with `discipline.md` declaring `史学 + 哲学 + L3 思想史` now gets all three sets of attacks loaded.
+- **Mode J standard arc table** restructured: 6 L1 arcs + selected L3 / adjacent arcs (incl. communication studies humanities-style arc, educational research humanities-style arc). Authors in fields with humanities-style sub-traditions now have arc templates.
+- **README disciplines section** rewritten with full 3-layer table including L1 (6), L2 (examples), L3 (9), humanities-adjacent (2), and fallback protocol. Same in `README.zh.md`.
+
+### Rationale
+
+The previous flat seven-entry list:
+- Mixed conceptual layers (L1 / L2 / L3 not distinguished) — confused users trying to declare their discipline
+- Excluded fields where prose IS the argument but where the discipline is formally social science (communication studies, educational research) — these users had no entry point
+- Reflected the author's own research range (history of science, technology philosophy, cultural studies) rather than the actual humanities map — newcomers from literature, linguistics, religious studies, art studies (broadly) had partial or no coverage
+
+The 3-layer architecture with explicit multi-inheritance + humanities-adjacent welcome solves all three.
+
+### Migration notes
+
+- Existing `_writing-config/discipline.md` files written under v4.0.0 still work — the new schema is additive (old `discipline: history` is parsed as `L1: History`).
+- Users who previously declared "literature" now get the expanded L1 Literature concerns (close reading, theoretical scaffolding, quotation-as-evidence, narrator distinction, genre, form-meaning, intertextuality). The first three were in v4.0.0; the last four are new.
+- Users in communication studies / educational research who previously had no entry point should re-declare in onboarding using the new humanities-adjacent option.
+
+---
+
 ## [4.0.0] — 2026-05-19
 
 **Major repositioning + capability expansion. End-to-end humanities writing assistant.**
