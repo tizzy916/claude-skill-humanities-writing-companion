@@ -12,9 +12,15 @@
 
 ## 定位
 
-本 skill **不是**研究流水线。流水线需求请用 [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)——一个覆盖"文献检索 → 写作 → 审稿 → 修订 → 定稿"全流程、为实证研究优化的综合套件。
+本 skill 是**人文学科一侧的写作伙伴**：服务于"文字本身就是论证"的领域——历史、哲学、文学、文化研究、艺术史、宗教学、古典学——提供以保护作者声音为核心的写作辅助。本 skill **不是**研究流水线;实证研究流水线需求请见下方 [Companion 节](#companion-academic-research-skills)。
 
-本 skill 是**人文学科一侧的互补**：服务于"文字本身就是论证"的领域，提供以保护作者声音为核心的写作辅助。两者可同时使用——让 ARS 处理引用审计和方法论合规，让本 skill 处理声音、论证和文风发展。
+---
+
+## Companion: academic-research-skills
+
+本 skill 设计为 [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills)(以下简称 ARS)的**人文学科一侧互补工具**。ARS 是覆盖"文献检索 → 写作 → 审稿 → 修订 → 定稿"全流程的实证研究综合套件,两者设计为并用关系。
+
+### 分工
 
 ```
 academic-research-skills (Imbad0202)         humanities-writing-companion (本 skill)
@@ -24,6 +30,21 @@ academic-research-skills (Imbad0202)         humanities-writing-companion (本 s
 引用幻觉审计                                  声音保持 + 风格学习
 PRISMA / RAISE / Material Passport          魔鬼代言人 + 自反性写作
 ```
+
+典型工作流:用 ARS 做文献发现、引用审计、方法论合规、流水线编排;切换到本 skill 来写真正以"论证性散文为交付物"的人文章节。
+
+### 设计借鉴(显式署名)
+
+本 skill 借鉴了 ARS 的若干设计模式,在此显式致谢:
+
+- **Concession Threshold 模式**(来自 ARS 的 reviewer 模块)→ 启发了本 skill Mode D 中"让步前最低标准"的抗谄媚机制
+- Companion-skill 的并列说明结构,本身也参照了 ARS 自身的 `Companion: Experiment Agent` 结构
+
+> Based on **Academic Research Skills** by Cheng-I Wu(吳政宜) — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0)
+
+### License 注意
+
+ARS 采用 **CC BY-NC 4.0**(禁止商用衍生);本 skill 采用 **MIT**。在组合使用两者时,**应以更严格的 ARS license 为准**——尤其是涉及商业用途时。
 
 ---
 
@@ -165,6 +186,63 @@ PRISMA / RAISE / Material Passport          魔鬼代言人 + 自反性写作
 
 ---
 
+## 支持的人文学科
+
+本 skill 内置各学科特化的批评维度,onboarding 时声明你的学科即可激活(也会从草稿中自动检测)。**每个学科都有通用 AI 写作工具看不见的失败模式**:
+
+| 学科 | 本 skill 重点关注 |
+|---|---|
+| **历史 · History** | 时代错置(把当代概念投射到过去);反事实压力测试(事情有没有可能不这样发生?);史料处理纪律(一手 vs 二手、史料内部声音);因果链透明度 |
+| **哲学 · Philosophy** | 概念派生链条(这个概念从哪里来、如何被变形);跨理论移植代价(把传统 A 的概念引入传统 B 是否支付了转运成本);最强反对意见的 steel-man(反驳前先把对手论证做强) |
+| **文学与文学批评 · Literature** | 文本细读 vs 解释(解释是否锚定在文本证据上?);文类意识(文类是意义的一半);形式-意义贴合(形式观察是否真的承担解释重量) |
+| **文化研究 · Cultural Studies** | 权力-知识框架(谁在说话,谁被言说);位置性(作者自己的位置);概括范围(这个个案是否支持普遍主张) |
+| **艺术史 · Art History** | 描述 vs 解释(分开!);来源与物质史(物件本身的生命);接受史(作品在其当下是否被这样读,还是只有现在才被这样读) |
+| **宗教学与古典学 · Religious Studies & Classics** | 源语言严谨度(读原文还是只读译本?);传统意识(预设了哪个传统的解读);内部-外部位置(etic vs emic) |
+| **跨学科案例分析** | 为什么是这个案例(典型 vs 例外);它能不能推广 / 推广到哪;案例叙事 vs 案例论证 |
+
+**没看到你的子学科?** 大多数子学科(中世纪研究、思想史、科学史、民族音乐学、艺术保护……)继承自上述主要学科中的一两个。在 onboarding 时声明继承关系即可(如「我做思想史 —— 继承自历史 + 哲学」),或者开 Issue 提议新维度。
+
+每个学科的完整批评维度在 `SKILL.md § Humanities Discipline-Specific Dimensions` 中——本表是 README 层的展示面,skill 内部承载完整 rubric。
+
+---
+
+## Showcase · 真实 Before / After 案例
+
+四层批评的真实应用。作者的学位论文初稿(讨论 Stiegler 的 pharmakon 与 AI):
+
+> **Before.** Stiegler 的 pharmakon 概念表明,技术既是毒也是药。所以 AI 也是 pharmakon。我们要谨慎使用 AI,避免落入它的负面效应。正如 Stiegler 所说,技术是一把双刃剑。
+
+skill 的回应,自上而下,四层:
+
+```
+🔴 第 1 层 · 基础 — 论证成立性
+
+  这一段把 pharmakon 等同于"双刃剑"。Stiegler 明确反对这种等同
+  (WMLWL, p. 12):pharmakon 的治愈力与破坏力是**同时**而非交替的,
+  且破坏力**与治愈力成正比**。"双刃剑"暗示的是"用户的选择"——你
+  小心点就好;pharmakon 暗示的是"先于用户选择的结构性条件"。这不
+  是细微差别,这是为什么 Stiegler 从 Derrida 那里借这个概念的整个
+  原因。
+
+  判断:基础已破。在修复 L1 前,不下到下面三层。
+
+🟡 第 2 层 · 结构 — 论证展开(L1 未修复前不做)
+
+🟢 第 3 层 · 段落(暂缓)
+
+⚪ 第 4 层 · 句子(暂缓)
+```
+
+作者重写基础后,这段可能变成:
+
+> **After.** 在 Stiegler 的框架中(承自 Derrida 对柏拉图《斐德罗》的解读),*pharmakon* 命名的是一种**结构性条件**而非道德选择:技术的治愈力与破坏力**不可分离且强度成正比**(Stiegler, *What Makes Life Worth Living*, 2013, p. 12)。对 LLM 而言,这意味着真正的问题不是"我们是否足够小心地使用它?"——这种提问预设了一个**完全在 pharmakon 之外**的用户。真正的问题是:*在什么样的历史-器官学配置下,pharmakon 的破坏性面向被结构性地强化?* 我将在下文论证:沿着 Stiegler 在 *Automatic Society*(2017)对数字第三持存的诊断……
+
+变化:陈词滥调的"双刃剑"被 Stiegler 真正的概念动作替换;引用锚定在可核查的页码;结论指向下一段可以展开的具体论题。**skill 没有替作者写这个重写**——它指出基础错了、说清楚错在哪里、然后**拒绝在基础修复之前做任何句子级工作**。
+
+> **这就是"思维伙伴,而非润色工具"的实际含义。**
+
+---
+
 ## 安装
 
 ### 作为 Claude Code skill 安装
@@ -290,19 +368,35 @@ humanities-writing-companion/
 
 ## 引用本工作
 
-如果你的研究使用了本 skill，可在方法论部分引用：
+如果你的研究使用了本 skill，请在方法论部分引用。
 
+**BibTeX**:
 ```bibtex
-@software{humanities_writing_companion_2026,
-  author       = {tizzy916},
+@software{shen_humanities_writing_companion_2026,
+  author       = {Shen, Cong},
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {1.0.0}
+  version      = {2.0.0}
 }
 ```
 
-或参见 [`CITATION.cff`](./CITATION.cff)。
+**纯文本署名**(用于 skill 元数据、页脚等):
+```
+Based on Humanities Writing Companion by Shen Cong
+https://github.com/tizzy916/claude-skill-humanities-writing-companion
+```
+
+完整机读元数据见 [`CITATION.cff`](./CITATION.cff)(GitHub 的 "Cite this repository" 按钮会自动调用该文件)。
+
+### 同时引用 Companion 工具
+
+如果你在同一项目中同时使用了 [academic-research-skills](https://github.com/Imbad0202/academic-research-skills),请同时引用两者。ARS 的署名格式(遵循 CC BY-NC 4.0):
+
+```
+Based on Academic Research Skills by Cheng-I Wu
+https://github.com/Imbad0202/academic-research-skills
+```
 
 ---
 

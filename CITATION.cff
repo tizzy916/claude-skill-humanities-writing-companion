@@ -2,10 +2,14 @@ cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
 title: "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing"
-version: 2.0.0
-date-released: 2026-05-17
+version: 2.1.0
+date-released: 2026-05-19
 authors:
-  - alias: tizzy916
+  - family-names: Shen
+    given-names: Cong
+    alias: tizzy916
+    affiliation: "Tianyu Vision (TIANYU VISION); MA, History of Science, Tsinghua University"
+    website: "https://tianyu.art/"
 abstract: >
   A Claude Code / Claude Agent SDK skill for humanities scholars (history,
   philosophy, literature, cultural studies, art history, religious studies,
@@ -41,6 +45,20 @@ repository-code: "https://github.com/tizzy916/claude-skill-humanities-writing-co
 url: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
 
 references:
+  - type: software
+    authors:
+      - family-names: Wu
+        given-names: Cheng-I
+    title: "Academic Research Skills for Claude Code"
+    url: "https://github.com/Imbad0202/academic-research-skills"
+    repository-code: "https://github.com/Imbad0202/academic-research-skills"
+    license: "CC-BY-NC-4.0"
+    year: 2025
+    notes: >
+      Upstream design influence. The Concession Threshold pattern in ARS's
+      reviewer module inspired Mode D's "minimum standard before conceding"
+      anti-sycophancy mechanism. The Companion-skill framing in this README
+      follows ARS's own `Companion: Experiment Agent` structural example.
   - type: article
     authors:
       - family-names: Christou

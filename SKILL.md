@@ -114,7 +114,10 @@ When working with a new user for the first time, establish the writing environme
 
 **Required information**:
 
-1. **What are you writing?** — Paper title, discipline, approximate length, current stage (topic selection / first draft / revision / submission)
+1. **What are you writing?** — Paper title, **discipline**, approximate length, current stage (topic selection / first draft / revision / submission)
+
+   ⚠️ **Discipline is routing-critical, not metadata.** Ask explicitly for one of: *history / philosophy / literature / cultural studies / art history / religious studies / classics / cross-disciplinary case*. If the author's subfield is narrower (e.g., medieval studies, intellectual history, science studies, ethnomusicology), ask which of the seven main disciplines it **inherits from** (often one or two: "intellectual history inherits from history + philosophy"). Record this in `_writing-config/discipline.md` (Chinese: `学科档案.md`) with the declared main discipline(s) + any subfield notes. **For every subsequent critique, the corresponding subsection of `## Humanities Discipline-Specific Dimensions` must be prioritized over generic critique.**
+
 2. **Citation format** — Which format are you using?
    - Chicago/Turabian (most common for history and humanities)
    - MLA (most common for literature and languages)
@@ -336,6 +339,18 @@ The most error-prone place in mixed-language writing. Verify:
 ## Humanities Discipline-Specific Dimensions
 
 Humanities papers are not lab reports. Different chapter types require different assistance strategies. The dimensions below are not mutually exclusive — a chapter on Foucault's *Discipline and Punish* can be philosophical argument AND historical narrative AND case analysis at once.
+
+### Discipline routing protocol
+
+**Read this every time you give critique.** Discipline is not metadata — it is a routing variable.
+
+1. **Locate the author's declared discipline** in `_writing-config/discipline.md` (created during onboarding). If absent, ask before continuing critique — never proceed with generic critique when the author has a discipline.
+2. **Inheritance handling**: if the declared subfield inherits from multiple main disciplines (e.g., intellectual history = history + philosophy), apply both subsections' dimensions, prioritizing whichever is more relevant to the specific passage being critiqued.
+3. **Discipline-discipline conflicts**: when a passage straddles two disciplines (e.g., a historical narrative making a philosophical argument), name the straddle explicitly in feedback — "this paragraph is doing history at the surface but philosophy at the foundation; let's critique both layers separately."
+4. **Cross-disciplinary case studies**: if the author is doing a case study, the case-analysis dimensions ALWAYS apply, in addition to whichever main discipline the case sits in.
+5. **Discipline override**: if the author later changes the declared discipline (sometimes a thesis migrates from one frame to another mid-revision), update `_writing-config/discipline.md` and log it in the revision log.
+
+**Order of operations in feedback**: discipline dimensions sit at Layer 1 (Foundation). A historical anachronism or a misused source-language reading is a **foundation-level failure**, not a sentence-level fix — handle it before going to Layer 2/3/4.
 
 ### Historical narrative chapters · 历史叙事
 
@@ -1045,6 +1060,7 @@ When the author brings an existing draft (e.g., an AI-polished version) for syst
 ## Cross-Skill Collaboration
 
 - **academic-research-skills (Imbad0202)**: the empirical research pipeline. Use ARS for citation auditing (L3 claim-faithfulness), methodology compliance (PRISMA, RAISE), and the full pipeline orchestration. When using both, let ARS handle the pre-writing and post-writing stages; let this skill handle the writing itself.
+  - **Attribution**: This skill borrows the Concession Threshold pattern (Mode D anti-sycophancy) from ARS's reviewer module. Based on **Academic Research Skills** by Cheng-I Wu — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0). When citing this skill in academic work, also cite ARS if both are used.
 - **book-reader skill**: book-extraction notes and concept cards can be referenced directly in papers via `[[wikilinks]]`. When the paper needs to cite a book's view, first check whether the vault already has a corresponding reading note.
 - **pdf skill**: read the reference PDFs in `_references/attachments/`, extract specific page quotations. Used to verify citation accuracy and find originals.
 - **docx skill / pdf skill**: after the paper is complete, export per target journal requirements. Run the academic writing check list before export.

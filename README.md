@@ -12,9 +12,15 @@
 
 ## Positioning
 
-This skill is **not** a research pipeline. For that, use [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) — a comprehensive suite covering literature search → write → review → revise → finalize, optimized for empirical research.
+This skill is the **humanities-side companion** for academic writing: voice-preserving assistance for fields where prose IS the argument — history, philosophy, literature, cultural studies, art history, religious studies, classics. It is **not** a research pipeline. For empirical-research workflows, see the [Companion section](#companion-academic-research-skills) below.
 
-This skill is the **humanities-side companion**: voice-preserving writing assistance for fields where prose IS the argument. The two can be used together — let ARS handle citation auditing and methodology compliance; let this skill handle voice, argumentation, and stylistic development.
+---
+
+## Companion: academic-research-skills
+
+This skill is designed as the **humanities-side complement** to [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) (ARS), the comprehensive empirical-research pipeline suite. The two are intended to be used together.
+
+### Division of labor
 
 ```
 academic-research-skills (Imbad0202)        humanities-writing-companion (this)
@@ -24,6 +30,21 @@ data → results → write-up                   conception → argument → pros
 citation hallucination audit                voice preservation + style learning
 PRISMA / RAISE / Material Passport          devil's advocate + reflexive writing
 ```
+
+A typical workflow: use ARS for literature discovery, citation auditing, methodology compliance, and pipeline orchestration; then switch to this skill when you sit down to write the humanities chapter where argumentative prose IS the deliverable.
+
+### Design lineage
+
+This skill borrows specific design patterns from ARS, with attribution:
+
+- **Concession Threshold pattern** (from ARS's reviewer module) → inspired Mode D's "minimum standard before conceding" (anti-sycophancy)
+- The companion-skill framing itself follows ARS's own structural example (`Companion: Experiment Agent`)
+
+> Based on **Academic Research Skills** by Cheng-I Wu (吳政宜) — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0)
+
+### Licensing note
+
+ARS is licensed under **CC BY-NC 4.0** (non-commercial); this skill is **MIT**. Users combining the two should comply with the more restrictive ARS license when using the combined toolchain commercially.
 
 ---
 
@@ -169,6 +190,64 @@ Borrowed from software engineering, in service of humanities writing:
 
 ---
 
+## Supported humanities disciplines
+
+This skill ships with discipline-specific critique dimensions that activate when you declare your discipline at onboarding (or when the skill detects it from your draft). Each discipline has different failure modes that generic AI writing tools miss.
+
+| Discipline | What this skill watches for |
+|---|---|
+| **History · 历史** | Anachronism (retrojecting modern concepts into the past); counterfactual stress (could events have gone otherwise?); source-handling discipline (primary vs. secondary, source-internal voice); causal-chain transparency |
+| **Philosophy · 哲学** | Conceptual derivation chain (where does this concept come from, how is it deformed); cross-theoretical transplantation (importing concepts from tradition A into B without paying transport costs); steel-manning the strongest objection before refute |
+| **Literature & literary criticism · 文学批评** | Close reading vs. interpretation (is interpretation anchored in textual evidence?); genre awareness (the genre is half the meaning); form-meaning fit (does formal observation actually carry the interpretive load) |
+| **Cultural studies · 文化研究** | Power-knowledge framing (who speaks, who is spoken about); positionality (the author's own location); generalization range (does this case warrant the universal claim) |
+| **Art history · 艺术史** | Description vs. interpretation (keep them separate); provenance and material history (the object's life); reception history (was the work read this way at its moment, or only now) |
+| **Religious studies & classics · 宗教学与古典学** | Source-language rigor (is the original consulted, or only translation?); tradition awareness (which traditional reading is presupposed); insider-outsider position (etic vs. emic) |
+| **Cross-disciplinary case studies** | Why this case (typicality vs. exception); what it can and cannot generalize to; case-as-narrative vs. case-as-argument |
+
+**Don't see your subfield?** Most subfields (medieval studies, intellectual history, science studies, ethnomusicology, art conservation, …) inherit from one or two of these main disciplines. Either declare the inheritance at onboarding (`"I'm doing intellectual history — inherit from History + Philosophy"`) or open an Issue to propose a new dimension.
+
+The full critique dimensions for each discipline live in `SKILL.md` § *Humanities Discipline-Specific Dimensions* — this table is the README-level surface; the skill itself carries the full rubric.
+
+---
+
+## Showcase: Before / After
+
+A real example of the four-layer critique in action. Author's draft paragraph (English translation of a Chinese-language thesis chapter on Stiegler):
+
+> **Before.** Stiegler's pharmakon concept shows that technology is both poison and remedy. AI is therefore a pharmakon as well. We must be careful in our use of AI, lest we fall into its negative effects. As Stiegler said, technology is a double-edged sword.
+
+The skill's response, top-down, four layers:
+
+```
+🔴 Layer 1 · Foundation — Argument standing
+
+  The paragraph claims pharmakon = "double-edged sword." Stiegler explicitly
+  rejects this equivalence (WMLWL, p. 12): pharmakon is curative AND
+  destructive AT THE SAME TIME, not alternately, and the destructive force
+  is proportional to the curative one. "Double-edged sword" implies a
+  user-choice framing; pharmakon implies a structural condition that
+  precedes user choice. This is not nuance — it is the whole point of
+  borrowing the concept from Derrida.
+
+  Verdict: Foundation broken. Do not proceed to lower layers until fixed.
+
+🟡 Layer 2 · Structure — Argument unfolding (deferred until L1 fixed)
+
+🟢 Layer 3 · Paragraph (deferred)
+
+⚪ Layer 4 · Sentence (deferred)
+```
+
+After the author rewrites the foundation, the same paragraph might become:
+
+> **After.** In Stiegler's framework — extended from Derrida's reading of Plato's *Phaedrus* — *pharmakon* names a structural condition rather than a moral choice: a technology's curative force is **inseparable from and proportional to** its destructive force (Stiegler, *What Makes Life Worth Living*, 2013, p. 12). For LLMs, this means the question is not "are we careful enough in our use?" — that frame presupposes a user fully outside the pharmakon. The question is: *in what historical-organological configuration does the pharmakon's destructive face become structurally dominant?* I argue, following Stiegler's reading of digital tertiary retention in *Automatic Society* (2017), that …
+
+What changed: a clichéd "double-edged sword" framing replaced by Stiegler's actual conceptual move, a citation anchored at a verifiable page, and a forward-pointing thesis the next paragraph can develop. The skill did not write the rewrite — it identified that the foundation was wrong, named *why*, and refused to do sentence-level work until the foundation was repaired.
+
+> **This is what "thinking partner, not polishing tool" means in practice.**
+
+---
+
 ## Install
 
 ### As a Claude Code skill
@@ -294,19 +373,35 @@ Borrows software engineering best practices (version management, unit tests, cod
 
 ## Citation
 
-If your research uses this skill, you may cite in the methodology section:
+If your research uses this skill, please cite it in the methodology section.
 
+**BibTeX**:
 ```bibtex
-@software{humanities_writing_companion_2026,
-  author       = {tizzy916},
+@software{shen_humanities_writing_companion_2026,
+  author       = {Shen, Cong},
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {1.0.0}
+  version      = {2.0.0}
 }
 ```
 
-See [`CITATION.cff`](./CITATION.cff) for the full metadata.
+**Plain-text attribution** (for skill metadata, footers, etc.):
+```
+Based on Humanities Writing Companion by Shen Cong
+https://github.com/tizzy916/claude-skill-humanities-writing-companion
+```
+
+See [`CITATION.cff`](./CITATION.cff) for full machine-readable metadata (GitHub's "Cite this repository" button will use it automatically).
+
+### Citing companion tools
+
+If you also use [academic-research-skills](https://github.com/Imbad0202/academic-research-skills) in the same project, please cite both. ARS attribution format (per CC BY-NC 4.0):
+
+```
+Based on Academic Research Skills by Cheng-I Wu
+https://github.com/Imbad0202/academic-research-skills
+```
 
 ---
 
