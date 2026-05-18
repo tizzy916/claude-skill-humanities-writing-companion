@@ -2,7 +2,7 @@
 
 > A Claude Code / Claude Agent SDK skill for humanities scholars whose primary deliverable is a long-form argumentative text — history, philosophy, literature, cultural studies, art history, religious studies, classics.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
 [![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
 
@@ -44,7 +44,7 @@ This skill borrows specific design patterns from ARS, with attribution:
 
 ### Licensing note
 
-ARS is licensed under **CC BY-NC 4.0** (non-commercial); this skill is **MIT**. Users combining the two should comply with the more restrictive ARS license when using the combined toolchain commercially.
+Both ARS and this skill are licensed under **CC BY-NC 4.0** (as of 2026-05-19; this skill was relicensed from MIT — see [License section](#license)). License-stacking is therefore trivial: both prohibit commercial use, both require attribution. For commercial use of either or both, contact the respective authors separately.
 
 ---
 
@@ -340,7 +340,7 @@ humanities-writing-companion/
 │   └── citation-consistency.py       ← Citation format consistency (Python 3)
 ├── README.md                         ← This file
 ├── README.zh.md                      ← 中文 README
-├── LICENSE                           ← MIT
+├── LICENSE                           ← CC BY-NC 4.0
 └── CITATION.cff                      ← Academic citation metadata
 ```
 
@@ -382,7 +382,7 @@ If your research uses this skill, please cite it in the methodology section.
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {2.0.0}
+  version      = {3.0.0}
 }
 ```
 
@@ -430,7 +430,19 @@ This skill came out of writing the author's own MA thesis, *Technical Liberalism
 
 ## License
 
-[MIT](./LICENSE) — free to use, modify, distribute.
+**[CC BY-NC 4.0](./LICENSE)** (Creative Commons Attribution-NonCommercial 4.0 International) — free for non-commercial use, modification, and distribution. Requires attribution.
+
+> ⚠️ **License change (v3.0.0, 2026-05-19)**: This project relicensed from **MIT to CC BY-NC 4.0**. Versions ≤ v2.1.0 remain under MIT and retain their original commercial-use rights for those specific versions. From v3.0.0 onwards, **commercial use is prohibited without a separate license**.
+
+### Commercial Use
+
+This skill is licensed under CC BY-NC 4.0 — **non-commercial use only** (academic research, teaching, personal projects, open-source derivatives, internal research workflows).
+
+For commercial licensing inquiries — embedding in a paid product, paid consulting or editing services using this skill, commercial SaaS integration, agency use on behalf of paying clients — contact the author for a commercial license:
+
+📮 **shencong916@gmail.com** (Shen Cong · Tianyu Vision)
+
+The author retains the right to grant commercial licenses on a case-by-case basis. Citing this skill in academic publications is always permitted regardless of license tier.
 
 ---
 

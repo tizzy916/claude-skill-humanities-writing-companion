@@ -3,8 +3,8 @@
   "description": "<p>A Claude Code / Claude Agent SDK skill for humanities scholars (history, philosophy, literature, cultural studies, art history, religious studies, classics) whose primary deliverable is a long-form argumentative text. Not a research pipeline, not a polishing tool, but an interlocutor that engages with arguments, concepts, and stylistic voice. Features four-layer critique (foundation/structure/paragraph/sentence), devil's-advocate mode with anti-sycophancy thresholds, deep-voice preservation, reflexive-writing support for human-AI co-authoring research, discipline-specific critique dimensions, ADHD-friendly interaction design, and engineering-grade infrastructure. Bilingual: SKILL.md and README in English and Chinese. Designed as a humanities-side complement to academic-research-skills (Imbad0202) for the empirical research pipeline.</p>",
   "creators": [
     {
-      "name": "tizzy916",
-      "affiliation": ""
+      "name": "Shen, Cong",
+      "affiliation": "Tianyu Vision (TIANYU VISION); MA, History of Science, Tsinghua University"
     }
   ],
   "keywords": [
@@ -24,7 +24,7 @@
     "prompt-engineering",
     "bilingual"
   ],
-  "license": "MIT",
+  "license": "CC-BY-NC-4.0",
   "upload_type": "software",
   "access_right": "open",
   "language": "mul",

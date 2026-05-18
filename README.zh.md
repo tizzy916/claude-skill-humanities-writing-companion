@@ -2,7 +2,7 @@
 
 > 一个 Claude Code / Claude Agent SDK skill，专为以长篇论证性文本为主要交付物的人文学者设计——历史、哲学、文学、文化研究、艺术史、宗教学、古典学。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
 [![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
 
@@ -44,7 +44,7 @@ PRISMA / RAISE / Material Passport          魔鬼代言人 + 自反性写作
 
 ### License 注意
 
-ARS 采用 **CC BY-NC 4.0**(禁止商用衍生);本 skill 采用 **MIT**。在组合使用两者时,**应以更严格的 ARS license 为准**——尤其是涉及商业用途时。
+ARS 与本 skill 现在均采用 **CC BY-NC 4.0**(本 skill 自 2026-05-19 起从 MIT 改为 CC BY-NC 4.0,详见下方 [License 节](#license))。两者协议一致,组合使用 license-stacking 平凡:均禁止商业用途,均要求 attribution。如需对两者中任一进行商业使用,请分别联系各自作者。
 
 ---
 
@@ -335,7 +335,7 @@ humanities-writing-companion/
 │   └── citation-consistency.py       ← 引用格式一致性（Python 3）
 ├── README.md                         ← 英文 README
 ├── README.zh.md                      ← 本文件
-├── LICENSE                           ← MIT
+├── LICENSE                           ← CC BY-NC 4.0
 └── CITATION.cff                      ← 学术引用元数据
 ```
 
@@ -377,7 +377,7 @@ humanities-writing-companion/
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {2.0.0}
+  version      = {3.0.0}
 }
 ```
 
@@ -425,7 +425,19 @@ https://github.com/Imbad0202/academic-research-skills
 
 ## License
 
-[MIT](./LICENSE) — 自由使用、修改、分发。
+**[CC BY-NC 4.0](./LICENSE)**(知识共享 署名-非商业性使用 4.0 国际许可协议)——非商业用途自由使用、修改、分发,要求 attribution。
+
+> ⚠️ **License change (v3.0.0, 2026-05-19)**:本项目从 **MIT 改为 CC BY-NC 4.0**。v2.1.0 及更早版本仍按 MIT 发布,保留原始商用权利(仅限这些特定版本)。从 v3.0.0 起,**未经单独授权禁止商业用途**。
+
+### 商业用途 / Commercial Use
+
+本 skill 采用 CC BY-NC 4.0 协议——**仅限非商业用途**(学术研究、教学、个人项目、开源衍生、机构内部研究流程)。
+
+如需商业使用——嵌入付费产品、使用本 skill 提供付费咨询或编辑服务、商业 SaaS 集成、代客商业写作服务——请联系作者获取商业 license:
+
+📮 **shencong916@gmail.com**(沈聪 · 天与视界 TIANYU VISION)
+
+作者保留按个案授予商业 license 的权利。**在学术发表中引用本 skill 不受 license 层级影响,始终允许。**
 
 ---
 

@@ -116,4 +116,6 @@ ai-trace-checklist: 新增"过度概念化"作为第七类未审视模式
 
 ## License
 
-提交贡献即同意按 [MIT License](LICENSE) 发布。
+提交贡献即同意按 [CC BY-NC 4.0](LICENSE) 协议发布。
+
+> **注意**:本项目自 2026-05-19 起从 MIT 改为 CC BY-NC 4.0。新贡献将归入 CC BY-NC 4.0 协议——这意味着你的贡献也只能用于非商业用途。如对此有顾虑请在 PR 前先开 Issue 讨论。
