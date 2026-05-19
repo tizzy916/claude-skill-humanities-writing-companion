@@ -48,6 +48,11 @@ license: CC-BY-NC-4.0
 repository-code: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
 url: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
 
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20280773
+    description: "Zenodo archive (Concept DOI; resolves to latest release)"
+
 references:
   - type: software
     authors:

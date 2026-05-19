@@ -5,6 +5,7 @@
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
 [![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280773.svg)](https://doi.org/10.5281/zenodo.20280773)
 
 **[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
 
@@ -421,8 +422,10 @@ humanities-writing-companion/
   author       = {Shen, Cong},
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
-  url          = {https://github.com/tizzy916/claude-skill-humanities-writing-companion},
-  version      = {4.1.0}
+  publisher    = {Zenodo},
+  version      = {4.1.1},
+  doi          = {10.5281/zenodo.20280773},
+  url          = {https://doi.org/10.5281/zenodo.20280773}
 }
 ```
 
