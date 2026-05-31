@@ -34,7 +34,7 @@ Translation principles:
 
 ### 🏅 New working modes
 
-The skill currently has 7 working modes (A–G). If you find a high-frequency writing scenario that SKILL.md doesn't cover, you can propose a new mode. The **bar** for a new mode:
+The skill currently has 11 working modes (A–K). If you find a high-frequency writing scenario that SKILL.md doesn't cover, you can propose a new mode. The **bar** for a new mode:
 
 - It must be **mechanically distinct** from existing modes (not a rename or restatement of one)
 - It must have **independent input requirements / output format**
