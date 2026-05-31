@@ -457,7 +457,7 @@ https://github.com/Imbad0202/academic-research-skills
 - 不同引用格式（APA / Chicago / MLA / GB/T 7714 / 期刊自定义）的支持
 - `references/` 文件的英文翻译
 
-详见 [`CONTRIBUTING.md`](./CONTRIBUTING.md)。
+详见 [`CONTRIBUTING.zh.md`](./CONTRIBUTING.zh.md)。
 
 ---
 

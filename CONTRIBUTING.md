@@ -1,121 +1,124 @@
 # Contributing to humanities-writing-companion
 
-欢迎贡献。这份 skill 是一个**有思想立场**的项目——它倾向于"思想对话"而非"格式润色"，倾向于"工程化严谨"而非"经验启发"，倾向于"作者声音"而非"标准学术语体"。提交贡献前请先理解这套立场，看你提议的改动是否与之兼容。
+> **Language / 语言**: **English (current)** · [中文](CONTRIBUTING.zh.md)
 
-**与 academic-research-skills 的分工**：本 skill 不做实证研究流水线（文献检索、数据收集、方法论合规等）——那是 [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) 的领地。本 skill 专注人文学科的写作声音、论证肌理、文风发展。在提议改动前请先确认它属于本 skill 的范围。
+Contributions are welcome. This skill is an **opinionated** project — it favors *intellectual dialogue* over *surface polishing*, *engineering rigor* over *anecdotal heuristics*, and the *author's voice* over *standardized academic register*. Before contributing, please understand this stance and consider whether your proposed change is compatible with it.
 
----
-
-## 怎么贡献最有价值
-
-### 🥇 学科测试（最需要）
-
-skill 当前是从某个具体的人文学科论文项目里长出来的，但目标是覆盖**整个人文学科**（历史、哲学、文学、文化研究、艺术史、宗教学、古典学等）。最有价值的贡献是：
-
-1. 在你的学科 / 论文项目里实战使用
-2. 报告**哪些模块工作良好、哪些水土不服**
-3. 提议**学科特定的扩展**（例如：中世纪研究的拉丁文核查、艺术保护的物质文化分析、民族音乐学的田野记录处理）
-
-参见 [`docs/cross-domain-testing.md`](docs/cross-domain-testing.md) 中按学科分组的测试场景。
-
-### 🥈 扩充 AI 痕迹排查清单
-
-[`references/ai-trace-checklist.md`](references/ai-trace-checklist.md) 是这份 skill 的"防御纵深"。如果你在自己的写作中发现了**新的未审视表达模式**（不只是 AI 套话，还包括学科特定的八股、理论阅读形成的惯性），欢迎提 PR 补充。
-
-### 🥉 双语补全
-
-当前 SKILL.md 和 README 已有中英双语版本（SKILL.md / SKILL.zh.md / README.md / README.zh.md），但 `references/` 中的支持文件（ai-trace-checklist、project-management、target-reader-profile-template）和 `scripts/` 的注释当前以中文为主。把这些翻译成英文是高价值贡献。
-
-翻译原则：
-- `ai-trace-checklist.md` 的中文套话清单（如"值得注意的是"）需要补充对应的英文套话（如"It is worth noting"、"It should be noted"）——不是直译，而是英文学术写作中的对等套话
-- 引用格式速查的部分如果涉及 GB/T 7714 之外的引用规范，按英文学术惯例处理
-
-### 🏅 新增工作模式
-
-skill 当前有 7 个工作模式（A-G）。如果你发现了 SKILL.md 没有覆盖的高频写作场景，可以提议新模式。新模式的**门槛**：
-
-- 必须**机械区分**于现有模式（不是已有模式的换名/再说明）
-- 必须有**独立的输入要求 / 输出格式**
-- 必须给出**至少一个具体使用场景** + **预期效果**
-
-### 引用格式支持
-
-当前 skill 的引用配置假设作者会在 onboarding 时选择（APA / Chicago / MLA / GB-T 7714 / 期刊自定义）。如果你想让某个引用规范有更深的内置支持（例如自动生成符合 GB-T 7714 顺序编码制的参考文献列表），可以提议。
-
-### 脚本工具
-
-`scripts/` 目录三个工具的扩展或新工具——例如：
-
-- 段落连贯性检测（基于句首/句尾词汇重复）
-- 概念漂移检测（同一术语在不同章节的语境频率统计）
-- 引用密度分析（按章节统计引用密度，标记异常段落）
-
-新脚本必须**零依赖或少依赖**（zsh / Python 3 标准库 / 最多 1-2 个常用包），符合 `scripts/README.md` 的设计原则。
+**Division of labor with academic-research-skills**: This skill does **not** handle the empirical research pipeline (literature search, data collection, methodological compliance, etc.) — that is the domain of [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills). This skill focuses on writing voice, argumentative texture, and prose development in the humanities. Please confirm that a change falls within this skill's scope before proposing it.
 
 ---
 
-## 不太需要的贡献类型
+## What's most valuable to contribute
 
-> 不是这些贡献"不好"，而是它们偏离 skill 的设计立场。提了不一定会被合并。
+### 🥇 Discipline testing (most needed)
 
-- ❌ **把 skill 变得更"通用"**——例如加一个"通用润色模式"、扩展到实证社科或 STEM。skill 故意有立场（**人文学科** + 思想优先 + 文风保持），不试图取悦所有写作场景。要做实证研究流水线请去 [academic-research-skills](https://github.com/Imbad0202/academic-research-skills)。
-- ❌ **替换现有模块为 LLM 调用**——skill 用纯文本 prompt 描述工作模式，故意**不**依赖运行时 LLM 调用（这让它能在 Agent SDK / Claude Code / Claude.ai 等任何 Claude 接入点工作）。
-- ❌ **"AI 智能润色"功能**——skill 的核心是反对"AI 自动润色"叙事的。润色应该是作者驱动的对话过程。
-- ❌ **添加付费/订阅集成**——skill 是开源公共物品。
+The skill grew out of one specific humanities dissertation project, but its goal is to cover the **entire humanities** (history, philosophy, literature, cultural studies, art history, religious studies, classics, and more). The most valuable contributions are:
+
+1. Use it for real in your own discipline / writing project
+2. Report **which modules work well and which don't fit**
+3. Propose **discipline-specific extensions** (e.g., Latin verification for medieval studies, material-culture analysis for art conservation, field-note handling for ethnomusicology)
+
+See [`docs/cross-domain-testing.md`](docs/cross-domain-testing.md) for test scenarios grouped by discipline.
+
+### 🥈 Expanding the AI-trace checklist
+
+[`references/ai-trace-checklist.md`](references/ai-trace-checklist.md) is this skill's "defense in depth." If you discover **new unexamined expression patterns** in your own writing (not only AI clichés, but also discipline-specific formulae and the inertia that builds up from heavy theory reading), a PR to expand it is welcome.
+
+### 🥉 Bilingual completion
+
+SKILL.md and the README are already bilingual (SKILL.md / SKILL.zh.md / README.md / README.zh.md), but the supporting files under `references/` (ai-trace-checklist, project-management, target-reader-profile-template) and the comments in `scripts/` are currently mostly in Chinese. Translating these into English is a high-value contribution.
+
+Translation principles:
+- The Chinese cliché list in `ai-trace-checklist.md` (e.g., "值得注意的是") needs the corresponding English clichés added (e.g., "It is worth noting," "It should be noted") — not literal translations, but the **equivalent** filler phrases of English academic prose
+- Where the citation quick-reference touches conventions beyond GB/T 7714, handle them according to English academic norms
+
+### 🏅 New working modes
+
+The skill currently has 7 working modes (A–G). If you find a high-frequency writing scenario that SKILL.md doesn't cover, you can propose a new mode. The **bar** for a new mode:
+
+- It must be **mechanically distinct** from existing modes (not a rename or restatement of one)
+- It must have **independent input requirements / output format**
+- It must come with **at least one concrete use case** + its **expected effect**
+
+### Citation-style support
+
+The skill's citation config assumes the author selects a style during onboarding (APA / Chicago / MLA / GB/T 7714 / journal-specific). If you want deeper built-in support for a particular standard (e.g., auto-generating a reference list that complies with GB/T 7714's numeric sequential system), feel free to propose it.
+
+### Script tooling
+
+Extensions to the three tools in `scripts/`, or new tools — for example:
+
+- Paragraph-coherence detection (based on repeated sentence-initial / sentence-final vocabulary)
+- Concept-drift detection (contextual frequency of the same term across different chapters)
+- Citation-density analysis (citation density per section, flagging anomalous passages)
+
+New scripts must be **zero- or low-dependency** (zsh / Python 3 standard library / at most 1–2 common packages) and follow the design principles in `scripts/README.md`.
 
 ---
 
-## 提交流程
+## Contributions that are less needed
 
-### 小改动（typo / 文档修订 / 小规模 ai-trace-checklist 扩充）
+> It's not that these contributions are "bad" — they simply diverge from the skill's design stance. Proposing them does not guarantee a merge.
 
-直接提 PR，简短描述改动理由即可。
+- ❌ **Making the skill more "general-purpose"** — e.g., adding a "general polishing mode" or extending it to empirical social science or STEM. The skill is deliberately opinionated (**humanities** + thought-first + voice-preserving) and does not try to please every writing scenario. For an empirical research pipeline, go to [academic-research-skills](https://github.com/Imbad0202/academic-research-skills).
+- ❌ **Replacing existing modules with LLM calls** — the skill describes its working modes as plain-text prompts and deliberately does **not** rely on runtime LLM calls (this is what lets it work at any Claude entry point: Agent SDK / Claude Code / Claude.ai).
+- ❌ **"AI smart-polishing" features** — the skill's core premise is a rejection of the "AI auto-polish" narrative. Polishing should be an author-driven, dialogic process.
+- ❌ **Adding paid / subscription integrations** — the skill is an open-source public good.
 
-### 大改动（新模式 / 大幅修订 SKILL.md）
+---
 
-**先开 issue 讨论**。SKILL.md 和 SKILL.zh.md 各约 900 行，每一节都和其他节有交互——直接 PR 大改动很容易破坏现有联动设计（例如：模式 G 盲读核对故意不读 `_writing-config/` 文件，这是设计而非疏忽）。
+## Submission process
 
-**双语联动**：对 SKILL.md 的实质修改，必须同时修改 SKILL.zh.md（保持双语一致）。同理 README.md / README.zh.md。仅修改一个版本的 PR 会被要求补全另一个。
+### Small changes (typos / doc fixes / small ai-trace-checklist additions)
 
-讨论时请说明：
+Open a PR directly with a brief rationale for the change.
 
-1. 你想解决什么具体的写作场景问题
-2. 现有 skill 哪个模块/规则不够用（最好引用 SKILL.md 行号）
-3. 你的改动会影响 SKILL.md 哪些其他部分（联动检查）
-4. 改动后的验证方式（如何知道改对了？）
+### Large changes (new modes / major SKILL.md revisions)
 
-### Commit message 风格
+**Open an issue to discuss first.** SKILL.md and SKILL.zh.md are each ~900 lines, and every section interacts with the others — a large PR submitted cold can easily break the existing interlocking design (e.g., Mode G "blind-read checking" deliberately does *not* read `_writing-config/` files; that's by design, not an oversight).
 
-不强制约定，但建议：
+**Bilingual coupling**: any substantive change to SKILL.md must also change SKILL.zh.md (keeping the two languages consistent). The same applies to README.md / README.zh.md. A PR that touches only one version will be asked to complete the other.
 
-- 清晰说明**改了哪一节 / 哪个模块**
-- 一句话说明**为什么改**
-- 如果改了 SKILL.md 中需要联动同步的多处，列出来
+When discussing, please explain:
 
-例：
+1. The specific writing-scenario problem you want to solve
+2. Which existing module / rule falls short (ideally cite SKILL.md line numbers)
+3. Which other parts of SKILL.md your change affects (interlock check)
+4. How you will verify the change (how do you know it's correct?)
+
+### Commit message style
+
+Not strictly enforced, but recommended:
+
+- Clearly state **which section / module** you changed
+- One line on **why** you changed it
+- If you changed multiple coupled spots in SKILL.md, list them
+
+Example:
 
 ```
-ai-trace-checklist: 新增"过度概念化"作为第七类未审视模式
+ai-trace-checklist: add "over-conceptualization" as a seventh unexamined pattern
 
-在多次实测中发现，AI 倾向于把日常表达升格为术语
-（"这表明" → "这一现象在认识论层面表明"）。这一模式
-不属于现有六类中任何一类，但出现频率很高。
+Repeated real-world testing shows that AI tends to elevate everyday phrasing
+into jargon ("this shows" -> "this phenomenon shows, at the epistemological
+level"). This pattern does not fit any of the existing six categories, but it
+appears very frequently.
 ```
 
 ---
 
 ## Code of Conduct
 
-简单原则：
+Simple principles:
 
-- 学术性的批判欢迎，人格性的攻击不欢迎
-- 不同的学科传统都值得尊重，"我学科才是真学问"的姿态不欢迎
-- skill 服务于作者的**思考**，任何提议如果会削弱作者的认知主体性（例如把作者变成 AI 输出的盲签字员），都不会被接受
+- Scholarly critique is welcome; personal attacks are not
+- Every disciplinary tradition deserves respect; the "my discipline is the only real scholarship" posture is not welcome
+- The skill serves the author's **thinking** — any proposal that would weaken the author's cognitive agency (e.g., turning the author into a blind rubber-stamp for AI output) will not be accepted
 
 ---
 
 ## License
 
-提交贡献即同意按 [CC BY-NC 4.0](LICENSE) 协议发布。
+By contributing, you agree to release your contribution under the [CC BY-NC 4.0](LICENSE) license.
 
-> **注意**:本项目自 2026-05-19 起从 MIT 改为 CC BY-NC 4.0。新贡献将归入 CC BY-NC 4.0 协议——这意味着你的贡献也只能用于非商业用途。如对此有顾虑请在 PR 前先开 Issue 讨论。
+> **Note**: As of 2026-05-19, this project changed from MIT to CC BY-NC 4.0. New contributions fall under CC BY-NC 4.0 — meaning your contribution may also be used for non-commercial purposes only. If you have concerns about this, please open an issue to discuss before submitting a PR.

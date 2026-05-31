@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: 💬 GitHub Discussions
-    url: https://github.com/tizzy916/claude-skill-academic-writer/discussions
-    about: 一般性讨论、使用经验分享、跨学科测试反馈——这些更适合 Discussions 而非 Issues
-  - name: 📖 SKILL.md 主文档
-    url: https://github.com/tizzy916/claude-skill-academic-writer/blob/main/SKILL.md
-    about: 大多数使用问题都能在 SKILL.md 的"按需加载指南"和"快速判断"中找到答案
+  - name: "💬 GitHub Discussions"
+    url: https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions
+    about: "General discussion, usage tips, cross-discipline testing feedback — better suited to Discussions than Issues · 一般性讨论、使用经验分享、跨学科测试反馈——这些更适合 Discussions 而非 Issues"
+  - name: "📖 SKILL.md — main documentation · 主文档"
+    url: https://github.com/tizzy916/claude-skill-humanities-writing-companion/blob/main/SKILL.md
+    about: "Most usage questions are answered in SKILL.md's on-demand loading guide and quick-judgment sections · 大多数使用问题都能在 SKILL.md 的「按需加载指南」和「快速判断」中找到答案"

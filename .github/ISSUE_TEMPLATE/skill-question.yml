@@ -1,30 +1,32 @@
 name: ❓ Question · skill 使用问题
-description: 关于如何使用 skill 的问题（不是 bug，也不是新功能）
+description: "A question about how to use the skill (not a bug, not a feature request) · 关于如何使用 skill 的问题（不是 bug，也不是新功能）"
 title: "[Q] "
 labels: ["question"]
 body:
   - type: markdown
     attributes:
       value: |
+        Before asking, please skim the "on-demand loading guide" and "quick judgment" sections of [`SKILL.md`](../blob/main/SKILL.md) — most usage questions are answered there.
+
         提问前请先快速浏览 [`SKILL.md`](../blob/main/SKILL.md) 中的"按需加载指南"和"快速判断"小节——大多数使用问题在那里有答案。
 
   - type: textarea
     id: question
     attributes:
-      label: 你的问题
+      label: "Your question · 你的问题"
     validations:
       required: true
 
   - type: textarea
     id: tried
     attributes:
-      label: 你已经试过的做法
-      description: 跟 skill 说了什么、它怎么回应的、为什么不满意
+      label: "What you've already tried · 你已经试过的做法"
+      description: "What you said to the skill, how it responded, and why that wasn't satisfactory · 跟 skill 说了什么、它怎么回应的、为什么不满意"
     validations:
       required: true
 
   - type: textarea
     id: discipline
     attributes:
-      label: 你的学科 / 写作场景
-      description: 哪个学科？什么类型的写作（学位论文 / 期刊投稿 / 会议论文）？这有助于其他用户判断这个问题是否对他们也相关。
+      label: "Your discipline / writing scenario · 你的学科 / 写作场景"
+      description: "Which discipline? What kind of writing (dissertation / journal submission / conference paper)? This helps others judge whether the question is relevant to them too. · 哪个学科？什么类型的写作（学位论文 / 期刊投稿 / 会议论文）？这有助于其他用户判断这个问题是否对他们也相关。"
