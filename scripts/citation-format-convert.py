@@ -5,7 +5,7 @@ citation-format-convert.py — 引用格式转换 / Citation format converter
 Converts a bibliography (BibTeX or simple structured input) between four major
 academic citation styles used in the humanities:
 
-    Chicago (Author-Date) ↔ MLA ↔ APA 7 ↔ GB/T 7714 (顺序编码制)
+    Chicago (Author-Date) ↔ MLA ↔ APA 7 ↔ GB/T 7714 (顺序编码制 / numeric sequential system)
 
 用法 / Usage:
     python3 citation-format-convert.py <input.bib> --to <chicago|mla|apa|gb7714>
@@ -233,7 +233,7 @@ def apa(entry):
 
 
 def gb7714(entry):
-    """GB/T 7714 顺序编码制 reference-list format."""
+    """GB/T 7714 顺序编码制 / numeric sequential system reference-list format."""
     authors = parse_authors(entry.get("author", ""))
     auth = format_authors_gb7714(authors)
     year = entry.get("year", "")

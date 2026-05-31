@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-citation-verify.py — 引用真实性核查(基于 Crossref API)
+citation-verify.py — 引用真实性核查 / Citation authenticity check (via Crossref API)
 
 Reads in-prose citations from a Markdown file and verifies each one against the
 Crossref public API. Flags:
