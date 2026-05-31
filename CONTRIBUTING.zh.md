@@ -18,11 +18,11 @@ skill 当前是从某个具体的人文学科论文项目里长出来的，但�
 2. 报告**哪些模块工作良好、哪些水土不服**
 3. 提议**学科特定的扩展**（例如：中世纪研究的拉丁文核查、艺术保护的物质文化分析、民族音乐学的田野记录处理）
 
-参见 [`docs/cross-domain-testing.md`](docs/cross-domain-testing.md) 中按学科分组的测试场景。
+参见 [`docs/cross-domain-testing.zh.md`](docs/cross-domain-testing.zh.md) 中按学科分组的测试场景。
 
 ### 🥈 扩充 AI 痕迹排查清单
 
-[`references/ai-trace-checklist.md`](references/ai-trace-checklist.md) 是这份 skill 的"防御纵深"。如果你在自己的写作中发现了**新的未审视表达模式**（不只是 AI 套话，还包括学科特定的八股、理论阅读形成的惯性），欢迎提 PR 补充。
+[`references/ai-trace-checklist.zh.md`](references/ai-trace-checklist.zh.md) 是这份 skill 的"防御纵深"。如果你在自己的写作中发现了**新的未审视表达模式**（不只是 AI 套话，还包括学科特定的八股、理论阅读形成的惯性），欢迎提 PR 补充。
 
 ### 🥉 双语补全
 

@@ -1,151 +1,153 @@
-# 目标读者档案 · 模板
+# Target Reader Profile · Template
 
-> 这份档案与"写作风格档案"配对——voice 不能脱离 audience。
-> AI 在所有批判和起草工作中应同时考虑：
-> - 写作风格档案告诉它"作者怎么说话"
-> - 目标读者档案告诉它"对谁说"
+> **Language / 语言**: **English (current)** · [中文](target-reader-profile-template.zh.md)
+
+> This profile is paired with the "writing style profile" — voice cannot be separated from audience.
+> In all critique and drafting work, the AI should consider both at once:
+> - The style profile tells it "how the author speaks"
+> - The target reader profile tells it "whom they are speaking to"
 >
-> 这份模板由 humanities-writing-companion skill 在 onboarding 时复制到论文项目的
-> `_writing-config/目标读者档案.md`（或英文路径 `_writing-config/reader-profile.md`），由作者增量填写。
-> **不需要等"齐全"——空白格也比没有档案好**。
+> The humanities-writing-companion skill copies this template into the paper project's
+> `_writing-config/目标读者档案.md` (or the English path `_writing-config/reader-profile.md`) during onboarding, for the author to fill in incrementally.
+> **No need to wait until it is "complete" — a blank slot still beats having no profile at all.**
 
 ---
 
-## 一、主要读者
+## 1 · Primary readers
 
-> 根据写作场景填写对应一项即可，不需要全部填。
+> Fill in only the item matching your writing context; you don't need to complete them all.
 
-### 学位论文场景
-- **答辩委员会成员**（如已知）：
-  - 委员 1：[姓名] / 学科：[XX] / 研究方向：[XX] / 可能的关注点：[基于其研究判断]
-  - 委员 2：……
-  - 委员 3：……
-- **不知道委员是谁时的应对**：列出本院系常见委员构成（如"3 位本系 + 2 位外系"），按学科领域估计
+### Dissertation scenario
+- **Defense committee members** (if known):
+  - Member 1: [name] / discipline: [XX] / research focus: [XX] / likely concerns: [inferred from their research]
+  - Member 2: …
+  - Member 3: …
+- **What to do when you don't know who the committee is**: list the typical committee composition for your department (e.g., "3 from the home department + 2 from outside"), and estimate by disciplinary field
 
-### 期刊投稿场景
-- **目标期刊**：[期刊全名] / [缩写]
-- **典型审稿人画像**：
-  - 学科背景：[期刊主流学科]
-  - 立场倾向：[实证 / 理论 / 批判 / 综合]
-  - 期刊偏好：[长篇 vs 短篇 / 国际化 vs 本土 / 思辨 vs 数据]
-  - 历史拒稿模式：如能找到该期刊的 reviewer comments 样本，从中提炼
+### Journal submission scenario
+- **Target journal**: [full title] / [abbreviation]
+- **Typical reviewer profile**:
+  - Disciplinary background: [the journal's mainstream discipline]
+  - Stance tendency: [empirical / theoretical / critical / synthetic]
+  - Journal preferences: [long-form vs. short-form / international vs. local / speculative vs. data-driven]
+  - Historical rejection patterns: if you can find sample reviewer comments for this journal, distill them here
 
-### 会议论文场景
-- **会议**：[名称 / 学科 / 规模]
-- **预期听众**：[研究生为主 / 资深学者为主 / 跨学科]
-- **演讲 vs 论文**：会议偏重哪一种？
+### Conference paper scenario
+- **Conference**: [name / discipline / scale]
+- **Expected audience**: [mostly graduate students / mostly senior scholars / interdisciplinary]
+- **Talk vs. paper**: which does the conference emphasize?
 
 ---
 
-## 二、读者已知 / 未知
+## 2 · What the reader knows / doesn't know
 
-### 不需要解释的概念
-> 这些概念可以直接使用，无需在文中定义或铺垫。
-> 若读者群体确知熟悉，节省篇幅就用在更有创新性的论证上。
+### Concepts that need no explanation
+> These concepts can be used directly, with no need to define or set them up in the text.
+> If the reader group is known to be familiar with them, save the space for more original argumentation.
 
-- [概念 1]
-- [概念 2]
+- [concept 1]
+- [concept 2]
 - ...
 
-### 需要首次解释的概念
-> 这些概念第一次出现时必须给出定义或解释，否则读者会跟不上。
+### Concepts that need explaining on first use
+> These concepts must be defined or explained the first time they appear, or the reader will lose the thread.
 
-| 概念 | 解释方式 |
+| Concept | Mode of explanation |
 |------|---------|
-| [概念名] | 简短括号 / 脚注 / 段落展开 |
-| [概念名] | ... |
+| [concept name] | brief parenthetical / footnote / paragraph-length development |
+| [concept name] | ... |
 
-### 容易被误读的概念
-> 这些概念在你的用法和读者熟悉的用法之间有差异，需要主动澄清。
+### Concepts prone to being misread
+> These concepts differ between your usage and the reader's familiar usage, and need proactive clarification.
 
-| 概念 | 你的用法 | 读者常见用法 | 澄清策略 |
+| Concept | Your usage | Reader's common usage | Clarification strategy |
 |------|---------|-------------|---------|
-| [概念名] | ... | ... | 在首次出现时主动区分 |
+| [concept name] | ... | ... | distinguish proactively on first use |
 
 ---
 
-## 三、读者的可能立场
+## 3 · The reader's possible positions
 
-> 这是魔鬼代言人模式的具象化输入。**填写得越具体，AI 模拟的攻击越精准**。
+> This is the concrete input for devil's advocate mode. **The more specific your entries, the more precise the attacks the AI can simulate.**
 
-### A · 友善但有专业距离的读者
-> 来自相关学科但不是你的子领域。会问基础问题、需要更多铺垫。
+### A · Friendly reader at a professional remove
+> From a related discipline but not your subfield. Will ask basic questions and need more setup.
 
-- 主要特征：[…]
-- 在论文中如何照顾：
-  - 首次出现的概念给出解释
-  - 章节开头给出路线图
-  - 避免过多内部行话
-- **这类读者对应魔鬼代言人模式中的"读者 D · 善意困惑型"**
+- Main characteristics: […]
+- How to accommodate them in the paper:
+  - Explain concepts on first appearance
+  - Give a road map at the start of each chapter
+  - Avoid too much insider jargon
+- **This reader corresponds to "Reader D · Well-intentioned but confused" in devil's advocate mode**
 
-### B · 同领域但持不同理论立场的读者
-> 熟悉你的子领域，但来自竞争性的理论传统。
+### B · Same-field reader holding a different theoretical position
+> Familiar with your subfield, but coming from a competing theoretical tradition.
 
-- 竞争性立场 1：[立场名]
-  - 主张：[…]
-  - 会质疑你的：[具体论证 / 概念 / 章节]
-- 竞争性立场 2：[立场名]
-  - 主张：[…]
-  - 会质疑你的：[…]
-- 在论文中如何照顾：
-  - 在引言或方法论中明确说明你的立场和它们的关系
-  - 不假装它们不存在
-  - 至少正面回应一次最强的竞争性立场
-- **这类读者对应魔鬼代言人模式中的"审稿人 A · 理论苛刻型"**
+- Competing position 1: [position name]
+  - Claim: […]
+  - Will challenge your: [specific argument / concept / chapter]
+- Competing position 2: [position name]
+  - Claim: […]
+  - Will challenge your: […]
+- How to accommodate them in the paper:
+  - State your position and its relation to theirs explicitly in the introduction or methodology
+  - Don't pretend they don't exist
+  - Respond head-on to the strongest competing position at least once
+- **This reader corresponds to "Reviewer A · Theoretically demanding" in devil's advocate mode**
 
-### C · 严苛的方法论审稿人
-> 不太关心你的具体内容，重点检验方法论的自洽性。
+### C · The exacting methodology reviewer
+> Cares little about your specific content; focuses on testing the internal consistency of the methodology.
 
-- 主要特征：[…]
-- 典型追问：
-  - "你怎么知道？"
-  - "你的证据是什么？"
-  - "你的方法和你的主张匹配吗？"
-- 在论文中如何照顾：
-  - 方法论部分要详细
-  - 证据链要清晰
-  - 不允许"言之无据"
-- **这类读者对应魔鬼代言人模式中的"审稿人 B · 历史实证型"和"审稿人 C · 方法论质疑型"**
-
----
-
-## 四、超界读者（reaching beyond）
-
-> 这一节不是必需的，但填了会让写作更有意识。
-
-### 你希望读到这篇论文的人
-> 这些是你的"理想读者"。写作时心里想着他们，文字会更克制、更精准。
-
-- [人 1]：理由 [为什么希望他读到]
-- [人 2]：……
-
-### 你警惕的读者类型
-> 你不希望被这种方式读。要避免给他们留下断章取义的口子。
-
-- [类型 1]：他们会怎么误读你 [具体场景] / 对策是 […]
-- [类型 2]：……
+- Main characteristics: […]
+- Typical probing questions:
+  - "How do you know?"
+  - "What is your evidence?"
+  - "Does your method match your claim?"
+- How to accommodate them in the paper:
+  - The methodology section must be detailed
+  - The chain of evidence must be clear
+  - No "assertion without grounds" allowed
+- **This reader corresponds to "Reviewer B · Historically empirical" and "Reviewer C · Methodologically skeptical" in devil's advocate mode**
 
 ---
 
-## 五、与魔鬼代言人模式的接口
+## 4 · Readers beyond the boundary (reaching beyond)
 
-魔鬼代言人模式的角色应基于本档案的"读者立场"具象化：
+> This section is not required, but filling it in makes the writing more deliberate.
 
-| 魔鬼代言人角色 | 本档案对应来源 |
+### People you hope will read this paper
+> These are your "ideal readers." Keeping them in mind while writing makes the prose more restrained and more precise.
+
+- [person 1]: reason [why you hope they read it]
+- [person 2]: …
+
+### Reader types you are wary of
+> You don't want to be read in this way. Avoid leaving them an opening to quote you out of context.
+
+- [type 1]: how they would misread you [specific scenario] / the countermeasure is […]
+- [type 2]: …
+
+---
+
+## 5 · Interface with devil's advocate mode
+
+The roles in devil's advocate mode should be made concrete based on this profile's "reader positions":
+
+| Devil's advocate role | Corresponding source in this profile |
 |----------------|---------------|
-| 审稿人 A · 理论苛刻型 | 读者立场 B 中"最强反对者" |
-| 审稿人 B · 历史实证型 | 读者立场 C |
-| 审稿人 C · 方法论质疑型 | 读者立场 C |
-| 读者 D · 善意困惑型 | 读者立场 A |
+| Reviewer A · Theoretically demanding | the "strongest opponent" in reader position B |
+| Reviewer B · Historically empirical | reader position C |
+| Reviewer C · Methodologically skeptical | reader position C |
+| Reader D · Well-intentioned but confused | reader position A |
 
-档案越具体，攻击越精准。如果某一栏目暂时填不出来，AI 在魔鬼代言人模式中应使用学科通用画像，并提醒作者补充该项。
+The more specific the profile, the more precise the attacks. If a given field cannot be filled in for now, the AI should use a discipline-generic profile in devil's advocate mode, and remind the author to complete that item.
 
 ---
 
-## 维护规则
+## Maintenance rules
 
-- **写作初期**：建立基础版本，可以粗略——"我的论文给本系老师看，他们都熟悉 XX 理论"
-- **收到真实反馈时立即更新**：导师评论、审稿意见、答辩问题——这些是最准确的"读者画像数据"
-- **不需要等"齐全"**：空白格也比没有档案好
-- **按需更新**，不要追求一次写完
-- 跨论文复用：同一作者的多篇论文如果面向相似读者群，可以保留共性部分
+- **Early in the writing**: establish a baseline version, which can be rough — "my paper is for faculty in my own department; they all know XX theory"
+- **Update immediately when you get real feedback**: advisor comments, reviewer remarks, defense questions — these are the most accurate "reader-profile data"
+- **No need to wait until it is "complete"**: a blank slot still beats having no profile at all
+- **Update as needed**; don't try to write it all in one pass
+- Reuse across papers: if the same author's multiple papers face similar reader groups, the shared parts can be retained

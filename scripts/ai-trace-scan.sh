@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
-# ai-trace-scan.sh — 扫描文档中的 AI 套话与学术八股
-# 来源：references/ai-trace-checklist.md
-# 用法：./ai-trace-scan.sh <file.md>
-#       ./ai-trace-scan.sh path/to/paper/  (递归扫描目录)
+# ai-trace-scan.sh — Scan documents for AI clichés and academic boilerplate
+# Source: references/ai-trace-checklist.md
+# Usage: ./ai-trace-scan.sh <file.md>
+#        ./ai-trace-scan.sh path/to/paper/  (recursively scan a directory)
 
 set -euo pipefail
 
 if [ $# -lt 1 ]; then
     cat <<EOF
-用法：$0 <file.md | directory>
+Usage: $0 <file.md | directory>
 
-扫描以下两类问题：
-  1. 高频套话（出现即标记）——值得注意的是 / 不难发现 / 综上所述 等
-  2. 过度堆砌的连接词（>3 次警告）——此外 / 同时 / 另外 等
+Scans for two categories of issues:
+  1. High-frequency clichés (flagged on any occurrence) — 值得注意的是 / 不难发现 / 综上所述 etc.
+  2. Overused connectors (warning at >3 occurrences) — 此外 / 同时 / 另外 etc.
 
-输出：每条匹配的行号 + 行内容
+Output: line number + line content for each match
 EOF
     exit 1
 fi
 
 INPUT="$1"
-[ -e "$INPUT" ] || { echo "路径不存在：$INPUT" >&2; exit 1; }
+[ -e "$INPUT" ] || { echo "Path does not exist: $INPUT" >&2; exit 1; }
 
-# 高频套话（出现即标记）— 与 references/ai-trace-checklist.md 同步
+# High-frequency clichés (flagged on any occurrence) — kept in sync with references/ai-trace-checklist.md
 SINGLE_PATTERNS=(
     "值得注意的是"
     "不难发现"
@@ -38,7 +38,7 @@ SINGLE_PATTERNS=(
     "诚然.*但是"
 )
 
-# 频次警告（超阈值才提示）
+# Frequency warning (only flagged above the threshold)
 FREQUENCY_PATTERNS=(
     "此外"
     "同时"
@@ -49,19 +49,19 @@ FREQUENCY_PATTERNS=(
 )
 FREQ_THRESHOLD=3
 
-# grep 参数：递归 + 只看 .md
+# grep options: recursive + .md only
 if [ -d "$INPUT" ]; then
     GREP_OPTS="-rn --include=*.md"
 else
     GREP_OPTS="-n"
 fi
 
-echo "=== AI 痕迹扫描 · $INPUT ==="
+echo "=== AI trace scan · $INPUT ==="
 echo ""
 
 found_any=0
 
-echo "## 一、高频套话（出现即审视）"
+echo "## 1. High-frequency clichés (review on any occurrence)"
 echo ""
 for pat in "${SINGLE_PATTERNS[@]}"; do
     if matches=$(grep $GREP_OPTS -E "$pat" "$INPUT" 2>/dev/null); then
@@ -72,7 +72,7 @@ for pat in "${SINGLE_PATTERNS[@]}"; do
     fi
 done
 
-echo "## 二、连接词频次警告（阈值 >$FREQ_THRESHOLD 次/文件）"
+echo "## 2. Connector frequency warning (threshold >$FREQ_THRESHOLD per file)"
 echo ""
 for word in "${FREQUENCY_PATTERNS[@]}"; do
     if [ -d "$INPUT" ]; then
@@ -81,19 +81,19 @@ for word in "${FREQUENCY_PATTERNS[@]}"; do
         count=$(grep -h "$word" "$INPUT" 2>/dev/null | wc -l | tr -d ' ')
     fi
     if [ "$count" -gt "$FREQ_THRESHOLD" ]; then
-        echo "⚠ 「$word」出现 $count 次（阈值 $FREQ_THRESHOLD）"
+        echo "⚠ 「$word」 appears $count times (threshold $FREQ_THRESHOLD)"
         grep $GREP_OPTS "$word" "$INPUT" 2>/dev/null | sed 's/^/    /' | head -5
-        [ "$count" -gt 5 ] && echo "    ... (仅显示前 5 处)"
+        [ "$count" -gt 5 ] && echo "    ... (showing first 5 only)"
         echo ""
         found_any=1
     fi
 done
 
 if [ "$found_any" -eq 0 ]; then
-    echo "✅ 未发现明显 AI 痕迹或八股套话"
+    echo "✅ No obvious AI traces or boilerplate clichés found"
 else
     echo ""
     echo "---"
-    echo "💡 排查原则：每一处都问自己——这是我有意选择的表达，还是无意识的默认？"
-    echo "   详见 references/ai-trace-checklist.md"
+    echo "💡 Review principle: for each hit, ask yourself — is this a deliberate choice of wording, or an unconscious default?"
+    echo "   See references/ai-trace-checklist.md for details"
 fi

@@ -1,13 +1,15 @@
-# 论文项目管理操作手册
+# Writing Project Operations Handbook
 
-> 本文件定义论文项目的文件结构、版本管理规则和参考文献管理流程。
-> 属于"操作层"指南——SKILL.md 中涉及文件操作时参考本文件执行。
+> **Language / 语言**: **English (current)** · [中文](project-management.zh.md)
+
+> This file defines the file structure, version-management rules, and reference-management workflow for a writing project.
+> It is an "operations-layer" guide — when SKILL.md touches file operations, follow this file to carry them out.
 
 ---
 
-## 一、项目文件夹结构
+## 1. Project Folder Structure
 
-每篇论文/大文章是一个独立项目文件夹，位于 `02 · Knowledge 知识库/Papers 论文写作/` 下：
+Each paper or long-form piece is a self-contained project folder, located under `02 · Knowledge 知识库/Papers 论文写作/`:
 
 ```
 Papers 论文写作/
@@ -31,29 +33,31 @@ Papers 论文写作/
         └── attachments/                ← 电子版文献（PDF/EPUB）
 ```
 
-### 首次初始化
+**File-path naming note**: the directory and file names above use Chinese defaults, but English equivalents are equally valid. Use whichever matches the author's writing language — the structure is what matters, not the language of the labels.
 
-用户首次使用时，按上述结构创建项目文件夹。需确认：
-- 论文名（用于文件夹和主稿命名）
-- 引用格式（创建对应的格式速查文件）
-- 是否已有草稿（如有则导入为 v1.0）
+### First-time initialization
+
+On a user's first session, create the project folder following the structure above. Confirm:
+- The paper title (used to name the folder and the main draft)
+- The citation format (create the matching quick-reference file)
+- Whether a draft already exists (if so, import it as v1.0)
 
 ---
 
-## 二、版本管理
+## 2. Version Management
 
-### 设计理念
+### Design philosophy
 
-借鉴 git 的版本管理思想，但适应学术写作的实际情况：
-- **小版本 = commit**：每次有意义的修改都记录 diff 和 reason
-- **大版本 = tag/release**：完成一轮系统性修改后创建快照
-- **_drafts/ = feature branch**：实验性的写作尝试，不影响主稿
+Borrow git's approach to versioning, but adapt it to the realities of academic writing:
+- **Minor version = commit**: every meaningful change records its diff and reason
+- **Major version = tag/release**: snapshot after completing a round of systematic revision
+- **_drafts/ = feature branch**: experimental writing attempts that leave the main draft untouched
 
-### 小版本 (patch)
+### Minor version (patch)
 
-触发：每次对话中的局部修改。不生成快照文件。
+Trigger: a local change within a single conversation. Does not generate a snapshot file.
 
-在修改日志中记录：
+Record in the changelog:
 ```markdown
 ## vX.Y.Z · YYYY-MM-DD HH:MM
 **修改范围**：[章节/段落位置]
@@ -67,96 +71,96 @@ Papers 论文写作/
 **验证状态**：[✅ 通过文风一致性检查 / ⚠️ 需作者确认]
 ```
 
-### 大版本 (major)
+### Major version (major)
 
-触发条件（满足任一）：
-- 完成一个章节的重写
-- 修改覆盖全文 10% 以上内容
-- 完成一轮完整的章节级审读并执行所有修改
-- 作者明确要求创建版本快照
+Trigger conditions (any one):
+- A chapter rewrite is complete
+- The change covers more than 10% of the full text
+- A complete chapter-level review has been finished and all its revisions applied
+- The author explicitly asks for a version snapshot
 
-操作：
-1. 版本号递增（如 v1.5 → v2.0）
-2. 复制主稿到 `_meta/版本归档/vX.Y_YYYYMMDD.md`
-3. 更新主稿 frontmatter 中的 version 字段
-4. 更新写作进度表
-5. 在修改日志中记录大版本摘要
+Procedure:
+1. Increment the version number (e.g., v1.5 → v2.0)
+2. Copy the main draft to `_meta/版本归档/vX.Y_YYYYMMDD.md`
+3. Update the `version` field in the main draft's frontmatter
+4. Update the writing-progress table
+5. Record a major-version summary in the changelog
 
-### _drafts/ 的使用
+### Using _drafts/
 
-当作者想尝试一个不确定的论证方向时：
-1. 在 `_drafts/` 中创建新文件（如 `_drafts/第三章_替代方案A.md`）
-2. 在其中自由实验
-3. 如果方案被采纳 → 合并到主稿，删除 draft
-4. 如果放弃 → 保留作为思考记录，或删除
-
----
-
-## 三、参考文献管理
-
-### 文献信息
-
-所有引用文献记录在 `_references/参考文献表.md`，包含：
-- 按用户选择的引用格式整理的完整条目
-- 引用位置标记（在哪些章节被引用）
-- 电子版来源标记（📁 Drive / 📝 Vault 笔记 / ⚠️ 待获取）
-- vault 双链（如有对应的读书笔记或概念卡片）
-
-### 文献附件
-- Google Drive：按主题分类的电子书库（主存储）
-- 本地 attachments/：工作中频繁引用的文献
-
-### 文献获取流程
-用户说"我需要引用《XX》"时：
-1. 查参考文献表 → 2. 有 Drive 标记则协助下载 → 3. 读取内容 → 4. 格式化为用户配置的引用格式
-
-### 文献批量下载与索引建立
-
-当作者要开始系统性修订时，建议先建立完整的本地文献库：
-
-1. **提取参考文献列表**：从论文主稿的参考文献部分提取所有条目
-2. **逐条搜索电子版**：
-   - 优先搜索 Google Drive（`google_drive_search`）
-   - 其次检查 vault 中是否有读书笔记附带的 PDF
-   - 标记无法获取的文献为 ⚠️
-3. **下载到本地**：所有找到的 PDF 存储到 `_references/attachments/`，命名规则：`作者姓Year.pdf`（如 `Foucault1975.pdf`）
-4. **建立文献索引**：创建 `_references/文献索引.md`，每条文献包含：引用键、一句话摘要、核心概念关键词、引用章节、本地路径状态
-5. **增量更新**：后续每次新增引用时，更新索引
-
-### Vault 联动
-- 文献笔记：`[[《书名》读书笔记]]`
-- 概念卡片：`[[概念名]]`
-- 人物档案：`[[人名]]`
+When the author wants to try an uncertain line of argument:
+1. Create a new file in `_drafts/` (e.g., `_drafts/第三章_替代方案A.md`)
+2. Experiment freely there
+3. If the approach is adopted → merge it into the main draft and delete the draft
+4. If abandoned → keep it as a record of thinking, or delete it
 
 ---
 
-## 四、交互记录
+## 3. Reference Management
 
-每次有实质性写作讨论后，在 `_meta/交互记录.md` 追加：
-- **论文线**：讨论了什么、做了什么决策
-- **Skill 线**：发现了什么需求、做了什么改进（如果在同步开发 skill）
-- **反思笔记**：可纳入论文自反性批判章节的思考（如适用）
+### Bibliographic information
 
-### 会话状态检查点
+All cited works are recorded in `_references/参考文献表.md`, including:
+- Complete entries formatted in the citation style the user chose
+- Citation-location markers (which chapters cite the work)
+- Source markers for the electronic copy (📁 Drive / 📝 Vault note / ⚠️ to be obtained)
+- Vault backlinks (where a corresponding reading note or concept card exists)
 
-每次有实质性进展的对话结束前（或 AI 感知到上下文可能接近压缩阈值时），在交互记录中写入结构化检查点。格式见 SKILL.md "反漂移协议"部分。
+### Reference attachments
+- Google Drive: a thematically organized e-book library (primary storage)
+- Local attachments/: works cited frequently during active work
 
-检查点的作用是确保跨对话恢复时，AI 能快速重建完整的工作上下文，而不是依赖可能被压缩的记忆。
+### Reference-retrieval workflow
+When the user says "I need to cite 《XX》":
+1. Check the reference list → 2. If a Drive marker exists, help download it → 3. Read the contents → 4. Format it into the user's configured citation style
+
+### Bulk reference download and index building
+
+When the author is about to begin a systematic revision, it is worth building a complete local reference library first:
+
+1. **Extract the reference list**: pull all entries from the bibliography section of the main draft
+2. **Search for each electronic copy in turn**:
+   - Search Google Drive first (`google_drive_search`)
+   - Then check whether the vault holds a PDF attached to a reading note
+   - Mark works that cannot be obtained as ⚠️
+3. **Download locally**: store every PDF found in `_references/attachments/`, following the naming rule `作者姓Year.pdf` (e.g., `Foucault1975.pdf`)
+4. **Build a reference index**: create `_references/文献索引.md`; each entry holds its citation key, a one-sentence summary, core-concept keywords, the chapters that cite it, and the status of its local path
+5. **Incremental updates**: update the index each time a new citation is added later
+
+### Vault integration
+- Reading notes: `[[《书名》读书笔记]]`
+- Concept cards: `[[概念名]]`
+- Person profiles: `[[人名]]`
 
 ---
 
-## 五、Inbox 联动
+## 4. Interaction Log
 
-如果用户的 vault 有 Inbox 系统，每次修改论文文件后在 Inbox 中追加简要记录。
+After every substantive writing discussion, append to `_meta/交互记录.md`:
+- **Paper thread**: what was discussed, what decisions were made
+- **Skill thread**: what needs surfaced, what improvements were made (if you are developing the skill in parallel)
+- **Reflexive notes**: thoughts that could feed the paper's reflexive-critique chapter (where applicable)
 
-> 判断方法：检查 vault 根目录是否有 `SYSTEM.md` 文件。如有，读取其中的 Inbox 规则并遵循。如无 `SYSTEM.md` 或其中未定义 Inbox，则跳过此步骤，避免重复记录。
+### Session-state checkpoint
+
+Before the end of any conversation with substantive progress (or when the AI senses the context may be nearing the compaction threshold), write a structured checkpoint into the interaction log. For the format, see the "Anti-Drift Protocol" section of SKILL.md.
+
+The checkpoint exists so that, on cross-session resumption, the AI can quickly rebuild the full working context rather than relying on memory that may have been compacted away.
 
 ---
 
-## 六、导出流程
+## 5. Inbox Integration
 
-论文完稿后根据用户选择导出：
-- **.docx**：调用 docx skill
-- **.pdf**：调用 pdf skill
-- **.tex**：生成 LaTeX 源文件（需用户确认模板）
-- 导出前执行学术写作检查清单
+If the user's vault has an Inbox system, append a brief record to the Inbox after each edit to a paper file.
+
+> How to decide: check whether the vault root holds a `SYSTEM.md` file. If so, read its Inbox rules and follow them. If there is no `SYSTEM.md`, or it defines no Inbox, skip this step to avoid duplicate records.
+
+---
+
+## 6. Export Workflow
+
+Once the paper is finished, export according to the user's choice:
+- **.docx**: invoke the docx skill
+- **.pdf**: invoke the pdf skill
+- **.tex**: generate a LaTeX source file (confirm the template with the user)
+- Run the academic-writing checklist before exporting

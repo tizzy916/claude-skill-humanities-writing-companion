@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-citation-consistency.py — 引用格式一致性扫描
+citation-consistency.py — Citation-format consistency scan
 
-用法：
+Usage:
     python3 citation-consistency.py <file.md>
 
-检查项：
-    1. 括号类型混用（半角 () vs 全角 （））
-    2. 引用内逗号混用（半角 , vs 全角 ，）
-    3. 多作者连接词不统一（& / and / 与 / 和）
-    4. 同一文献被引用时姓名形式不一致（中文译名 vs 英文原姓）
-    5. 页码格式不统一（p. X / p.X / 第 X 页）
+Checks:
+    1. Mixed parenthesis types (half-width () vs full-width （））
+    2. Mixed commas inside citations (half-width , vs full-width ，)
+    3. Inconsistent multi-author connectors (& / and / 与 / 和)
+    4. Inconsistent name forms for the same reference (Chinese translated name vs English surname)
+    5. Inconsistent page-number formats (p. X / p.X / 第 X 页)
 
-注意：
-    - 这是一个启发式扫描器，可能有少量误报（尤其是不规则引用）
-    - 仅检查"格式不一致"，不检查"是否符合特定引用规范"（APA / Chicago / GB/T 7714）
-    - 全文/规范层面的检查，请配合 references/project-management.md 中的引用格式速查使用
+Notes:
+    - This is a heuristic scanner and may produce a few false positives (especially for irregular citations)
+    - It only checks for "format inconsistency", not "conformance to a specific citation style" (APA / Chicago / GB/T 7714)
+    - For full-text / style-level checks, use this alongside the citation-format quick reference in references/project-management.md
 """
 
 import re
@@ -37,7 +37,7 @@ def scan(text):
     en_hits = sum(len(EN_INLINE.findall(line)) for line in lines)
     zh_hits = sum(len(ZH_INLINE.findall(line)) for line in lines)
 
-    issues.append(f"引用统计：英文形式 (Author, year) {en_hits} 处 / 中文形式 （作者，年份） {zh_hits} 处")
+    issues.append(f"Citation counts: English form (Author, year) {en_hits} / Chinese form （作者，年份） {zh_hits}")
     issues.append("")
 
     if en_hits > 0 and zh_hits > 0:
@@ -45,13 +45,13 @@ def scan(text):
         majority = max(en_hits, zh_hits)
         ratio = minority / majority if majority > 0 else 0
         if ratio > 0.05:
-            issues.append(f"⚠ 括号类型混用：少数派占比 {ratio:.1%}（建议全文统一为一种）")
+            issues.append(f"⚠ Mixed parenthesis types: minority share {ratio:.1%} (recommend unifying to one form throughout)")
 
     for i, line in enumerate(lines, 1):
         for m in MIX_HALF_PAREN_FULL_COMMA.finditer(line):
-            issues.append(f"  L{i}: 半角括号 + 全角逗号 → {m.group(0)}")
+            issues.append(f"  L{i}: half-width parens + full-width comma → {m.group(0)}")
         for m in MIX_FULL_PAREN_HALF_COMMA.finditer(line):
-            issues.append(f"  L{i}: 全角括号 + 半角逗号 → {m.group(0)}")
+            issues.append(f"  L{i}: full-width parens + half-width comma → {m.group(0)}")
 
     connectors = {
         '&':   len(re.findall(r'\([^()]*&[^()]*\d{4}', text)),
@@ -64,8 +64,8 @@ def scan(text):
     used = {k: v for k, v in connectors.items() if v > 0}
     if len(used) > 1:
         issues.append("")
-        issues.append(f"⚠ 多作者连接词不统一：{used}")
-        issues.append("  建议根据所选引用格式（APA 用 & / GB/T 7714 用 ， 等）统一全文")
+        issues.append(f"⚠ Inconsistent multi-author connectors: {used}")
+        issues.append("  Recommend unifying throughout per the chosen citation style (APA uses & / GB/T 7714 uses ， etc.)")
 
     year_to_names = defaultdict(set)
     for line in lines:
@@ -82,30 +82,30 @@ def scan(text):
 
     if name_lang_conflicts:
         issues.append("")
-        issues.append("⚠ 同一年份的引用被混用中英文姓名（可能是同一文献的不同写法）：")
+        issues.append("⚠ Citations for the same year mix Chinese and English names (possibly different spellings of the same reference):")
         for year, refs in name_lang_conflicts[:5]:
             issues.append(f"  {year}: {sorted(refs)}")
         if len(name_lang_conflicts) > 5:
-            issues.append(f"  ... 共 {len(name_lang_conflicts)} 个年份有此问题")
+            issues.append(f"  ... {len(name_lang_conflicts)} years have this issue in total")
 
     page_formats = {
         'p. X':   len(re.findall(r'\bp\.\s+\d', text)),
         'pp. X-Y': len(re.findall(r'\bpp\.\s+\d', text)),
-        'p.X (无空格)':  len(re.findall(r'\bp\.\d', text)),
+        'p.X (no space)':  len(re.findall(r'\bp\.\d', text)),
         '第 X 页': len(re.findall(r'第\s*\d+\s*页', text)),
         '第 X-Y 页': len(re.findall(r'第\s*\d+\s*[-–]\s*\d+\s*页', text)),
     }
     used_pages = {k: v for k, v in page_formats.items() if v > 0}
     if len(used_pages) > 1:
         issues.append("")
-        issues.append(f"⚠ 页码格式不统一：{used_pages}")
+        issues.append(f"⚠ Inconsistent page-number formats: {used_pages}")
 
     return issues
 
 
 def main():
     if len(sys.argv) < 2:
-        print(f"用法：{sys.argv[0]} <file.md>", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} <file.md>", file=sys.stderr)
         sys.exit(1)
 
     filepath = sys.argv[1]
@@ -113,12 +113,12 @@ def main():
         with open(filepath, 'r', encoding='utf-8') as f:
             text = f.read()
     except FileNotFoundError:
-        print(f"文件不存在：{filepath}", file=sys.stderr)
+        print(f"File does not exist: {filepath}", file=sys.stderr)
         sys.exit(1)
 
     issues = scan(text)
 
-    print(f"=== 引用格式一致性扫描 · {filepath} ===\n")
+    print(f"=== Citation-format consistency scan · {filepath} ===\n")
 
     issue_count = sum(1 for line in issues if line.startswith('⚠') or '→' in line)
 
@@ -128,12 +128,12 @@ def main():
 
     print()
     if issue_count == 0:
-        print("✅ 未发现明显的格式不一致")
+        print("✅ No obvious format inconsistencies found")
     else:
-        print(f"共发现约 {issue_count} 处需要审查的格式问题")
+        print(f"About {issue_count} format issue(s) need review")
     print()
-    print("注：此扫描仅检测'不一致'，不评判'是否符合特定规范'。")
-    print("    全文规范检查请对照 _writing-config/引用格式速查.md。")
+    print("Note: this scan only detects 'inconsistency', it does not judge 'conformance to a specific style'.")
+    print("    For full-text style checks, compare against _writing-config/引用格式速查.md.")
 
 
 if __name__ == '__main__':

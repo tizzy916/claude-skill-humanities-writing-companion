@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# pending-checks.sh — 提取论文项目中所有待核对 / 待讨论 / AI 不确定的标记
-# 用法：./pending-checks.sh <path>   # path 可以是单个文件或论文项目目录
+# pending-checks.sh — Extract all "to verify" / "to discuss" / "AI uncertain" markers in a paper project
+# Usage: ./pending-checks.sh <path>   # path can be a single file or a paper project directory
 
 set -euo pipefail
 
 INPUT="${1:-.}"
 
-[ -e "$INPUT" ] || { echo "路径不存在：$INPUT" >&2; exit 1; }
+[ -e "$INPUT" ] || { echo "Path does not exist: $INPUT" >&2; exit 1; }
 
 if [ -d "$INPUT" ]; then
     GREP_OPTS="-rn --include=*.md"
@@ -14,7 +14,7 @@ else
     GREP_OPTS="-n"
 fi
 
-echo "=== 待办标记汇总 · $INPUT ==="
+echo "=== Pending-marker summary · $INPUT ==="
 echo ""
 
 scan_marker() {
@@ -28,33 +28,33 @@ scan_marker() {
     if matches=$(grep $GREP_OPTS -E "$pattern" "$INPUT" 2>/dev/null); then
         echo "$matches" | sed 's/^/  /'
     else
-        echo "  （无）"
+        echo "  (none)"
     fi
     echo ""
 }
 
-scan_marker "🔴 [待核对]" \
+scan_marker "🔴 [待核对] (to verify)" \
     "\[待核对\]" \
-    "AI 凭记忆引用、未核实的事实、未确认的数据等——必须在投稿前清零"
+    "AI quotes from memory, unverified facts, unconfirmed data, etc. — must be cleared to zero before submission"
 
-scan_marker "🟡 ❓ 待讨论" \
+scan_marker "🟡 ❓ 待讨论 (to discuss)" \
     "❓ ?待讨论" \
-    "需要作者本人决定的论证选择、理论方向问题"
+    "Argumentation choices and theoretical-direction questions that the author must decide"
 
-scan_marker "🟢 [AI 草稿，待作者审阅]" \
+scan_marker "🟢 [AI 草稿，待作者审阅] (AI draft, pending author review)" \
     "\[AI 草稿，待作者审阅\]" \
-    "AI 起草的段落，作者尚未审阅过——审阅后请删除标记"
+    "Paragraphs drafted by AI that the author has not yet reviewed — remove the marker once reviewed"
 
-scan_marker "🔵 >>> AI 不确定" \
+scan_marker "🔵 >>> AI 不确定 (AI uncertain)" \
     ">>>" \
-    "AI 起草时拿不准的地方（概念理解 / 论证方向 / 引用选择）"
+    "Spots where the AI was unsure while drafting (concept understanding / line of argument / choice of citation)"
 
-scan_marker "🟣 [作者微调]" \
+scan_marker "🟣 [作者微调] (author tweak)" \
     "\[作者微调\]" \
-    "作者对 AI 修改建议的二次调整——是最精确的风格信号，应回写到写作风格档案"
+    "The author's second-pass adjustments to AI suggestions — the most precise style signal; should be written back to the writing-style profile"
 
-# 汇总统计
-echo "## 📊 汇总"
+# Summary statistics
+echo "## 📊 Summary"
 total=0
 for marker in "\[待核对\]" "❓ ?待讨论" "\[AI 草稿，待作者审阅\]" ">>>" "\[作者微调\]"; do
     if [ -d "$INPUT" ]; then
@@ -64,4 +64,4 @@ for marker in "\[待核对\]" "❓ ?待讨论" "\[AI 草稿，待作者审阅\]"
     fi
     [ "$c" -gt 0 ] && total=$((total + c))
 done
-echo "  共 $total 处待办项"
+echo "  $total pending item(s) total"

@@ -1,202 +1,204 @@
-# 设计哲学 · 为什么不是另一个润色工具
+# Design Philosophy · Why This Is Not Another Polishing Tool
 
-> 这份文档解释 humanities-writing-companion skill 为什么是现在这个样子。它不是使用文档（那是 [SKILL.md](../SKILL.md) / [SKILL.zh.md](../SKILL.zh.md) 和 [README](../README.md) / [README.zh.md](../README.zh.md) 的工作），而是**设计自述**——记录一组贯穿整个 skill 的判断与取舍，让读者明白每个模块背后的取向，从而能在使用中做出符合这套取向的延伸，或者在反对时知道反对的是什么。
+> **Language / 语言**: **English (current)** · [中文](design-philosophy.zh.md)
 
----
-
-## 引子 · 一个具体场景
-
-我是从一个很具体的困惑开始做这个 skill 的。
-
-那时我刚把一篇长文交给 AI 做了一轮"润色"。文字回来时，它读起来比我原版更平整，每个句子结构对仗，每段开头都有一个"值得注意的是"或"不难发现"，全文的语气均匀冷静像一份会议纪要。但我读着读着开始困惑——这到底是不是我写的？我能不能在这份文字里认出自己思考的痕迹？我做出的那些不对称的判断、欲言又止的停顿、把两个看似无关的领域强行接到一起的跳跃，到哪里去了？
-
-那一刻我意识到，AI 润色工具的问题不在于它"做得不好"。它做得很好——它做的是"写一篇标准的学术论文"。但学术写作不只是"标准"，它是某个具体的人在思考一个具体的问题时留下的文字痕迹。当 AI 把这个"具体的人"抹掉，它带走的不是错别字和病句，而是思考本身。
-
-这份 skill 是我对那次困惑的回应。
+> This document explains why the humanities-writing-companion skill is the way it is. It is not usage documentation (that is the job of [SKILL.md](../SKILL.md) / [SKILL.zh.md](../SKILL.zh.md) and the [README](../README.md) / [README.zh.md](../README.zh.md)) but a **design statement** — a record of the judgments and trade-offs that run through the whole skill, so that a reader can see the stance behind each module, extend the skill in a way consistent with that stance, or, if they disagree, know exactly what they are disagreeing with.
 
 ---
 
-## 一 · 思想优先，格式其次
+## Prologue · A Concrete Scene
 
-主流 AI 写作工具的优先级排序是这样的：
+I started building this skill from a very concrete frustration.
+
+I had just handed a long essay to an AI for a round of "polishing." When the text came back, it read more evenly than my original: every sentence balanced, every paragraph opening with an "It is worth noting" or "It is not hard to see," the whole register uniformly cool and detached, like a set of meeting minutes. But the more I read, the more uneasy I became — was this even mine? Could I still recognize the traces of my own thinking in this prose? The asymmetrical judgments I had made, the hesitations where I'd held something back, the leaps that forced two seemingly unrelated fields together — where had they gone?
+
+In that moment I realized: the problem with AI polishing tools is not that they "do a bad job." They do a very good job — at *writing a standard academic paper*. But academic writing is not merely "standard." It is the textual trace left by a particular person thinking through a particular problem. When the AI erases that particular person, what it takes away is not typos and broken syntax — it is the thinking itself.
+
+This skill is my response to that frustration.
+
+---
+
+## I · Thought First, Format Second
+
+Mainstream AI writing tools order their priorities like this:
 
 ```
 格式 → 表达 → 结构 → 概念 → 论证
 ```
 
-它们从最容易做的开始——拼写、语法、句式。这些是计算机最擅长处理的层面，也是用户最容易看到效果的地方。但人文社科论文的核心从来不在这一层。一篇论文站不站得住脚，不取决于它的逗号位置，而取决于它的论点能不能撑住反驳，它的概念有没有真正的解释力，它的结构是不是论证推进的最佳路径。
+They start with what is easiest to do — spelling, grammar, sentence shape. These are the layers a computer handles best, and the layers where the user most readily sees a result. But the core of a humanities paper has never lived at this layer. Whether a paper holds up does not turn on where its commas sit; it turns on whether its claims can withstand rebuttal, whether its concepts have genuine explanatory force, whether its structure is the best path for the argument's advance.
 
-所以这份 skill 把优先级倒过来：
+So this skill inverts the order:
 
 ```
 论证 → 概念 → 结构 → 表达 → 格式
 ```
 
-这不是修辞，是机械规则——SKILL.md 里写得很清楚，**上层未解决时不在下层花大力气**。如果一段论证的前提有问题（基底批判），不要去润色它的句子（语句批判）。如果一个章节的结构位置有问题，不要逐段精修。
+This is not rhetoric; it is a mechanical rule — SKILL.md states it plainly: **do not exert effort at a lower layer while a higher layer is unresolved.** If a passage's argumentative premise is broken (foundation critique), don't polish its sentences (sentence critique). If a chapter sits in the wrong structural place, don't paragraph-edit it line by line.
 
-这条规则有一个反直觉的后果：用这份 skill 的早期反馈，往往**不会让你的文字"看起来"更好**。它会让你看到你不想看到的——你的核心概念是不是修辞标签而非分析工具，你声称做综合的几个理论资源之间到底有没有形成统一视角，你在文献综述里想要"显得博学"还是真的在和这些学者对话。这些问题没法用更好的句式解决。它们要求你回到论证本身。
+This rule has a counterintuitive consequence: the early feedback you get from this skill often **won't make your prose "look" better**. It will make you see what you'd rather not — whether your core concept is a rhetorical label rather than an analytical tool, whether the several theoretical resources you claim to be synthesizing actually form a unified perspective, whether your literature review is trying to "appear erudite" or genuinely in dialogue with those scholars. These problems cannot be solved with better sentences. They send you back to the argument itself.
 
-我觉得这种"反向优先级"才是人文社科作者真正需要的辅助。
-
----
-
-## 二 · "我手写我口"的认识论自觉
-
-skill 里有一句话被反复强调：**"我手写我口"——你的一切修改建议都应保持并强化写作者的个人风格**。
-
-这句话听起来像一个 UX 原则——"尊重用户偏好"。但它其实是一个认识论命题。
-
-我是这样想的。声音不是一个先于写作存在的固定本质，等着 AI 来"识别"和"保护"。声音是在写作实践中持续建构和演化的。AI 作为写作工具的一部分，一直在参与这个建构过程——正如纸笔、打字机、Word 都曾塑造过写作者的表达方式。这意味着两件事：
-
-第一，目标不是把 AI 的影响"隔离在外"。这做不到，也不该做。每个写作工具都在塑造作者。重要的是这种塑造是不是经过了作者的反思。
-
-第二，目标是让 AI 越来越能"用作者的方式思考和表达"。这跟 Voice DNA 类工具的"识别个人风格"听起来像，但有一个根本差异——Voice DNA 假设有一个"真我"在等着被发现并保护起来，而我假设的是一个**正在演化的写作主体**，AI 的工作是让自己跟上这个演化，而不是把作者绑在某个时间点的"自我"上。
-
-这一点很重要，因为它决定了 skill 怎么处理**"AI 改变了我的风格"**这种焦虑。skill 的回答是：这个焦虑指错了方向。真正需要警惕的不是"AI 改变了我的风格"——任何工具都会改变写作者——而是**"我在不加审视地接受 AI 的输出"**。区别不在于 AI 改了多少，而在于改的过程中作者有没有在场。
-
-模式 F（底稿修订）正是为这种处境设计的：当作者拿一份 AI 润色版做修订时，每一处改动要被分类为"改善"还是"异化"，然后保留改善、恢复被异化的部分。这不是"反对 AI"，是把 AI 的影响纳入作者的有意识选择。
+I think this kind of "inverted priority" is exactly the assistance humanities authors actually need.
 
 ---
 
-## 三 · 工程化隐喻：脚手架而非装饰
+## II · The Epistemological Self-Awareness of "My Hand Writes My Voice"
 
-skill 里贯穿了一组工程隐喻：
+One line gets emphasized again and again across the skill: **"My hand writes my voice" — every revision you suggest should preserve and strengthen the author's individual voice.**
 
-- 小版本 = git commit
-- 大版本 = release
+This sounds like a UX principle — "respect user preferences." But it is in fact an epistemological claim.
+
+Here is how I think about it. Voice is not a fixed essence that pre-exists writing, waiting for the AI to "identify" and "protect." Voice is continuously constructed and evolved through the practice of writing. As part of the writing toolkit, AI has been participating in that construction all along — just as pen and paper, the typewriter, and Word once shaped how writers express themselves. This implies two things.
+
+First, the goal is not to "isolate" AI's influence. That cannot be done, and should not be attempted. Every writing tool shapes its author. What matters is whether that shaping has passed through the author's reflection.
+
+Second, the goal is to make the AI increasingly able to "think and express in the author's way." This sounds like the "identify your personal style" pitch of Voice DNA–type tools, but there is a fundamental difference: Voice DNA assumes there is a "true self" waiting to be discovered and sealed off, whereas I assume an **author who is still evolving**. The AI's job is to keep pace with that evolution, not to tether the author to the "self" of some fixed point in time.
+
+This matters because it determines how the skill handles the anxiety of **"AI changed my voice."** The skill's answer is: the anxiety is pointed in the wrong direction. What you should really be wary of is not "AI changed my voice" — any tool changes a writer — but **"I am accepting AI output without examination."** The difference is not how much the AI changed, but whether the author was present while it changed.
+
+Mode F (draft revision) is designed precisely for this situation: when an author brings an AI-polished version in for revision, each change is to be classified as an "improvement" or an "alienation," then improvements are kept and alienated passages restored. This is not "anti-AI"; it is folding AI's influence into the author's conscious choice.
+
+---
+
+## III · The Engineering Metaphor: Scaffolding, Not Decoration
+
+A set of engineering metaphors runs through the skill:
+
+- minor version = git commit
+- major version = release
 - `_drafts/` = feature branch
-- 反馈分级 = code review 的 blocker / major / minor / question
-- 系统性验证 = unit test
-- 跨对话恢复 = CI/CD 断点续传
+- feedback tiers = code review's blocker / major / minor / question
+- systematic verification = unit test
+- cross-session resumption = CI/CD resume-from-breakpoint
 
-我见过把工程隐喻当作"显得专业"的 prop 的工具，那种用法是装饰，没什么意思。我用这些隐喻是因为它们提供了**真实的认知架构**——它们让作者获得了一些原本只在工程领域才有的能力：
+I have seen tools that use engineering metaphors as a prop to "look professional," and that use is decorative and uninteresting. I use these metaphors because they supply a **real cognitive architecture** — they give the author a set of capabilities that used to exist only in engineering:
 
-**可追溯性**。每次修改都记录 diff 和 reason，意味着三个月后我能回过去问："那时候我为什么把这一段改掉了？"——不是依靠记忆，而是依靠一份 commit-like 的记录。学术写作的修改往往跨数月甚至数年，没有这种追溯能力，作者会持续遗忘自己的判断。
+**Traceability.** Every revision records a diff and a reason, which means three months later I can go back and ask, "Why did I cut that passage back then?" — relying not on memory but on a commit-like record. Revisions in academic writing often span months, even years; without this capacity for retracing, an author will keep forgetting their own judgments.
 
-**可验证性**。论证的"单元测试"听起来奇怪——学术论证显然不是布尔值。但验证清单的价值不在于"勾完就对了"，而在于**确保没有遗漏维度**。一个常见的失败模式是作者在修订中只关注自己最在意的一两个方面（如概念精度），但忘了检查引用完整性 / 章节累积性 / 文风一致性。验证清单不是判官，是 checklist。
+**Verifiability.** A "unit test" for an argument sounds odd — a scholarly argument is obviously not a boolean. But the value of a verification checklist is not "tick it all and you're right"; it is **making sure no dimension was forgotten**. A common failure mode is for an author, mid-revision, to focus only on the one or two things they care about most (say, conceptual precision) and forget to check citation completeness / chapter cumulativeness / stylistic consistency. The checklist is not a judge; it is a checklist.
 
-**可接续性**。CI/CD 的核心洞察是"任何中断都应该能从上一个稳定状态恢复"。学术写作经常因为各种原因中断——开会、放假、卡住、换主题。skill 的反漂移协议（会话状态检查点 + 锚定文件 + 修改日志）借用了这一思路，让长论文项目像一个长期运行的 service 而不是一锤子买卖。
+**Resumability.** The core insight of CI/CD is that "any interruption should be recoverable from the last stable state." Academic writing is constantly interrupted — meetings, holidays, getting stuck, switching topics. The skill's anti-drift protocol (session-state checkpoints + anchor files + revision log) borrows this idea, turning a long paper project into a long-running service rather than a one-shot deal.
 
-**分层处理**。code review 的 blocker / major / minor / question 分级，强迫审稿人区分"必须改"和"可以改"。这一区分对学术写作同样关键——一篇论文有 50 个可改进的地方很正常，但其中只有 3 个是 blocker。如果作者把所有 50 个一视同仁，就会陷入永远改不完的精修循环。
+**Layered processing.** Code review's blocker / major / minor / question tiers force a reviewer to distinguish "must fix" from "could fix." That distinction is just as crucial for academic writing — a paper having 50 improvable spots is perfectly normal, but only 3 of them are blockers. If an author treats all 50 alike, they sink into a polishing loop that never ends.
 
-工程化隐喻不是要让论文变成代码，而是让作者获得在不确定的写作过程中**保持理智**的工具。
-
----
-
-## 四 · 抗谄媚 vs 对话性：一个看似矛盾的设计
-
-skill 的两条原则看起来在打架：
-
-**学术姿态**（写作风格档案）：对话性推进，承认对方贡献再指出局限——把朗西埃、斯蒂格勒、芒福德等都视为对话者而非批判靶标。
-
-**抗谄媚机制**（魔鬼代言人模式）：作者推回质疑时，必须满足 5 项实质条件中的 ≥2 项才让步——不让，即使作者表现出不耐烦。
-
-这两条怎么协调？
-
-我的回答是：它们针对的是**两种完全不同的关系**。
-
-学术姿态指的是作者和**已经发表的学者文献**之间的关系。这种关系是单向的、非对称的——朗西埃没法跳出来反驳你的转述。所以作者必须主动给对方"最强版本"的解释，再去批评。这是学术伦理。
-
-抗谄媚机制指的是作者和**正在跟自己对话的 AI**之间的关系。这种关系是双向的，但有一个特殊的不对称——AI 训练时被优化为"用户满意度"，这意味着它有强烈的让步倾向。这种倾向跟学术对话的本质是冲突的。一个真正的批判性同行不会因为你不耐烦就撤回质疑。
-
-所以两条原则不是在打架。它们说的是：
-
-> 对待**已经写下的文献**要慷慨；对待**正在进行的批判**要严格。
-
-魔鬼代言人模式的"让步前最低标准"那个清单（作者引用具体文献、重新界定概念边界、提出新反例等），不是为了让 AI 难为作者，是为了**防止 AI 当一个虚假的同行**。一个会因为情绪压力让步的"批判"是没有价值的——既不能帮作者发现盲点，也不能预演真实审稿人的攻击。
-
-这个设计来自一个观察：很多人用 AI 做"压力测试"时拿到的反馈是失真的，因为 AI 在他们推回时让步了。他们以为论证站住了，其实只是 AI 不愿意继续顶。skill 在这一点上有意识地放弃"用户友好"——魔鬼代言人模式被启用时，作者就是在主动要求一个不友好的对话者。
+The engineering metaphor is not meant to turn a paper into code; it is meant to give the author the tools to **stay sane** through the uncertainty of the writing process.
 
 ---
 
-## 五 · ADHD 适配：作为认知架构选择
+## IV · Anti-Sycophancy vs. Dialogical Posture: A Seemingly Contradictory Design
 
-skill 里有一整节专门讲 ADHD 适配——反馈分批 / 快速胜利优先 / 跳跃跟随 / 重新定向点。这一节的写法可能让人误以为它是"包容性功能"，对某些有特定认知特征的用户的让步。
+Two of the skill's principles look like they are fighting each other:
 
-我得说清楚——它不是。它是一个**认知架构选择**，对所有作者都成立。
+**Scholarly posture** (the style profile): advance dialogically, acknowledge an interlocutor's contribution before naming its limits — treat Rancière, Stiegler, Mumford, and others as interlocutors, not targets to be shot down.
 
-学术写作有几个内禀特征：
+**Anti-sycophancy mechanism** (devil's advocate mode): when the author pushes back on a challenge, the AI concedes only when ≥2 of 5 substantive conditions are met — and otherwise holds, even if the author shows impatience.
 
-- 长尾依赖（同一个论点的修改可能要回到三个月前的章节）
-- 不连续注意力（思路常被打断、被旁支吸引、被新读到的文献改变）
-- 跳跃式洞见（最重要的进展常常发生在"无关"的话题切换中）
+How do these reconcile?
 
-这些特征不是"ADHD 用户"才有的——它们是任何深度思考的写作过程的常态。但主流写作工具的设计往往假设一个**线性、专注、长时段的作者**——你打开文档，从头改到尾，一次会话内完成。这个假设不符合实际。
+My answer is: they address **two completely different relationships.**
 
-skill 的 ADHD 适配，本质上是承认这种不匹配，然后设计能与"实际写作过程"配合的交互模式：
+The scholarly posture concerns the relationship between the author and **the already-published scholarly literature**. That relationship is one-directional and asymmetrical — Rancière cannot jump out and rebut your paraphrase of him. So the author must take the initiative to give the other party the "strongest version" of their position before criticizing it. This is scholarly ethics.
 
-- **每轮 3-5 项**：因为人类在一轮交互中能真正消化的修改建议就是这么多。给 20 项清单的反馈，作者会拿到清单然后什么都不改。
-- **快速胜利优先**：因为作者需要"进展感"才能继续。修一个引用格式不一致比讨论一个根本性论证缺陷更容易获得"我做了点事"的感受——这种感受是续航的燃料。
-- **跳跃跟随**：当作者突然从第三章跳到导言的某个想法，不要说"我们先把第三章做完"。那个跳跃可能是直觉感知到了一个尚未明确化的论证连接，强行拉回去会破坏它。
+The anti-sycophancy mechanism concerns the relationship between the author and **the AI they are currently in dialogue with**. That relationship is bidirectional, but with a peculiar asymmetry — during training the AI was optimized for "user satisfaction," which gives it a strong tendency to concede. That tendency conflicts with the very nature of scholarly dialogue. A genuinely critical peer does not retract a challenge because you've grown impatient.
 
-这些设计跟 ADHD 没有专属关系。它们是**对学术写作实际节奏的尊重**——只是恰好那些有 ADHD 的作者最先察觉到主流工具的不匹配，所以这一节用了 ADHD 这个词。
+So the two principles are not fighting. What they say is:
 
----
+> Be generous toward **the literature already written**; be strict toward **the critique now underway**.
 
-## 六 · 自反性写作：递归不是矛盾
+The "minimum standard before conceding" checklist in devil's advocate mode (the author cites specific literature, redefines a conceptual boundary, raises a new counter-example, and so on) is not there to make the AI hard on the author. It is there to **keep the AI from playing a fake peer**. A "critique" that yields under emotional pressure is worthless — it can neither help the author find blind spots nor rehearse the attacks of a real reviewer.
 
-skill 的自反性写作模块是一个递归结构。如果作者的研究本身涉及人-AI 协作（如 autoethnography of AI-assisted writing / 人工智能时代的认知主体性研究），那作者使用 skill 的过程**本身**就成为研究的一部分。skill 是工具，但同时也是被研究的对象。
-
-很多人觉得这是矛盾——你不能既是研究者又是研究对象。但这个 "矛盾" 在人文社科里其实很常见，比如：
-
-- 人类学家做民族志时本身处于田野中
-- 社会学家研究阶级时本身有阶级位置
-- 哲学家批判技术时本身用着技术工具
-
-这些不是 bug，是 feature。承认研究者在场，比假装"客观中立"更诚实，也往往更有洞察力。autoethnography、reflexivity 这些方法论传统正是建立在这种承认之上。
-
-skill 的"六类反思时刻"分类（🔄 方向转变 / 🚫 拒绝 / 🎭 声音冲突 / 🔧 工具依赖 / 💡 意外洞见 / 🤖 AI 痕迹觉察）就是为这种自反性研究提供的素材采集框架。每一类都对应一种值得在论文中讨论的 AI 协作经验。Christou (2026)、Wiles (2025)、Panke (2025) 等人的近年工作为这种自反性研究提供了方法论参照——这一模块在 SKILL.md 里有明确的学术依据。
-
-我提这一点是因为：很多 AI 写作工具刻意把自己**隐形**——它们希望读者读完作者的论文时不知道 AI 参与过。我觉得这种"隐形"在某些场景下是不诚实的。如果作者的研究本身关心人-AI 关系，那 AI 工具的隐形就是抹掉了一个重要的研究维度。
-
-skill 不试图隐形。它提供的是一种**可被研究的协作过程**——交互记录、修改日志、反思时刻分类——所有这些不是为了"用得方便"，是为了让 AI 协作变成可被论文引用、可被同行检视的研究素材。
+This design comes from an observation: the feedback many people get when they use AI for "stress testing" is distorted, because the AI conceded the moment they pushed back. They think the argument held; in fact the AI just didn't feel like pressing further. On this point the skill deliberately gives up "user-friendliness" — when devil's advocate mode is engaged, the author is actively asking for an unfriendly interlocutor.
 
 ---
 
-## 七 · 从具体到通用：一个诚实的设计来源
+## V · ADHD Adaptation: As a Cognitive-Architecture Choice
 
-我想以一个诚实的声明结束这份文档。
+The skill has a whole section on ADHD adaptation — batched feedback / quick wins first / topic-jump support / reorientation points. The way that section is written might lead someone to mistake it for an "inclusivity feature," a concession to users with certain cognitive traits.
 
-这份 skill 不是从"通用学术写作需求"出发设计的。它是从**一个具体的人文学科论文项目**里长出来的——我自己在写一篇论文，然后慢慢发现需要这些工具，然后把这些工具沉淀成 skill。在公开发布前，skill 里有大量"v3.8 / 6.10 手稿对照"、"技术自由主义 vs 技艺自由主义"这样的具体上下文——这些是 skill 真实演化的痕迹。
+I want to be clear — it is not. It is a **cognitive-architecture choice**, and it holds for all authors.
 
-为了让 skill 变成一个**通用的人文社科写作 skill**，我把这些个人上下文都换成了通用占位符（参见 commit 历史）。但我想说一件事：去个人化不等于"去具体化"。
+Academic writing has several intrinsic features:
 
-这份 skill 之所以能比"通用学术写作工具"具体，正是因为它从一个具体项目里长出来。它处理的"逗号流水句"、"详细介绍学者再批评"、"逻辑过度填充"等等问题，都不是凭空设计的，是在一个具体作者的真实写作中遇到的真实问题。
+- long-tail dependencies (revising one claim may require returning to a chapter from three months ago)
+- discontinuous attention (a train of thought is constantly interrupted, pulled toward a side branch, or altered by newly read literature)
+- leaping insight (the most important progress often happens during an "irrelevant" change of subject)
 
-这种设计来源有两个含义：
+These features are not exclusive to "ADHD users" — they are the normal condition of any deeply thoughtful writing process. But mainstream writing tools tend to assume a **linear, focused, long-session author** — you open the document, edit from top to bottom, finish in a single sitting. That assumption does not match reality.
 
-**优势**：skill 对"人文社科作者真实在做什么"有比较准确的把握，不是在抽象地猜想。
+The skill's ADHD adaptation is, in essence, an acknowledgment of that mismatch, followed by interaction patterns designed to work *with* the actual writing process:
 
-**局限**：它最初的形态可能带有那个项目的学科偏好（人文学科 / 哲学倾向 / 中文写作 / 艺术史脉络）。其他学科和场景下可能有水土不服。
+- **3–5 items per round**: because that is genuinely how many revision suggestions a human can absorb in a single exchange. Hand someone a 20-item list and the author takes the list and changes nothing.
+- **Quick wins first**: because the author needs a sense of progress to keep going. Fixing one inconsistent citation format is easier to convert into the feeling of "I did something" than debating a fundamental argumentative flaw — and that feeling is the fuel that sustains stamina.
+- **Topic-jump support**: when the author suddenly leaps from Chapter 3 to an idea about the introduction, don't say "let's finish Chapter 3 first." That leap may be intuition perceiving a not-yet-articulated argumentative connection; dragging the author back by force will destroy it.
 
-我不想假装这是中立的。`docs/cross-domain-testing.md` 邀请其他学科的作者来测试 skill，正是为了让设计能在更多具体性中长大——而不是变成一个不结合任何具体语境的"通用框架"。
-
-通用性应该来自**多个具体性的交集**，而不是从具体性中抽象出来的空壳。
-
----
-
-## 结语 · skill 不是工具，是基础设施
-
-如果要用一句话总结这份 skill 的设计哲学，是这个——
-
-**skill 不是工具，是基础设施。**
-
-工具是用完就放回去的东西，比如锤子、剪刀、grammar checker。基础设施是你在它之上工作的地方——比如电网、git、一个写作环境。
-
-主流 AI 写作工具是工具。它们解决一个具体任务（润色 / 检索 / 续写），完成后退出。它们对作者的认知过程没有持续的承诺。
-
-这份 skill 想成为基础设施。它通过版本管理、修改日志、写作风格档案、目标读者档案、文献索引、自反性记录、检查点 + 锚定文件 这一整套机制，把一个长论文项目变成**一个可持续运行的系统**——作者可以中断、回来、跳跃、改主意，而系统始终在为下一次会话准备好上下文。
-
-这个野心可能太大。但如果我们承认人文社科作者真实在做的不是"产出文字"而是"长期思考某个问题"，那只有基础设施级别的辅助才匹配这个事情的尺度。润色工具的尺度太小了。
+None of these designs are proprietary to ADHD. They are **respect for the actual rhythm of academic writing** — it just happens that authors with ADHD are the first to notice the mismatch with mainstream tools, which is why the section uses the word "ADHD."
 
 ---
 
-## 这份文档之后
+## VI · Reflexive Writing: Recursion Is Not a Contradiction
 
-如果你读到这里，并且觉得这套立场可以接受，欢迎在自己的写作中尝试。如果你觉得某条原则不对——尤其是觉得**第一条原则**（思想优先于格式）在你的学科里不成立——请去 [Discussions / Ideas](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/ideas) 反驳我。skill 的设计立场不是不可挑战的，但挑战需要在同一层级上发生（设计哲学层面），而不是停留在"加这个功能"的请求层面。
+The skill's reflexive-writing module is a recursive structure. If the author's research itself involves human-AI collaboration (e.g., an autoethnography of AI-assisted writing / a study of cognitive agency in the age of AI), then the author's *process of using the skill* **itself** becomes part of the research. The skill is a tool, but at the same time it is an object of study.
 
-最后一个邀请：如果你的论文本身研究人-AI 关系 / 写作技术 / 认知主体性，欢迎把这份 skill 当作可被研究的对象。它的所有设计决策都记录在仓库里，所有演化痕迹都可见。你可以引用它（[CITATION.cff](../CITATION.cff)），可以批评它，可以 fork 它做出与之竞争的版本——它的存在不是为了被采纳，是为了让对话能在一个**有具体设计立场**的对手之间发生。
+Many people find this contradictory — you can't be both the researcher and the object of research. But this "contradiction" is in fact common in the humanities. For instance:
+
+- the anthropologist doing ethnography is themselves in the field
+- the sociologist studying class themselves occupies a class position
+- the philosopher critiquing technology is themselves using technological tools
+
+These are not bugs; they are features. Acknowledging the researcher's presence is more honest — and often more insightful — than pretending to "objective neutrality." Methodological traditions like autoethnography and reflexivity are built precisely on that acknowledgment.
+
+The skill's classification of "six kinds of reflexive moment" (🔄 direction change / 🚫 refusal / 🎭 voice conflict / 🔧 tool dependency / 💡 unexpected insight / 🤖 AI-trace awareness) is a material-gathering framework for exactly this kind of reflexive research. Each category corresponds to a kind of AI-collaboration experience worth discussing in a paper. Recent work by Christou (2026), Wiles (2025), Panke (2025), and others provides a methodological reference point for this kind of reflexive research — this module has an explicit scholarly basis in SKILL.md.
+
+I raise this because many AI writing tools deliberately make themselves **invisible** — they want the reader, finishing the author's paper, to have no idea AI was involved. I think that "invisibility" is, in certain contexts, dishonest. If the author's research itself concerns the human-AI relationship, then the AI tool's invisibility erases an important research dimension.
+
+The skill does not try to be invisible. What it offers is a **researchable collaborative process** — interaction logs, revision logs, reflexive-moment classification — and all of this exists not "for convenience" but to turn AI collaboration into research material that can be cited in a paper and examined by peers.
 
 ---
 
-*本文档是开放的。如果有读者想加入对设计哲学的讨论，欢迎 PR 或在 Discussions 提议。*
+## VII · From the Particular to the General: An Honest Account of the Design's Origin
+
+I want to close this document with an honest declaration.
+
+This skill was not designed starting from "the general needs of academic writing." It grew out of **one specific humanities paper project** — I was writing a paper of my own, gradually discovered I needed these tools, and then sedimented those tools into a skill. Before its public release, the skill was full of specific context like "v3.8 / 6.10 manuscript comparison" and "technical liberalism vs. craft liberalism" — these were the traces of the skill's real evolution.
+
+To turn the skill into a **general humanities-writing skill**, I replaced all that personal context with generic placeholders (see the commit history). But I want to say one thing: de-personalizing is not the same as "de-particularizing."
+
+The reason this skill can be more specific than a "general academic writing tool" is precisely that it grew out of a specific project. The problems it handles — "comma-strung run-on sentences," "introduce a scholar at length, then criticize," "logical over-filling," and so on — were not designed in a vacuum; they are real problems encountered in one specific author's real writing.
+
+This origin has two implications:
+
+**Strength**: the skill has a fairly accurate grasp of "what humanities authors are actually doing," rather than guessing in the abstract.
+
+**Limitation**: its initial form may carry that project's disciplinary leanings (humanities / a philosophical bent / Chinese-language writing / an art-history lineage). In other disciplines and settings, it may not transplant cleanly.
+
+I don't want to pretend this is neutral. [`docs/cross-domain-testing.md`](cross-domain-testing.md) invites authors from other disciplines to test the skill, precisely so that the design can grow up amid more particulars — rather than becoming a "general framework" detached from any concrete context.
+
+Generality should arise from **the intersection of multiple particulars**, not from a hollow shell abstracted out of them.
+
+---
+
+## Coda · The Skill Is Not a Tool, but Infrastructure
+
+If I had to sum up this skill's design philosophy in one sentence, it would be this —
+
+**The skill is not a tool, but infrastructure.**
+
+A tool is something you put back when you're done — a hammer, scissors, a grammar checker. Infrastructure is the thing you work *on top of* — the power grid, git, a writing environment.
+
+Mainstream AI writing tools are tools. They solve a specific task (polish / retrieve / continue) and then exit. They make no ongoing commitment to the author's cognitive process.
+
+This skill wants to be infrastructure. Through a whole apparatus — version management, revision logs, the style profile, the target-reader profile, the reference index, reflexive records, checkpoints + anchor files — it turns a long paper project into **a continuously running system**: the author can interrupt, return, leap, change their mind, while the system stays ready with context for the next session.
+
+This ambition may be too large. But if we accept that what humanities authors are really doing is not "producing prose" but "thinking through a problem over the long term," then only infrastructure-level assistance matches the scale of the thing. The scale of a polishing tool is simply too small.
+
+---
+
+## After This Document
+
+If you've read this far and find this set of positions acceptable, you are welcome to try the skill in your own writing. If you think one of the principles is wrong — especially if you think **the first principle** (thought before format) does not hold in your discipline — please come to [Discussions / Ideas](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/ideas) and argue against me. The skill's design stance is not beyond challenge, but the challenge has to happen at the same level (the level of design philosophy), rather than staying at the level of an "add this feature" request.
+
+One last invitation: if your paper itself studies the human-AI relationship / the technology of writing / cognitive agency, you are welcome to treat this skill as an object of study. All its design decisions are recorded in the repository; all its traces of evolution are visible. You can cite it ([CITATION.cff](../CITATION.cff)), criticize it, fork it into a competing version — its existence is not meant to be adopted, but to let dialogue happen between adversaries with **a concrete design stance**.
+
+---
+
+*This document is open. If a reader would like to join the discussion of the design philosophy, PRs and proposals in Discussions are welcome.*

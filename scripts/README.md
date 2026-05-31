@@ -1,190 +1,193 @@
-# scripts/ · 工程化辅助工具
+# scripts/ · Engineering Support Tools
 
-> 本目录的脚本对应 SKILL.md 中"工程化严谨"原则的具体落地——
-> AI 自觉性是软规范，脚本是硬机制。两者结合，才能真正避免漂移和疏忽。
+> **Language / 语言**: **English (current)** · [中文](README.zh.md)
 
-**v4.0 起新增引用工具链**(citation toolchain):格式转换 + Crossref 核查。
+> The scripts in this directory are where the "engineering rigor" principle from SKILL.md
+> actually lands — AI self-awareness is the soft norm, scripts are the hard mechanism.
+> Only together do the two genuinely guard against drift and oversight.
+
+**A citation toolchain is new as of v4.0** (format conversion + Crossref verification).
 
 ---
 
-## 五个脚本
+## The five scripts
 
-### 1. `ai-trace-scan.sh` · AI 痕迹与学术八股扫描
+### 1. `ai-trace-scan.sh` · AI-trace and academic boilerplate scan
 
-**用途**：扫描文档中 `references/ai-trace-checklist.md` 列出的高频套话，以及连接词的过度堆砌。
+**Purpose**: Scans a document for the high-frequency filler phrases listed in `references/ai-trace-checklist.md`, along with the over-piling of connective words.
 
-**用法**：
+**Usage**:
 ```bash
-# 单文件扫描
+# Single-file scan
 ./scripts/ai-trace-scan.sh path/to/chapter.md
 
-# 整个论文项目目录扫描
+# Scan an entire paper project directory
 ./scripts/ai-trace-scan.sh path/to/paper/
 ```
 
-**何时运行**：
-- 模式 F（底稿修订）每章修订完成后
-- 模式 B（章节级审读）执行前
-- 完稿前的最终检查
+**When to run**:
+- After revising each chapter in Mode F (draft revision)
+- Before running Mode B (chapter-level review)
+- The final check before a paper is finished
 
-**输出**：每条匹配的行号 + 行内容 + 频次警告
+**Output**: line number + line content + frequency warning for each match
 
-**注意**：扫描器只是"找出嫌疑"——是否真的需要改，仍需作者判断（有些"套话"在特定语境下是有意识的选择）。
+**Note**: The scanner only "flags suspects" — whether a flagged phrase actually needs changing is still the author's call (some "boilerplate" is a deliberate choice in a particular context).
 
 ---
 
-### 2. `pending-checks.sh` · 待办标记汇总
+### 2. `pending-checks.sh` · Pending-marker roundup
 
-**用途**：提取项目中所有未完成的标记（待核对的引用、待讨论的论证、AI 草稿等）。
+**Purpose**: Pulls out every unfinished marker in a project (citations awaiting verification, arguments awaiting discussion, AI drafts, and so on).
 
-**用法**：
+**Usage**:
 ```bash
-# 整个项目目录
+# An entire project directory
 ./scripts/pending-checks.sh path/to/paper/
 
-# 单文件
+# A single file
 ./scripts/pending-checks.sh path/to/chapter.md
 ```
 
-**扫描的标记**：
-| 标记 | 含义 | 处理优先级 |
+**Markers scanned**:
+| Marker | Meaning | Handling priority |
 |------|------|-----------|
-| `[待核对]` | AI 凭记忆引用 / 未核实事实 | 🔴 投稿前必须清零 |
-| `❓ 待讨论` | 需要作者决定的论证选择 | 🟡 推进时处理 |
-| `[AI 草稿，待作者审阅]` | AI 起草未审阅的段落 | 🟢 审阅后删除标记 |
-| `>>>` | AI 起草时不确定的地方 | 🔵 起草后立即处理 |
-| `[作者微调]` | 作者对 AI 建议的二次调整 | 🟣 回写到写作风格档案 |
+| `[待核对]` | AI cited from memory / unverified fact | 🔴 Must be cleared to zero before submission |
+| `❓ 待讨论` | An argumentative choice the author must decide | 🟡 Handle as the work advances |
+| `[AI 草稿，待作者审阅]` | An AI-drafted paragraph not yet reviewed | 🟢 Remove the marker after review |
+| `>>>` | A spot the AI was unsure about while drafting | 🔵 Handle immediately after drafting |
+| `[作者微调]` | The author's second-pass tweak to an AI suggestion | 🟣 Write back into the writing-style profile |
 
-**何时运行**：
-- 每次对话开始时（了解还有什么未完成）
-- 投稿前的最终清单
-- 跨对话恢复时的状态摘要
+**When to run**:
+- At the start of every conversation (to see what remains unfinished)
+- The final checklist before submission
+- A status summary when resuming across conversations
 
 ---
 
-### 3. `citation-consistency.py` · 引用格式一致性扫描
+### 3. `citation-consistency.py` · Citation-consistency scan
 
-**用途**：检查全文引用格式的一致性（不是规范性）。
+**Purpose**: Checks the whole text for citation-format consistency (not conformance).
 
-**用法**：
+**Usage**:
 ```bash
 python3 scripts/citation-consistency.py path/to/paper/main.md
 ```
 
-**扫描项**：
-1. 括号类型混用（半角 `()` vs 全角 `（）`）
-2. 引用内逗号混用（`,` vs `，`）
-3. 多作者连接词不统一（`&` / `and` / `与` / `和` / `、`）
-4. 同一文献被引用时姓名形式不一致（中文译名 vs 英文原姓）
-5. 页码格式不统一（`p. X` / `第 X 页` 等）
+**What it scans for**:
+1. Mixed bracket types (half-width `()` vs. full-width `（）`)
+2. Mixed commas inside citations (`,` vs. `，`)
+3. Inconsistent multi-author connectors (`&` / `and` / `与` / `和` / `、`)
+4. Inconsistent name forms when the same source is cited (Chinese translated name vs. original surname)
+5. Inconsistent page-number formats (`p. X` / `第 X 页`, etc.)
 
-**何时运行**：
-- 完成一章后的局部一致性检查
-- 投稿前的全文统一性核验
-- 引入新文献后的回归检查
+**When to run**:
+- A local consistency check after finishing a chapter
+- A whole-text uniformity audit before submission
+- A regression check after introducing new sources
 
-**重要边界**：
-- 此脚本只检查"是否一致"，不检查"是否符合 APA / Chicago / GB/T 7714"
-- 规范性检查请对照 `_writing-config/引用格式速查.md` 手动进行
-- 启发式正则扫描可能有少量误报，结果需要人工复核
+**Important boundaries**:
+- This script only checks "is it consistent," not "does it conform to APA / Chicago / GB/T 7714"
+- For conformance checking, work through `_writing-config/引用格式速查.md` by hand
+- Heuristic regex scanning may produce a few false positives; results need human review
 
 ---
 
-### 4. `citation-format-convert.py` · 引用格式转换(v4.0 新增)
+### 4. `citation-format-convert.py` · Citation-format conversion (new in v4.0)
 
-**用途**:把 BibTeX 文献库转换为四种主流学术引用格式之一(用于投稿前的参考文献表准备)。
+**Purpose**: Converts a BibTeX bibliography into one of four mainstream academic citation formats (for preparing the reference list before submission).
 
-**支持的格式**:
-- **Chicago Author-Date** —— 历史、人文学科最常用
-- **MLA 9** —— 文学、语言学最常用
-- **APA 7** —— 教育、心理、部分社科最常用
-- **GB/T 7714 顺序编码制** —— 中文期刊国标
+**Supported formats**:
+- **Chicago Author-Date** — most common in history and the humanities
+- **MLA 9** — most common in literature and linguistics
+- **APA 7** — most common in education, psychology, and parts of the social sciences
+- **GB/T 7714 numeric sequential system** — the Chinese national standard for journals
 
-**用法**:
+**Usage**:
 ```bash
-# 输出到 stdout
+# Output to stdout
 python3 scripts/citation-format-convert.py refs.bib --to chicago
 
-# 输出到文件
+# Output to a file
 python3 scripts/citation-format-convert.py refs.bib --to apa --out refs-apa.txt
 
-# 按作者排序(默认)、按年份、按 key、按输入顺序
+# Sort by author (default), by year, by key, or by input order
 python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
 ```
 
-**何时运行**:
-- 投稿前准备最终参考文献表(目标期刊有特定格式要求时)
-- 在投稿同一论文到不同期刊间切换时(快速重新生成)
-- 模式 K (AI 使用披露) 输出前
+**When to run**:
+- Preparing the final reference list before submission (when the target journal has specific format requirements)
+- Switching the same paper between journals (to regenerate quickly)
+- Before producing the Mode K (AI-use disclosure) output
 
-**支持的 BibTeX 类型**:`@book`, `@article`, `@incollection`, `@inbook`, `@inproceedings`, `@thesis`, `@phdthesis`
+**Supported BibTeX types**: `@book`, `@article`, `@incollection`, `@inbook`, `@inproceedings`, `@thesis`, `@phdthesis`
 
-**重要边界**:
-- **不是 BibLaTeX / CSL 的替代品**——后者支持每个期刊的特异性变体,如果你的工具链可以用 BibLaTeX,优先用那个
-- 此脚本服务于"飞行中"的场景:你手上有 BibTeX 库,想立即生成一份清单为某期刊准备
-- **每种格式有大量微妙规则与期刊特异性变体**——输出永远要对照目标期刊的 style guide 核对,把输出当作起草而非定稿
-- 仅处理参考文献**表**(reference list),不处理散文**内**的 inline 引用(那需要理解文档结构)
+**Important boundaries**:
+- **Not a replacement for BibLaTeX / CSL** — those support each journal's idiosyncratic variants; if your toolchain can use BibLaTeX, prefer it
+- This script serves the "in-flight" scenario: you have a BibTeX library on hand and want to generate a list for a particular journal right now
+- **Each format has a wealth of subtle rules and journal-specific variants** — always check the output against the target journal's style guide, and treat the output as a draft rather than a finished product
+- It handles only the reference **list**, not the inline citations **within** the prose (those require understanding document structure)
 
 ---
 
-### 5. `citation-verify.py` · 引用真实性核查(v4.0 新增)
+### 5. `citation-verify.py` · Citation-authenticity check (new in v4.0)
 
-**用途**:扫描 Markdown 草稿中的所有 inline 引用,逐一在 Crossref 公共 API 中核查存在性。**主要用于捕捉 LLM 引用幻觉**(AI 凭"记忆"编造的假期刊文章引用)。
+**Purpose**: Scans every inline citation in a Markdown draft and checks each one for existence against the public Crossref API. **Primarily for catching LLM citation hallucinations** (fake journal-article citations the AI fabricates from "memory").
 
-**用法**:
+**Usage**:
 ```bash
-# 人类可读报告
+# Human-readable report
 python3 scripts/citation-verify.py path/to/draft.md
 
-# 静默模式 + JSON 输出(用于 CI / 程序处理)
+# Quiet mode + JSON output (for CI / programmatic processing)
 python3 scripts/citation-verify.py path/to/draft.md --quiet --json
 ```
 
-**核查结果分三类**:
-- **✓ FOUND**:Crossref 有匹配项(高置信度 ≥ 0.85)——通常可信
-- **⚠ FUZZY_MATCH**:有近似匹配但不完全(0.5-0.85)——可能拼写错、年份错、或不同的同名作者著作,需要复核
-- **✗ NOT_FOUND**:Crossref 无匹配——**警惕**,但**未必是幻觉**(见下方边界)
+**Results fall into three categories**:
+- **✓ FOUND**: Crossref has a match (high confidence ≥ 0.85) — usually trustworthy
+- **⚠ FUZZY_MATCH**: a near but imperfect match (0.5–0.85) — could be a misspelling, a wrong year, or a different author of the same name; needs review
+- **✗ NOT_FOUND**: no match in Crossref — **be alert**, but **not necessarily a hallucination** (see boundaries below)
 
-**何时运行**:
-- 模式 B (章节级审读) 之后,模式 G (盲读核对) 之前
-- 任何 AI 起草的章节(模式 C 输出后)
-- 投稿前的最终合规检查
+**When to run**:
+- After Mode B (chapter-level review), before Mode G (blind-reading check)
+- Any chapter the AI drafted (after Mode C output)
+- The final compliance check before submission
 
-**重要边界**:
-- **Crossref 不索引一切**。许多人文学科作品(尤其:小型大学出版社的专著、未翻译的外文著作、学位论文、档案史料、古典文献)**不在 Crossref 中**——对这些作品,"NOT_FOUND" 是预期结果,**不**代表问题
-- 本脚本擅长的是捕捉 **LLM 幻觉的期刊文章引用**——那是 Crossref 覆盖最好的地方
-- 对专著、档案、古典学引用,正确的工具是 `[VERIFY]` / `[待核对]` 标记协议(参见 SKILL.md),而非本脚本
-- 网络请求,礼貌地限速到 1 次/秒以保护 Crossref 公益服务
+**Important boundaries**:
+- **Crossref does not index everything.** Many humanities works (especially: monographs from small university presses, untranslated foreign-language books, dissertations, archival sources, classical texts) are **not in Crossref** — for these, "NOT_FOUND" is the expected result and does **not** indicate a problem
+- What this script is good at is catching **hallucinated LLM journal-article citations** — the area Crossref covers best
+- For monograph, archival, and classics citations, the right tool is the `[VERIFY]` / `[待核对]` marker protocol (see SKILL.md), not this script
+- Network requests are politely rate-limited to 1 per second to protect the Crossref public-good service
 
 ---
 
-## 安装与权限
+## Installation and permissions
 
-首次使用前给 shell 脚本加执行权限：
+Before first use, give the shell scripts execute permission:
 
 ```bash
 chmod +x scripts/ai-trace-scan.sh scripts/pending-checks.sh
 ```
 
-Python 脚本无需特殊安装——只依赖 Python 3 标准库。
+The Python scripts need no special installation — they depend only on the Python 3 standard library.
 
 ---
 
-## 与 SKILL.md 的对应关系
+## How they map to SKILL.md
 
-| 脚本 | 对应 SKILL.md 章节 |
+| Script | Corresponding SKILL.md section |
 |------|-------------------|
-| `ai-trace-scan.sh` | 文风深层理解 · 未审视表达模式排查 |
-| `pending-checks.sh` | 反馈报告 · 四级分类 + 反漂移协议 |
-| `citation-consistency.py` | 多语言学术写作 · 引用格式一致性验证 + 系统性验证 · 引用完整性验证 |
-| `citation-format-convert.py` | 模式 K (AI 使用披露) 前的格式准备 / 多期刊投稿切换 |
-| `citation-verify.py` | 系统性验证 · 引用真实性 / `[VERIFY]` 标记协议的自动化补充 |
+| `ai-trace-scan.sh` | Deep Style Understanding · unexamined expression-pattern scanning |
+| `pending-checks.sh` | Feedback Reports · 4-tier classification + anti-drift protocol |
+| `citation-consistency.py` | Multilingual Academic Writing · citation-format consistency check + Systematic Verification · citation-completeness check |
+| `citation-format-convert.py` | Format preparation before Mode K (AI-use disclosure) / multi-journal submission switching |
+| `citation-verify.py` | Systematic Verification · citation authenticity / the automated complement to the `[VERIFY]` marker protocol |
 
 ---
 
-## 设计原则
+## Design principles
 
-1. **零依赖优先**：shell 脚本用 zsh + grep，Python 脚本只用标准库
-2. **失败安全**：不存在的目录、空匹配等都返回友好提示而非崩溃
-3. **可读输出**：直接给人看的报告，不需要额外解析
-4. **诚实的边界**：每个脚本都明确说明"做什么 / 不做什么"——避免给作者"全勾了就没问题"的虚假确定感
+1. **Zero-dependency first**: shell scripts use zsh + grep; Python scripts use only the standard library
+2. **Fail safe**: nonexistent directories, empty matches, and the like all return a friendly message rather than crashing
+3. **Readable output**: reports meant to be read directly, with no extra parsing needed
+4. **Honest boundaries**: every script states plainly what it does and what it does not — to avoid giving the author the false certainty that "if everything is checked off, there's no problem"

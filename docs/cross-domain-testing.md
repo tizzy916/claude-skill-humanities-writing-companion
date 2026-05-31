@@ -1,182 +1,184 @@
-# 跨学科测试 · 让 skill 在你的领域里 battle-tested
+# Cross-Domain Testing · Getting the Skill Battle-Tested in Your Field
 
-> skill 当前是从一个具体的人文学科项目里长出来的（艺术史 / 哲学 / 数字文化研究方向）。要让它真正成为**通用的人文社科学术写作 skill**，需要在不同学科 / 不同写作类型上的实战反馈。这份文档说明：你能怎么帮，以及怎么帮最有价值。
+> **Language / 语言**: **English (current)** · [中文](cross-domain-testing.zh.md)
 
----
-
-## 我们最需要哪种反馈
-
-### 🥇 水土不服报告（最有价值）
-
-如果你在自己的学科 / 论文项目里使用 skill，发现某个模块**不工作 / 工作得很差 / 给出违反学科惯例的建议**，请告诉我们。比"觉得好用"重要得多。
-
-具体来说，如果出现以下情况，**请详细报告**：
-
-- skill 给出的反馈在你的学科里是错的（如建议你用一种你的学科不接受的论证方式）
-- 某个模式在你的写作类型上完全没法用（如模式 G 盲读核对不适用于实证研究）
-- AI 痕迹排查清单里的"套话"在你的学科里其实是合法表达
-- 概念引入规则与你的学科惯例冲突
-- 引用格式与目标期刊不兼容
-
-### 🥈 学科特化建议
-
-如果你在使用过程中发现某个学科需要 skill 没覆盖的能力，可以提议：
-
-- 新的批判维度（如民族志研究的"参与者陈述 vs 研究者分析"语态区分）
-- 学科特定的 AI 痕迹（如经济学论文里的"显著正相关"等套话模式）
-- 学科特定的工作模式（如法学论文的"案例-规则-应用"结构核查）
-- 学科特定的脚本工具（如统计语言一致性扫描）
-
-### 🥉 成功案例
-
-skill 在你的论文上工作良好的报告也有价值——但请说明**它在哪种场景里 / 解决了什么具体问题**，而不是泛泛的"很好用"。具体的成功案例能帮其他作者判断 skill 是否适合他们。
+> The skill currently grew out of one specific humanities project (in art history / philosophy / digital cultural studies). For it to truly become a **general-purpose humanities and social-science academic-writing skill**, it needs real-world feedback across different disciplines and different kinds of writing. This document explains: how you can help, and how to help most usefully.
 
 ---
 
-## 按学科分组的典型测试场景
+## What kind of feedback we need most
 
-> 以下是几个学科的"测试切入点"建议。如果你的学科不在列表中，可以基于这套结构自行设计测试场景。
+### 🥇 Misfit reports (most valuable)
 
-### 历史学
+If you use the skill in your own discipline / paper project and find that some module **doesn't work / works poorly / gives advice that violates your discipline's conventions**, please tell us. This is far more important than "I found it useful."
 
-**最容易暴露问题的场景**：
-- 史料处理（一手 / 二手史料的引用规范）
-- 时代语境保持（避免 anachronism——用当代范畴套用历史行动者）
-- 因果叙事的检验（是不是把时间先后偷换成了因果）
+Concretely, **please report in detail** if any of the following happens:
 
-**建议测试方法**：
-1. 拿一段已经发表的历史学论文段落，让 skill 做模式 A 段落级对话
-2. 看 skill 是否识别出"叙事性史料 vs 分析性论述"的语态差异
-3. 看 skill 在指出问题时是否懂得史学的"史料链"概念
+- The skill's feedback is wrong for your discipline (e.g., it suggests a mode of argument your discipline doesn't accept)
+- A mode is simply unusable for your kind of writing (e.g., Mode G blind-read checking doesn't apply to empirical research)
+- A "cliché" on the AI-trace checklist is in fact legitimate usage in your discipline
+- The concept-introduction rules conflict with your discipline's conventions
+- The citation format is incompatible with your target journal
 
-**已知潜在水土不服**：
-- skill 当前的"基底批判"层（学术贡献 / 概念解释力）偏哲学色彩，对历史学的"史料新发现"型贡献可能识别不准
+### 🥈 Discipline-specialization proposals
 
-### 社会学 / 人类学（民族志方向）
+If, in the course of using it, you find that some discipline needs a capability the skill doesn't cover, you can propose:
 
-**最容易暴露问题的场景**：
-- 田野笔记到分析文本的转写
-- 反身性写作（researcher reflexivity）—— 与 skill 的自反性写作模块重叠
-- 参与者引述的伦理化处理（匿名 / 代号 / 引述权限）
+- A new critical dimension (e.g., the "participant statement vs. researcher analysis" register distinction for ethnographic research)
+- A discipline-specific AI trace (e.g., cliché patterns like "significant positive correlation" in economics papers)
+- A discipline-specific working mode (e.g., a "case–rule–application" structure check for legal papers)
+- A discipline-specific script tool (e.g., a statistical-language consistency scan)
 
-**建议测试方法**：
-1. 拿一段含田野素材的初稿，让 skill 做模式 B 章节级审读
-2. 看 skill 是否区分"参与者陈述"和"研究者分析"两种语态
-3. 自反性写作模块对人类学的 reflexivity 传统是否有用
+### 🥉 Success stories
 
-**已知潜在水土不服**：
-- skill 当前的"血缘显形原则"是哲学/理论传统的接力比喻，可能不直接适用于民族志的"田野积累"传承
-
-### 文学研究 / 比较文学
-
-**最容易暴露问题的场景**：
-- 文本细读（close reading）的引用密度
-- 多语言文本处理（原文 + 译本的双引用）
-- 美学判断与论证的边界
-
-**建议测试方法**：
-1. 拿一段 close reading 段落，让 skill 评估其引用密度是否过高
-2. 看 skill 在多语言写作（中-英 / 中-法 / 中-日等）上的处理是否合理
-3. 让 skill 做模式 D 魔鬼代言人，看它能不能模拟出有学科素养的文学审稿人
-
-**已知潜在水土不服**：
-- skill 当前对"分析性论述"和"美学性论述"的区分不够细——文学研究里美学判断本身就是合法论述
-
-### 哲学（分析哲学传统）
-
-**最容易暴露问题的场景**：
-- 论证形式化（前提 / 推理 / 结论的明确）
-- 概念分析的精确度
-- 反例处理
-
-**建议测试方法**：
-1. 拿一篇分析哲学论文的核心论证段，让 skill 做四层批判
-2. 看 skill 的"概念辨析"层是否符合分析哲学对精确度的要求
-3. 看 skill 是否会识别出"missing steps"的非形式逻辑跳跃
-
-**已知潜在水土不服**：
-- skill 倾向于"对话性推进"（承认前人贡献再批评），分析哲学传统更倾向于"直接评估论证有效性"——这两种姿态可能冲突
-
-### 法学
-
-**最容易暴露问题的场景**：
-- 案例引用规范（不同司法管辖区的引用格式差异巨大）
-- 法律推理的"规则-应用"结构
-- 学说与判例的引用比重
-
-**建议测试方法**：
-1. 拿一段法学论文的论证，让 skill 检查其"规则识别 → 案例分析 → 规则应用"结构是否完整
-2. 看 skill 是否识别出"立法目的论证"和"文本解释论证"的区别
-
-**已知潜在水土不服**：
-- skill 当前的引用核验机制（`[待核对]` 硬标记）对法学的判例引用可能不够细致——一个判例可能有多个层级的引用要求
-
-### 经济学 / 政策研究（人文社科边界）
-
-**最容易暴露问题的场景**：
-- 实证研究的方法陈述
-- 数据可视化与正文的衔接
-- 政策建议的措辞（规范 vs 描述）
-
-**建议测试方法**：
-1. 让 skill 处理一段含计量结果的正文，看它是否懂得"显著性"的合理表达
-2. 看 skill 在政策建议章节是否能区分"实证结论"和"规范主张"
-
-**已知潜在水土不服**：
-- skill 当前的"思想优先"取向对实证研究偏离——实证研究的核心可能是数据和方法，不是论证
-
-### 传播学 / 媒介研究
-
-**最容易暴露问题的场景**：
-- 跨学科理论资源的整合（与 skill 的"理论接力"设计相近）
-- 媒介研究的"具体案例 + 理论分析"双线展开
-
-**建议测试方法**：
-1. 拿一段媒介研究的"案例 + 理论"段落，让 skill 评估两者比例是否平衡
-2. 看 skill 的"案例分析型章节"检查项是否覆盖媒介研究关切
-
-**已知潜在水土不服**：
-- 较少。这个学科与 skill 的"原生土壤"最接近
+A report that the skill worked well on your paper is also valuable — but please say **in what scenario / what specific problem it solved**, rather than a vague "it's great." Concrete success stories help other authors judge whether the skill fits them.
 
 ---
 
-## 不同写作类型的适配测试
+## Typical testing scenarios, grouped by discipline
 
-### 学位论文（硕士 / 博士）
+> Below are suggested "entry points for testing" in several disciplines. If your discipline isn't on the list, you can design your own test scenarios based on this structure.
 
-skill 默认假设的就是这种类型——长篇 / 多章 / 跨数月写作。
+### History
 
-**重点测试**：跨章节的论证累积性、跨对话恢复、版本管理。
+**Scenarios most likely to expose problems**:
+- Source handling (citation conventions for primary / secondary sources)
+- Maintaining period context (avoiding anachronism — applying contemporary categories to historical actors)
+- Stress-testing causal narrative (has temporal sequence been smuggled in as causation?)
 
-### 期刊投稿（短篇）
+**Suggested testing method**:
+1. Take a paragraph from an already-published history paper and have the skill run Mode A paragraph-level dialogue
+2. See whether the skill identifies the register difference between "narrative source material vs. analytical exposition"
+3. See whether, when flagging a problem, the skill understands history's notion of the "chain of evidence"
 
-skill 可能在短篇写作上"过度工程化"——一篇 8000 字的论文不需要文献索引、修改日志、版本归档。
+**Known potential misfit**:
+- The skill's current "foundation critique" layer (scholarly contribution / conceptual explanatory power) has a philosophical tilt, and may misjudge history's "newly discovered source" type of contribution
 
-**重点测试**：skill 能否在短篇场景下"轻量化"使用？哪些模块可以跳过？
+### Sociology / Anthropology (ethnographic strand)
 
-### 会议论文 / 演讲
+**Scenarios most likely to expose problems**:
+- Transcribing field notes into analytical text
+- Reflexive writing (researcher reflexivity) — overlaps with the skill's reflexive-writing module
+- Ethical handling of participant quotations (anonymization / pseudonyms / quotation permissions)
 
-会议论文的口语性、时间限制是 skill 没考虑的维度。
+**Suggested testing method**:
+1. Take a draft containing field material and have the skill run Mode B chapter-level review
+2. See whether the skill distinguishes the two registers of "participant statement" and "researcher analysis"
+3. Is the reflexive-writing module useful for anthropology's reflexivity tradition?
 
-**重点测试**：让 skill 处理一份"会议论文 + 演讲稿"双形态的写作，看它能否区分两种语境。
+**Known potential misfit**:
+- The skill's current "lineage-visibility principle" is a relay metaphor from the philosophical/theoretical tradition, and may not directly apply to the "field accumulation" mode of transmission in ethnography
 
-### 课程作业（教学场景）
+### Literary studies / Comparative literature
 
-教学场景下，作者是学生 + 论文是被评分对象。这跟独立学者写论文是不同的关系。
+**Scenarios most likely to expose problems**:
+- The citation density of close reading
+- Handling multilingual texts (dual citation of original + translation)
+- The boundary between aesthetic judgment and argument
 
-**重点测试**：skill 能否区分"学生需要展示的能力"和"成熟学者的写作"？前者可能需要明确炫技，后者倾向于隐藏努力。
+**Suggested testing method**:
+1. Take a close-reading paragraph and have the skill assess whether its citation density is too high
+2. See whether the skill handles multilingual writing (Chinese-English / Chinese-French / Chinese-Japanese, etc.) sensibly
+3. Have the skill run Mode D devil's advocate, and see whether it can simulate a disciplinarily literate literary reviewer
 
-### 公共写作 / 学术博客
+**Known potential misfit**:
+- The skill's current distinction between "analytical exposition" and "aesthetic exposition" isn't fine-grained enough — in literary studies, aesthetic judgment is itself legitimate exposition
 
-学术博客介于"严谨学术"和"可读性"之间。
+### Philosophy (analytic tradition)
 
-**重点测试**：skill 在这种边界场景下倾向哪一边？默认偏严谨——这可能让学术博客读起来太重。
+**Scenarios most likely to expose problems**:
+- Formalizing arguments (making premises / inferences / conclusions explicit)
+- The precision of conceptual analysis
+- Handling counterexamples
+
+**Suggested testing method**:
+1. Take the core argumentative passage of an analytic philosophy paper and have the skill run the four-layer critique
+2. See whether the skill's "conceptual distinction" layer meets analytic philosophy's demand for precision
+3. See whether the skill identifies the informal-logic leaps of "missing steps"
+
+**Known potential misfit**:
+- The skill tends toward "dialogic advancement" (acknowledge predecessors' contributions, then critique), whereas the analytic tradition tends more toward "directly assessing the validity of the argument" — these two stances may conflict
+
+### Law
+
+**Scenarios most likely to expose problems**:
+- Case-citation conventions (citation formats differ enormously across jurisdictions)
+- The "rule–application" structure of legal reasoning
+- The relative weight of doctrine vs. case-law citation
+
+**Suggested testing method**:
+1. Take an argument from a law paper and have the skill check whether its "rule identification → case analysis → rule application" structure is complete
+2. See whether the skill distinguishes "legislative-purpose argument" from "textual-interpretation argument"
+
+**Known potential misfit**:
+- The skill's current citation-verification mechanism (the `[待核对]` hard marker) may not be fine-grained enough for legal case citation — a single case may carry several layers of citation requirement
+
+### Economics / Policy studies (the boundary of the humanities and social sciences)
+
+**Scenarios most likely to expose problems**:
+- The methods statement of empirical research
+- Connecting data visualizations to the main text
+- The wording of policy recommendations (normative vs. descriptive)
+
+**Suggested testing method**:
+1. Have the skill process a passage of body text containing econometric results, and see whether it understands the reasonable way to express "significance"
+2. See whether, in a policy-recommendation section, the skill can distinguish "empirical conclusions" from "normative claims"
+
+**Known potential misfit**:
+- The skill's current "thought-first" orientation diverges from empirical research — the core of empirical research may be data and method, not argument
+
+### Communication studies / Media studies
+
+**Scenarios most likely to expose problems**:
+- Integrating cross-disciplinary theoretical resources (close to the skill's "theory relay" design)
+- The dual-track unfolding of "concrete case + theoretical analysis" in media studies
+
+**Suggested testing method**:
+1. Take a "case + theory" paragraph from media studies and have the skill assess whether the two are balanced in proportion
+2. See whether the skill's "case-analysis chapter" checklist covers the concerns of media studies
+
+**Known potential misfit**:
+- Few. This discipline is the closest to the skill's "native soil"
 
 ---
 
-## 测试报告模板
+## Adaptation testing for different kinds of writing
 
-请使用以下模板提交跨学科测试报告（在 [Discussions / Show and tell](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/show-and-tell) 中开新主题）：
+### Degree theses (master's / doctoral)
+
+This is exactly the type the skill assumes by default — long-form / multi-chapter / written over many months.
+
+**Focus of testing**: cross-chapter argumentative cumulativeness, cross-session resumption, version management.
+
+### Journal submissions (short-form)
+
+The skill may be "over-engineered" for short-form writing — an 8,000-word paper doesn't need a reference index, a revision log, or version archiving.
+
+**Focus of testing**: Can the skill be used in a "lightweight" way in short-form scenarios? Which modules can be skipped?
+
+### Conference papers / Talks
+
+The orality and time limits of conference papers are dimensions the skill hasn't considered.
+
+**Focus of testing**: Have the skill handle a piece of writing in the dual form of "conference paper + talk script," and see whether it can distinguish the two contexts.
+
+### Coursework (teaching scenario)
+
+In a teaching scenario, the author is a student and the paper is the object being graded. This is a different relationship from an independent scholar writing a paper.
+
+**Focus of testing**: Can the skill distinguish "the competence a student needs to display" from "the writing of a mature scholar"? The former may require deliberately showing off one's skill; the latter tends to hide the effort.
+
+### Public writing / Academic blogging
+
+The academic blog sits between "rigorous scholarship" and "readability."
+
+**Focus of testing**: In this boundary scenario, which side does the skill lean toward? It defaults to rigor — which may make an academic blog read as too heavy.
+
+---
+
+## Test-report template
+
+Please use the following template to submit a cross-domain test report (open a new topic under [Discussions / Show and tell](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/show-and-tell)):
 
 ```markdown
 # 跨学科测试报告 · [你的学科 / 写作类型]
@@ -224,28 +226,28 @@ skill 可能在短篇写作上"过度工程化"——一篇 8000 字的论文不
 
 ---
 
-## 维护者侧的承诺
+## What maintainers commit to in return
 
-提交跨学科测试报告后，你可以期待：
+After you submit a cross-domain test report, you can expect:
 
-- **48 小时内**：维护者会读完报告并给出初步反馈（不一定是"我会改"，但一定是"我看到了 + 我怎么想"）
-- **如果是水土不服报告**：维护者会判断这是"应该被吸收进主分支"还是"应该作为学科特化扩展"，并说明判断理由
-- **如果是设计哲学层面的分歧**：维护者会公开说"我同意 / 我不同意 + 为什么"——这种分歧是 skill 演化的常态，不会被回避
-
----
-
-## 一份不太诚实的提醒
-
-我得说一个反直觉的事——这份 skill 的设计**不是中立的**。它有立场（思想优先于格式 / 工程化严谨 / 文风保持 / 抗谄媚 / 自反性自觉），这些立场在某些学科 / 某些写作传统里可能完全不适用。
-
-跨学科测试不是为了让 skill 变得"中立"。它的目的是：
-
-1. 让 skill 知道**自己的边界**——哪些学科是它的舒适区，哪些不是
-2. 让 skill 在自己的边界内**做得更好**
-3. 让超出边界的学科社区可以**fork 出他们自己的版本**
-
-如果你的学科测试下来发现 skill 完全不适合，**这本身就是一个有价值的发现**——它告诉所有想用 skill 的人："这个学科请绕道"。这种诚实的边界划定，比假装"通用"更负责任。
+- **Within 48 hours**: a maintainer will read the report through and give initial feedback (not necessarily "I'll change it," but always "I've seen it + here's what I think")
+- **If it's a misfit report**: the maintainer will judge whether this is "something that should be absorbed into the main branch" or "something that should be a discipline-specialization extension," and explain the reasoning
+- **If it's a disagreement at the level of design philosophy**: the maintainer will say openly "I agree / I disagree + why" — this kind of disagreement is the norm in the skill's evolution and will not be ducked
 
 ---
 
-*这份文档会随测试报告的累积演化。如果你的学科已经有了高质量测试报告，欢迎在文档里加一段"已知适用 / 已知不适用"的总结。*
+## A not-entirely-disinterested reminder
+
+I have to say something counterintuitive — this skill's design is **not neutral**. It has positions (thought over format / engineering rigor / voice preservation / anti-sycophancy / reflexive self-awareness), and these positions may be wholly inapplicable in certain disciplines / certain writing traditions.
+
+Cross-domain testing is not meant to make the skill "neutral." Its purpose is to:
+
+1. Let the skill know **its own boundaries** — which disciplines are its comfort zone and which are not
+2. Let the skill **do better within its own boundaries**
+3. Let communities in disciplines beyond those boundaries **fork their own versions**
+
+If testing in your discipline reveals that the skill is wholly unsuited to it, **that in itself is a valuable finding** — it tells everyone who wants to use the skill: "this discipline, please detour around." This kind of honest boundary-drawing is more responsible than pretending to be "general-purpose."
+
+---
+
+*This document will evolve as test reports accumulate. If your discipline already has a high-quality test report, you're welcome to add a "known to fit / known not to fit" summary to the document.*
