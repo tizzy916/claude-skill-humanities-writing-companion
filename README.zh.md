@@ -6,8 +6,9 @@
 [![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280773.svg)](https://doi.org/10.5281/zenodo.20280773)
+[![Wiki](https://img.shields.io/badge/📖_Wiki-教程与指南-blue)](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)
 
-**[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
+**[📖 Wiki 教程](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)** · **[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
 
 ---
 
