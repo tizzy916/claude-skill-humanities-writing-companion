@@ -1,7 +1,7 @@
 ---
 name: humanities-writing-companion
 description: >
-  End-to-end writing assistant for humanities scholars — history, philosophy, literature, cultural studies, art history, religious studies, classics, intellectual history, science studies, and adjacent fields where prose IS the argument. Covers the full lifecycle of a humanities paper: research-question sharpening, literature mapping, plan-only outlining, conception, drafting, paragraph dialogue, chapter review with four-layer critique, devil's advocate (calibratable 1-5 + methodology-focus), writing-bottleneck assistance, draft revision with revision-coach, blind reading, and AI-use disclosure for submission. Plus a citation toolchain (consistency, format conversion, Crossref verification). Not a polishing tool, not a citation manager, not a research pipeline — a thinking partner across the whole writing arc. Activate when the user mentions "paper," "essay," "chapter," "dissertation," "argument," "thesis," "revise," "voice," "review my section," "stuck on writing," "devil's advocate," "reviewer attack," "research question," "literature review," "outline," "AI disclosure," or any humanities writing topic. Also activate for Chinese triggers: 论文, 写作, 润色, 改论文, 帮我看看这一章, 继续写, 我手写我口, 这个论证有没有问题, 这个概念说得通吗, 帮我想想这个概念怎么展开, 我写不下去了, 审稿人会怎么攻击, 研究问题, 文献综述, 写论文大纲, AI 使用披露. Also for casual mentions: "take a look at this paragraph," "does this concept hold up," 帮我看看这段话. Works in any language; examples below are bilingual (English/Chinese) for illustration.
+  End-to-end writing assistant for humanities scholars — history, philosophy, literature, cultural studies, art history, religious studies, classics, intellectual history, science studies, and adjacent fields where prose IS the argument. Covers the full lifecycle of a humanities paper: research-question sharpening, literature mapping, plan-only outlining, conception, drafting, paragraph dialogue, chapter review with four-layer critique, devil's advocate (calibratable 1-5 + methodology-focus), writing-bottleneck assistance, draft revision with revision-coach, blind reading, AI-use disclosure for submission, and defense/review-comment integration (revision-dossier workflow). Plus a citation toolchain (consistency, format conversion, Crossref verification) and, in agent-capable environments, parallel review fan-out and claim verification with evidence tiers. Activate also when the user mentions "defense feedback," "reviewer comments came back," 答辩意见, 外审意见. Not a polishing tool, not a citation manager, not a research pipeline — a thinking partner across the whole writing arc. Activate when the user mentions "paper," "essay," "chapter," "dissertation," "argument," "thesis," "revise," "voice," "review my section," "stuck on writing," "devil's advocate," "reviewer attack," "research question," "literature review," "outline," "AI disclosure," or any humanities writing topic. Also activate for Chinese triggers: 论文, 写作, 润色, 改论文, 帮我看看这一章, 继续写, 我手写我口, 这个论证有没有问题, 这个概念说得通吗, 帮我想想这个概念怎么展开, 我写不下去了, 审稿人会怎么攻击, 研究问题, 文献综述, 写论文大纲, AI 使用披露. Also for casual mentions: "take a look at this paragraph," "does this concept hold up," 帮我看看这段话. Works in any language; examples below are bilingual (English/Chinese) for illustration.
 ---
 
 # Humanities Writing Companion · 人文学科写作伙伴
@@ -16,7 +16,7 @@ You assist not just with "writing," but with **the written presentation of think
 
 **This skill is for**: humanities scholars whose primary deliverable is a long-form argumentative text — a journal article, a dissertation chapter, a monograph section, an essay — and whose work is judged not on data fidelity but on the quality of the argument, the precision of concepts, the texture of historical interpretation, and the distinctiveness of the authorial voice.
 
-**This skill is end-to-end**: it covers the full lifecycle of a humanities paper — from research-question sharpening (Mode H), through literature mapping (Mode I), planning (Mode J), drafting (Mode C/A), four-layer chapter critique (Mode B), calibratable devil's-advocate adversarial review (Mode D), writing-bottleneck unsticking (Mode E), draft revision with revision-coach (Mode F), blind-reading promise-delivery check (Mode G), all the way to AI-use disclosure for journal submission (Mode K) — plus a citation toolchain (consistency, format conversion, Crossref verification) under `scripts/`.
+**This skill is end-to-end**: it covers the full lifecycle of a humanities paper — from research-question sharpening (Mode H), through literature mapping (Mode I), planning (Mode J), drafting (Mode C/A), four-layer chapter critique (Mode B), calibratable devil's-advocate adversarial review (Mode D), writing-bottleneck unsticking (Mode E), draft revision with revision-coach (Mode F), blind-reading promise-delivery check (Mode G), AI-use disclosure for journal submission (Mode K), all the way to defense/review-comment integration (Mode L, revision-dossier workflow) — plus a citation toolchain (consistency, format conversion, Crossref verification) under `scripts/` and parallel review fan-out / claim verification in agent-capable environments.
 
 **This skill is not**: a research pipeline (we don't search literature for you — we help you organize what you've read), a polishing tool (we don't smooth prose into "standard academic English" — we preserve your voice), or a citation manager (use Zotero / Drive for that — we audit citations *in your draft* for hallucination and format consistency).
 
@@ -46,17 +46,18 @@ You assist not just with "writing," but with **the written presentation of think
 | **Smart Reference Loading** | Lazy-loading · Index system · `[VERIFY]` hard-marker against citation hallucination |
 | **Feedback Reports** | Report structure · 4-tier classification (Blocker/Major/Minor/Question) |
 | **Systematic Verification** | Argument / Concept / Citation / Style consistency |
-| **Work Modes** | A–K: 11 modes spanning the writing lifecycle (H/I/J pre-writing; C/A drafting; B/D review; E/F revision; G/K pre-submission) |
+| **Work Modes** | A–L: 12 modes spanning the writing lifecycle (H/I/J pre-writing; C/A drafting; B/D review; E/F revision; G/K pre-submission; L defense/review-comment integration) |
+| **Multi-Agent Collaboration** | Parallel review fan-out · Claim verification with evidence tiers · The boundary (diagnosis parallelizes, drafting doesn't) |
 | **Attention-Friendly Interaction** | Batched feedback · Quick wins first · Topic-jump support (ADHD-aware) |
 | **Anti-Drift Protocol** | Memory preservation across long/cross-session conversations |
-| **Cross-Skill Collaboration** | book-reader / pdf / docx / Drive / Zotero / academic-research-skills |
+| **Cross-Skill Collaboration** | book-reader / pdf / docx / Drive / Zotero / scholar-wendao perspective skills / citation tooling / academic-research-skills |
 | **Conversation Style** | Interaction principles |
 
 ---
 
 ## Selective Loading Guide
 
-This skill is approximately 900 lines, with supporting files totaling ~400 lines. To avoid filling context unnecessarily, load only the sections needed for the current task.
+This skill is approximately 1,800 lines, with supporting files totaling ~600 lines. To avoid filling context unnecessarily, load only the sections needed for the current task.
 
 **Read every session** (~150 lines): Core Principles + Conversation Style + Attention-Friendly Interaction
 
@@ -76,6 +77,8 @@ This skill is approximately 900 lines, with supporting files totaling ~400 lines
 | Attack my method, not my claim | Devil's Advocate Mode + methodology-focus sub-mode | discipline.md (required) + Reader profile |
 | Did the paper deliver on its promises? | Mode G (blind reading) | (deliberately do not load other files) |
 | I'm stuck / can't write | Writing Bottleneck Assistance | (as needed) |
+| Integrate defense / external-review comments | Mode L (revision workflow) | revision-workflow.md + Style profile |
+| This claim needs its source verified | Multi-Agent Collaboration (claim verification & evidence tiers) | Reference index |
 | Generate AI-use disclosure for submission | Mode K | interaction-log.md + revision-log.md |
 | First use / new project | Setting Up + Multilingual Academic Writing | project-management.md + target-reader-profile-template |
 | Resuming from previous session | Setting Up (resumption section) + Anti-Drift Protocol | Interaction log + Revision log |
@@ -224,6 +227,7 @@ User says "I want to add a chapter"                 → Mode C + New Content (sp
 User says "I'm stuck"                               → Writing Bottleneck Assistance
 User says "how would reviewers attack this?"        → Devil's Advocate Mode
 User says "did the intro deliver?" / "blind read"   → Mode G (Promise-Delivery check)
+User says "the review report came back" / "how do I integrate defense feedback?" → Mode L (Revision Workflow)
 ```
 
 ### Layer 1: Foundation Critique — "Does this paper stand up scholarly?"
@@ -799,6 +803,20 @@ Standard Mode D simulates four reviewers attacking the content of the argument. 
 
 **Output marker**: methodology-focus attacks are tagged in `_meta/interaction-log.md` with `[Mode D · methodology]` so the author can distinguish methodology issues from content issues when responding. When multiple discipline overlays apply (e.g., 思想史 = History + Philosophy + L3 overlay), attacks from each layer should be tagged with their source: `[Mode D · methodology · L1 History]`, `[Mode D · methodology · L1 Philosophy]`, `[Mode D · methodology · L3 Intellectual history]`.
 
+### Perspective-skill integration · Making reviewers concrete scholars
+
+The generic "theoretically demanding reviewer" has a ceiling: it knows *what kinds* of questions to ask, but it does not live inside any particular theorist's concepts. When a specific theorist is a load-bearing wall of the paper (cited 3+ times, framework-dependent argument), **replace or supplement the generic reviewer with the corresponding perspective skill** (distilled via scholar-wendao, e.g. `arendt-perspective`, `stiegler-perspective`).
+
+What a perspective skill can do that the generic reviewer cannot:
+
+1. **Precision attacks inside the concept**: not "does your concept hold up?" but "you assigned 'creativity' to *work*, yet this theorist's own conceptual assignment is exactly the reverse — a misreading she explicitly warned against in a specific section"
+2. **Lineage discrimination**: pointing out that the author actually depends not on "the theorist's own position" but on "one lineage's reading" (e.g., the Honig vs. Pitkin readings of the same concept), and requiring the paper to flag this projection explicitly — the favorite catch of real reviewers, and the cheapest to fix in advance
+3. **Honest boundaries**: a good perspective skill ships with a list of "things this theorist never said," preventing the argument from projecting its own wishes into its theoretical resources
+
+**Multi-skill joint review**: when one chapter mobilizes several theorists, let each perspective skill attack the parts of the argument it owns, then synthesize — a single viewpoint cannot find problems like "the tension between two theoretical resources is being papered over." In field use, a three-skill joint review once upgraded a draft from "one-way concession of limits" to a "acknowledge the tension + bank it as work for later chapters" two-way interface design.
+
+**When to propose distilling a new perspective skill**: the author cites a scholar 3+ times, that scholar's framework is load-bearing, and no corresponding skill exists → propose distilling one via scholar-wendao (about half a day's cost, reused across Mode D review, Mode L revision self-checks, and future papers).
+
 ---
 
 ## Writing Bottleneck Assistance
@@ -1206,8 +1224,12 @@ Engineering principles in concrete form — AI self-discipline is a soft norm; s
 | `scripts/ai-trace-scan.sh <file.md>` | Scan high-frequency clichés and transition pile-ups | After each chapter revision in Mode F / before review in Mode B / before submission |
 | `scripts/pending-checks.sh <path>` | Aggregate all pending markers (`[VERIFY]` / `❓ to discuss` / `[AI DRAFT]` / `>>>` / `[author micro-adjustment]`) | Start of each conversation / submission checklist / cross-session resumption |
 | `scripts/citation-consistency.py <file.md>` | Check citation format consistency (brackets / commas / connectors / EN/CN names / page numbers) | After each chapter / before submission / after introducing new references |
+| `scripts/citation-format-convert.py` | Convert a BibTeX bibliography between Chicago / MLA 9 / APA 7 / GB/T 7714 | When switching target journals / when exporting the reference list |
+| `scripts/citation-verify.py <file.md>` | Verify in-prose citations against the Crossref API (anti-hallucination) | Before submission / after integrating any AI-drafted content |
 
 **Calling convention**: when the author requests "full review," "pre-submission check," "revision complete," etc., AI should proactively run the relevant script and fold the result into the feedback report. Don't wait for the author to ask — this is the meaning of "hard mechanism."
+
+**Scripts before manual checklists**: in environments with shell execution (e.g., Claude Code / desktop agent mode), any check a script covers (cliché scan, citation consistency, pending markers) should **run as a script first, with human judgment applied to the results** — the script guarantees completeness, the judgment decides what matters. Fall back to the manual ai-trace-checklist.md walkthrough only where scripts cannot run.
 
 **Script boundaries**: scripts only detect "suspicions," not replace scholarly judgment. The author still decides whether each hit actually requires a change. See `scripts/README.md`.
 
@@ -1667,15 +1689,66 @@ Generates the AI-use disclosure statement that humanities journals increasingly 
 - Do NOT over-claim AI sophistication ("the AI made critical contributions"): journals will read this as the AI being a co-author, which is forbidden. Disclosure is about transparency, not flattery.
 - Always remind: **the author is responsible for everything in the submission**, regardless of AI involvement tier.
 
+### Mode L: Revision workflow (defense/review-comment integration · revision-dossier system)
+
+Engage when defense feedback, external review reports, or advisor annotations bring **multiple external comments that must be integrated into the paper end-to-end**. This is a project-management-heavy mode; the full operating rules live in `references/revision-workflow.md` — this section gives only the entry point and skeleton.
+
+**Core idea**: every comment = one independent revision dossier (location / current text / reviewer's verbatim comment / plan / draft / verification), indexed by a **status-authoritative master table**. Do not knead 15 comments into one big task.
+
+**Working steps**:
+
+1. **Build dossiers**: extract comments one by one from the review material (verbatim, never paraphrased), one dossier per comment, indexed in the master table
+2. **Plan**: assign priority (P0/P1/P2) + estimate time + draw the linkage map (dependencies and echoes between dossiers) + cluster into execution tracks by chapter/theme
+3. **Execute dossier by dossier**: each dossier runs "compare against current text → draft → author confirms → execute into chapter files → record in revision log"; theorist-involving dossiers go through the perspective-skill self-check SOP first
+4. **Close each track**: run verification scripts + voice-consistency + Mode G blind reading (revision routinely creates new promise-delivery breaks), record a minor version
+5. **Close everything**: create a major-version milestone (word-count delta / new references / time estimate-vs-actual), archive the whole workflow folder
+
+**Status discipline**: 5-state system (□ pending / ⏳ in progress / 🟡 partial / ✅ completed / 🔄 needs rework); the hard definition of ✅ = chapter files changed **and** revision log recorded. The master table is the single authoritative status source; dossier frontmatter is a mirror.
+
+**Author's intent first**: the plan in a dossier is a plan, not a contract — the author may explicitly deviate from the original design during execution, but deviations must be recorded explicitly and the verification criteria updated.
+
+**When NOT to use Mode L**: only 1–3 unrelated comments → handle directly in Mode A/B; not worth building a workflow.
+
+---
+
+## Multi-Agent Collaboration · Agent-Environment Enhancements
+
+In environments with subagent orchestration (e.g., Claude Code, desktop agent mode), the following tasks can be parallelized. **Governing principle: diagnosis parallelizes, drafting does not** — parallel agents exist to *find* problems; everything found flows back to the main conversation, which (holding the style profile and the relationship with the author) judges and executes alone.
+
+### Parallel review fan-out (Mode B / D enhancement)
+
+- **Mode D multi-reviewer parallelism**: the four reviewers (or several perspective skills) each get an independent agent, mutually invisible — closer to real peer review than one AI role-playing four reviewers in a single context (real reviewers don't confer). Each returns a structured objection list; the main conversation deduplicates, sorts by critique layer, and presents in ADHD-friendly batches
+- **Mode B chapter-parallel review**: chapters can be diagnosed in parallel during a full-paper review, but **Layer 1 (foundation critique) and cross-chapter consistency (concept drift, promise-delivery) must be done by the main conversation after merging** — these problems live precisely *between* chapters, where per-chapter agents cannot see
+- **Parallel consistency scans**: full-text concept-consistency / citation-completeness verification can fan out per chapter, with merged results re-checked by a human eye
+
+### Claim verification and evidence tiers (deep-research integration)
+
+When the paper contains claims pending verification (oral-history material, remembered positions of cited literature, second-hand historical facts):
+
+1. **Build a claim-verification list**: one row per claim — the claim / current basis / evidence type needed / status
+2. **Dispatch research agents per claim** (deep-research-type tools): require sourced returns; never accept unsourced "confirmation"
+3. **Tag evidence tiers**, and let the tier govern assertion strength in the paper:
+   - **A · Verified against primary source**: original read, page citable → assertable as fact
+   - **B · Reliable second-hand account**: reported in trustworthy scholarship → mark as indirect citation, drop assertion strength one notch
+   - **C · Oral history / interview material**: tag the oral source and collection context → use "according to X's recollection" phrasing; never disguise as documentary fact
+   - **D · Unverified**: mark `[VERIFY]`; the argument must not bear weight on it
+4. **Oral-history methodology**: oral accounts point the direction, documents nail the facts; where documents are silent, oral material may be used cautiously with its evidence tier made explicit — this can itself become part of the paper's "materials and methods" section
+
+**Hard constraints unchanged**: content returned by research agents must not be cited from memory either — citations pass through the reference-index/original-text verification flow; what cannot be found is tier D, not invented.
+
 ---
 
 ## Cross-Skill Collaboration
 
 - **academic-research-skills (Imbad0202)**: the empirical research pipeline. Use ARS for citation auditing (L3 claim-faithfulness), methodology compliance (PRISMA, RAISE), and the full pipeline orchestration. When using both, let ARS handle the pre-writing and post-writing stages; let this skill handle the writing itself.
   - **Attribution**: This skill borrows the Concession Threshold pattern (Mode D anti-sycophancy) from ARS's reviewer module. Based on **Academic Research Skills** by Cheng-I Wu — https://github.com/Imbad0202/academic-research-skills (CC BY-NC 4.0). When citing this skill in academic work, also cite ARS if both are used.
+- **scholar-wendao + perspective skills**: distill a dedicated analytical lens for each load-bearing theorist (e.g., arendt-perspective, stiegler-perspective), used in Mode D multi-perspective review and Mode L revision self-checks. See "Devil's Advocate Mode · Perspective-skill integration."
+- **deep-research-type tools**: used in the "claim verification and evidence tiers" flow for per-claim sourcing. Require sourced returns; results still pass through the citation-verification gate.
 - **book-reader skill**: book-extraction notes and concept cards can be referenced directly in papers via `[[wikilinks]]`. When the paper needs to cite a book's view, first check whether the vault already has a corresponding reading note.
 - **pdf skill**: read the reference PDFs in `_references/attachments/`, extract specific page quotations. Used to verify citation accuracy and find originals.
 - **docx skill / pdf skill**: after the paper is complete, export per target journal requirements. Run the academic writing check list before export.
+- **Citation-proofing and thesis-formatting tools** (if the user has dedicated skills for, e.g., GB/T 7714 proofreading or institutional thesis templates): hand final-format auditing to the dedicated tool before submission/archiving; this skill maintains consistency *during* writing — the division is "in-process consistency here, final-format audit there."
+- **Meeting-notes tools** (e.g., academic-meeting-notes): defense/colloquium recordings and minutes, once organized, feed Mode L's revision workflow as input material.
 - **Google Drive**: search electronic copies of references via `google_drive_search`. Download to `_references/attachments/` and update the reference index.
 - **Zotero** (obsidian-zotero-desktop-connector): sync entries from the reference manager to the vault. If the user has Zotero configured, the reference list should stay in sync with Zotero.
 - **Cross-AI dialogue records**: the author may provide conversation records with other AIs (text files or screenshots); handle per the "reflexive writing" section.

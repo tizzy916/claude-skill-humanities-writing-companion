@@ -25,7 +25,7 @@ Built for fields where **prose IS the argument** — history, philosophy, litera
 
 Not a polishing tool. Not a citation manager. Not a research pipeline. **A thinking partner that stays with you across the whole arc.**
 
-### 11 modes covering the writing lifecycle
+### 12 modes covering the writing lifecycle
 
 | Stage | Modes |
 |---|---|
@@ -34,8 +34,9 @@ Not a polishing tool. Not a citation manager. Not a research pipeline. **A think
 | **Review** | Mode B · Chapter review (4-layer critique) · Mode D · Devil's advocate (calibratable 1–5 + methodology-focus) |
 | **Revision** | Mode E · Writing-bottleneck assistance · Mode F · Draft revision (with revision-coach sub-mode) |
 | **Pre-submission** | Mode G · Blind reading · Mode K · AI-use disclosure |
+| **Post-review** | Mode L · Revision workflow (defense/external-review comment integration, revision-dossier system) |
 
-Plus a **citation toolchain** (`scripts/`): consistency checking, format conversion (Chicago / MLA / APA / GB7714), and reference verification against Crossref.
+Plus a **citation toolchain** (`scripts/`): consistency checking, format conversion (Chicago / MLA / APA / GB7714), and reference verification against Crossref. In agent-capable environments (e.g., Claude Code), Mode B/D reviews can fan out to parallel reviewer agents, and pending claims can be verified with evidence tiers via deep-research-type tools.
 
 ---
 
@@ -358,7 +359,7 @@ Mode F · draft revision → compare AI-polished vs. original → keep improveme
 | Tool | Their focus | Where this skill differs |
 |------|-------------|--------------------------|
 | **Jenni AI** | Real-time autocompletion + literature search | We do thought-dialogue, not autocompletion. Real-time prediction skips the cognitive work that humanities argument needs. |
-| **Paperpal** | Academic language polishing (STEM/biomed-leaning) | We're a writing architecture (11 modes, 4-layer critique, discipline routing), not a point polishing tool. |
+| **Paperpal** | Academic language polishing (STEM/biomed-leaning) | We're a writing architecture (12 modes, 4-layer critique, discipline routing), not a point polishing tool. |
 | **Yomu AI** | Sourcely literature engine + paragraph feedback | We assume the author manages literature (Zotero/Drive). Mode I helps organize what you've already read — never replaces the reading. |
 | **Thesify** | Paper Digest + Purpose-Check | Mode G is inspired by Purpose-Check. We use it within a broader four-layer critique workflow plus reviewer calibration. |
 | **HyperWrite Devil's Advocate** | Point-tool counter-argument generation | Mode D is a full devil's-advocate mode with 1–5 calibration, methodology-focus sub-mode, and a Concession Threshold (anti-sycophancy). |
@@ -371,11 +372,12 @@ Mode F · draft revision → compare AI-polished vs. original → keep improveme
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← Main skill file (EN, ~1400 lines, 11 modes)
+├── SKILL.md                          ← Main skill file (EN, ~1500 lines, 12 modes)
 ├── SKILL.zh.md                       ← Chinese mirror (中文版)
 ├── references/
 │   ├── ai-trace-checklist.md         ← AI-trace scan checklist (currently Chinese; EN translation TODO)
 │   ├── project-management.md         ← Project folder + version management
+│   ├── revision-workflow.md          ← Mode L revision-dossier workflow manual
 │   └── target-reader-profile-template.md  ← Target reader profile template
 ├── scripts/                          ← Engineering toolchain (zero deps)
 │   ├── README.md                     ← Script usage

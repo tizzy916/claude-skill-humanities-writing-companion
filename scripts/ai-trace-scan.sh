@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 # ai-trace-scan.sh — Scan documents for AI clichés and academic boilerplate
+# NOTE: requires zsh — macOS's bundled bash 3.2 mis-handles the multibyte pattern arrays under `set -u`
 # Source: references/ai-trace-checklist.md
 # Usage: ./ai-trace-scan.sh <file.md>
 #        ./ai-trace-scan.sh path/to/paper/  (recursively scan a directory)
@@ -76,9 +77,9 @@ echo "## 2. Connector frequency warning (threshold >$FREQ_THRESHOLD per file)"
 echo ""
 for word in "${FREQUENCY_PATTERNS[@]}"; do
     if [ -d "$INPUT" ]; then
-        count=$(grep -rh --include=*.md "$word" "$INPUT" 2>/dev/null | wc -l | tr -d ' ')
+        count=$( (grep -rh --include=*.md "$word" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
     else
-        count=$(grep -h "$word" "$INPUT" 2>/dev/null | wc -l | tr -d ' ')
+        count=$( (grep -h "$word" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
     fi
     if [ "$count" -gt "$FREQ_THRESHOLD" ]; then
         echo "⚠ 「$word」 appears $count times (threshold $FREQ_THRESHOLD)"

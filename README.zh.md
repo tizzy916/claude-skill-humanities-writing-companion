@@ -25,7 +25,7 @@
 
 本 skill 不是润色工具,不是引用管理器,也不是研究流水线。**本 skill 是一个陪你走完整个写作弧线的思维伙伴。**
 
-### 覆盖写作全生命周期的 11 个模式
+### 覆盖写作全生命周期的 12 个模式
 
 | 阶段 | 模式 |
 |---|---|
@@ -34,8 +34,9 @@
 | **审读** | Mode B · 章节审读(四层批判) · Mode D · 魔鬼代言人(1-5 级 calibration + 方法论专项) |
 | **修订** | Mode E · 写作瓶颈辅助 · Mode F · 底稿修订(含 revision-coach 子模式) |
 | **投稿前** | Mode G · 盲读核对 · Mode K · AI 使用披露 |
+| **评审后** | Mode L · 修订工作流(答辩/外审意见整合,修订档案制) |
 
-外加**引用工具链**(`scripts/`):格式一致性扫描、格式转换(Chicago / MLA / APA / GB7714)、Crossref 文献验证。
+外加**引用工具链**(`scripts/`):格式一致性扫描、格式转换(Chicago / MLA / APA / GB7714)、Crossref 文献验证。在具备 agent 编排能力的环境(如 Claude Code)中,Mode B/D 审读可以 fan-out 给并行审稿 agent,待核断言可经 deep-research 类工具按证据等级查证。
 
 ---
 
@@ -353,7 +354,7 @@ skill 进入 onboarding：确认引用格式、目标读者、已有写作样本
 | 工具 | 它的定位 | 本 skill 与之差异 |
 |------|---------|------------------|
 | **Jenni AI** | 实时自动续写 + 文献发现 | 我们做思想对话,不做续写。实时预测会跳过人文论证所需的认知工作 |
-| **Paperpal** | 学术语言润色(偏理科/生医) | 我们是写作架构(11 个模式 + 四层批判 + 学科路由),不是单点润色工具 |
+| **Paperpal** | 学术语言润色(偏理科/生医) | 我们是写作架构(12 个模式 + 四层批判 + 学科路由),不是单点润色工具 |
 | **Yomu AI** | Sourcely 文献引擎 + 段落反馈 | 文献由作者自管(Zotero / Drive)。Mode I 帮你整理读过的,从不替你读你没读的 |
 | **Thesify** | Paper Digest + Purpose-Check | Mode G 借鉴了 Purpose-Check,但放在四层批判 + reviewer calibration 的更大工作流里 |
 | **HyperWrite Devil's Advocate** | 单点反方论证生成 | Mode D 是完整模式:1-5 级 calibration + 方法论专项 + Concession Threshold(抗谄媚) |
@@ -366,11 +367,12 @@ skill 进入 onboarding：确认引用格式、目标读者、已有写作样本
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← 主 skill 文件(英文,约 1400 行,11 个模式)
+├── SKILL.md                          ← 主 skill 文件(英文,约 1500 行,12 个模式)
 ├── SKILL.zh.md                       ← 中文镜像版
 ├── references/
 │   ├── ai-trace-checklist.md         ← AI 痕迹排查清单(当前中文为主;英文翻译 TODO)
 │   ├── project-management.md         ← 项目文件夹 + 版本管理规范
+│   ├── revision-workflow.md          ← Mode L 修订档案制工作流手册
 │   └── target-reader-profile-template.md  ← 目标读者档案模板
 ├── scripts/                          ← 工程工具链(零依赖)
 │   ├── README.md                     ← 脚本使用说明

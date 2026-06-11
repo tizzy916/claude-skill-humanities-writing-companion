@@ -20,14 +20,17 @@ Papers 论文写作/
 │   └── 学术写作检查清单.md               ← 提交前自查
 │
 └── [论文名]/                           ← 论文项目文件夹
-    ├── [论文名].md                     ← 主稿（完整论文，单文件）
+    ├── [论文名].md                     ← 主稿（短篇论文：完整单文件）
+    ├── chapters/                       ← 主稿（长篇/学位论文：分章多文件，二选一）
     ├── _meta/
     │   ├── 修改日志.md                  ← changelog，记录每次修改
     │   ├── 版本归档/                    ← 大版本快照
+    │   ├── 修订工作流/                  ← Mode L revision dossiers (see revision-workflow.md)
     │   ├── 写作进度.md                  ← 章节完成度追踪
     │   └── 交互记录.md                  ← 写作讨论日志
     ├── _drafts/                        ← 章节草稿、实验性片段（类似 feature branch）
     ├── _feedback/                      ← 反馈报告存档
+    ├── _export/                        ← export scripts/templates (docx/pdf are exports, not sources of truth)
     └── _references/
         ├── 参考文献表.md                ← 按用户选择的格式整理的文献列表
         └── attachments/                ← 电子版文献（PDF/EPUB）
@@ -35,10 +38,28 @@ Papers 论文写作/
 
 **File-path naming note**: the directory and file names above use Chinese defaults, but English equivalents are equally valid. Use whichever matches the author's writing language — the structure is what matters, not the language of the labels.
 
+### Single file vs. chaptered multi-file
+
+- **Single-file main draft**: the default for journal articles under ~10k words — easy to export, easy to search
+- **chapters/ multi-file**: the default for dissertations and manuscripts above ~50k characters — cleaner context when revising one chapter, chapter-level fan-out for parallel review, version backups can cover only the changed chapter
+- When chaptered, file names encode physical order only and **never carry version numbers**:
+
+```text
+chapters/
+├── 00_abstract.md
+├── 00_introduction.md
+├── 01_[chapter-one-title].md
+├── 02_[chapter-two-title].md
+└── 06_references.md
+```
+
+❌ Never `04_chapter4_v2.md`, `04_chapter4_final.md`, `04_chapter4_fixed.md` — version information lives in the frontmatter `version` field and the changelog, not in file names.
+
 ### First-time initialization
 
 On a user's first session, create the project folder following the structure above. Confirm:
 - The paper title (used to name the folder and the main draft)
+- Single file or chaptered multi-file (advise using the criteria above)
 - The citation format (create the matching quick-reference file)
 - Whether a draft already exists (if so, import it as v1.0)
 
@@ -85,6 +106,15 @@ Procedure:
 3. Update the `version` field in the main draft's frontmatter
 4. Update the writing-progress table
 5. Record a major-version summary in the changelog
+
+### Version naming conventions (field-distilled)
+
+Core principle: **resident sources + milestone archives + versioned exports**. Version numbers mark *state nodes*, not every everyday edit.
+
+- Three-segment versions: `vMAJOR.MINOR.PATCH` — MAJOR = one complete revision phase (e.g., v6 defense-feedback integration); PATCH = a deliverable node
+- Archive naming: `v[version]_YYYYMMDD_[state-or-scope].md` (e.g., `v6.0_20260505_introduction_pre-revision-backup.md`); full chapter-set backups use a folder `chapters_backup_YYYYMMDD_HHMMSS_[reason]/`
+- **Single source of truth declaration**: the markdown sources are the only source of truth for writing; docx / pdf are exports — never revise an export directly and pour it back
+- Export names carry version and purpose: `[paper]_v6.0.17_YYYYMMDD_submission-final.docx`
 
 ### Using _drafts/
 

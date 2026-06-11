@@ -58,9 +58,9 @@ echo "## 📊 Summary"
 total=0
 for marker in "\[待核对\]" "❓ ?待讨论" "\[AI 草稿，待作者审阅\]" ">>>" "\[作者微调\]"; do
     if [ -d "$INPUT" ]; then
-        c=$(grep -rh --include=*.md -E "$marker" "$INPUT" 2>/dev/null | wc -l | tr -d ' ')
+        c=$( (grep -rh --include=*.md -E "$marker" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
     else
-        c=$(grep -h -E "$marker" "$INPUT" 2>/dev/null | wc -l | tr -d ' ')
+        c=$( (grep -h -E "$marker" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
     fi
     [ "$c" -gt 0 ] && total=$((total + c))
 done

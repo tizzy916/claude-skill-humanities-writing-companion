@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [4.2.0] — 2026-06-11
+
+**Field-distilled release: everything in this version was first proven in real paper-revision practice, then folded back into the skill.**
+
+The source material: a complete defense-feedback integration cycle on a master's thesis (17 revision dossiers, 4 execution tracks, 100% closure, actual time 55% of plan), a second paper bootstrapped on oral-history methodology, and the version-management conventions that stabilized over three months of daily use.
+
+### Added
+
+- **Mode L · Revision workflow (defense/external-review comment integration)** — the 12th mode. Every reviewer comment becomes an independent revision dossier (location / current text / verbatim comment / plan / draft / verification) indexed by a status-authoritative master table. 5-state status system (pending / in-progress / partial / completed / needs-rework) with a hard definition of "done" (chapter files changed AND revision log recorded). Track grouping by chapter/theme instead of linear or priority-only execution. Author-intent-first deviation rules. Full manual in new `references/revision-workflow.md` + `references/revision-workflow.zh.md`.
+
+- **Mode D · Perspective-skill integration** — formalizes the practice of replacing generic reviewers with theorist-specific perspective skills (distilled via scholar-wendao) when a theorist is load-bearing (cited 3+ times). Three capabilities beyond the generic reviewer: precision attacks inside the concept, lineage discrimination (author depends on one school's *reading*, not "the theorist's own position"), and honest boundaries ("things this theorist never said"). Multi-skill joint review for chapters mobilizing several theorists. Field-proven: a perspective-skill self-check once surfaced a conceptual misalignment one level deeper than the advisor's own objection.
+
+- **Multi-Agent Collaboration section** — for agent-capable environments (Claude Code, desktop agent mode). Governing principle: **diagnosis parallelizes, drafting does not.** Mode D multi-reviewer fan-out (mutually invisible reviewer agents, closer to real peer review than one AI role-playing four reviewers); Mode B chapter-parallel review with the explicit caveat that Layer-1 critique and cross-chapter consistency must stay in the main conversation; claim verification via deep-research-type tools with a 4-tier evidence system (A primary-verified / B reliable second-hand / C oral history / D unverified) where the tier governs assertion strength in the paper.
+
+- **Pre-revision self-check SOP** (in revision-workflow reference): before executing a dossier involving a theorist, self-check the draft with the corresponding perspective skill; fix the dossier draft before executing into chapters.
+
+- **`chapters/` multi-file structure** in project-management references — field-proven for dissertations and 50k+ character manuscripts: per-chapter revision context, chapter-level review fan-out, partial backups. File names encode physical order only, never version numbers.
+
+- **Version naming conventions** in project-management references — "resident sources + milestone archives + versioned exports": three-segment versions mark state nodes, not everyday edits; markdown sources are the single source of truth, docx/pdf are exports; archive and export naming schemas.
+
+- **"Scripts before manual checklists" calling convention** — in shell-capable environments, script-covered checks (cliché scan, citation consistency, pending markers) run as scripts first, with human judgment applied to results; the manual checklist is the fallback, not the default.
+
+### Changed
+
+- **scripts/ table in both SKILL files** now lists all five scripts (citation-format-convert.py and citation-verify.py were missing from the Chinese table since v4.0).
+- **Cross-Skill Collaboration** rewritten: adds scholar-wendao/perspective skills, deep-research-type tools, citation-proofing and thesis-formatting tools (division of labor: in-process consistency here, final-format audit there), and meeting-notes tools as Mode L input.
+- **Navigation, selective-loading guide, quick-triage tree, frontmatter descriptions** updated for Mode L and multi-agent collaboration in both languages.
+- **scripts/ai-trace-scan.sh, scripts/pending-checks.sh**: `grep | wc -l` pipelines hardened with `|| true` so zero-match files no longer abort under `set -e` / `set -o pipefail`.
+- **scripts/ai-trace-scan.sh shebang fixed to zsh** — the previous `#!/usr/bin/env bash` shebang crashed on macOS's bundled bash 3.2 (`unbound variable` when iterating the multibyte pattern array under `set -u`); the script was always documented as zsh.
+
+### Rationale
+
+v4.0/4.1 expanded the skill's *coverage* (modes H-K, discipline architecture). v4.2 closes the loop in the other direction: practices that emerged spontaneously during real use — revision dossiers, perspective-skill reviewers, evidence tiers for oral-history claims, chapters/ structure — were being re-invented per project from memory. Folding them into the skill makes them load-bearing infrastructure instead of tribal knowledge. This is also the skill practicing what it preaches: the interaction log's "Skill line" exists precisely so that usage experience flows back into the tool.
+
+---
+
 ## [4.1.0] — 2026-05-19
 
 **Discipline architecture refactor: flat 7-entry list → 3-layer architecture.**
