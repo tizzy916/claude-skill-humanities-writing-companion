@@ -99,3 +99,28 @@ After every revision, scan quickly in the following order:
 3. **Compare rhythm against the original**: put the revised paragraph next to the original — are sentence length, rhythm, and tone consistent?
 4. **Check the first person**: where the original had "I," is it still there after revision?
 5. **Check the breathing points**: does the revised text still have short sentences, rhetorical questions, exclamations — the "breath" of human writing?
+
+---
+
+## 7. Reverse check: the over-imitation guard
+
+Sections 1–6 guard one direction only: AI flavor slipping *in*. The reverse failure mode exists too: a revision that mechanically piles up the author's signature features — first person everywhere, every sentence a comma-flow chain, a rhetorical question at every pivot — until the voice becomes a caricature of itself. The style profile is a portrait, not a rubber stamp.
+
+### Signature density against the base rate
+
+Take the author's real samples recorded in the style profile as the base rate, and compare the revised text against it:
+
+- [ ] First person: if the author's samples average ~1 per paragraph, ~3 per paragraph after revision is an over-imitation warning
+- [ ] Comma-flow long sentences: the samples used them selectively — does every paragraph now contain one?
+- [ ] Rhetorical questions: has the author's occasional pivot device become a tic?
+
+The test is frequency, not presence. Every signature feature has a natural density in the author's own writing; getting the feature right but doubling its rate is still a voice violation.
+
+### Noise budget: a cap on expression-level changes
+
+- One revision pass gets a budget of **8–12 non-essential expression-level changes per 1,000 characters** (default; the author may reset it). Argument-level changes — fixing a logical gap, correcting a citation, repairing a factual error — do not count against the budget.
+- When the budget is exceeded: **pause and ask the author** before continuing ("I have made N expression-level changes in this passage — keep going, or is this sliding into re-polishing?"). This guards against **polish drift**: each pass individually reasonable, the accumulation producing a text nobody actually wrote.
+
+### What this checklist is for
+
+This checklist exists to keep the author sounding like the author. It is **not** a tool for evading AI-detection software — laundering AI-generated text to pass AIGC detectors is not a use of this skill.

@@ -32,6 +32,8 @@
 
 **Output**: line number + line content + frequency warning for each match
 
+**How frequency is counted**: connector frequency (此外 / 同时 / …) is counted by **occurrence, not by line** — four 此外 packed into one paragraph (one line, as Chinese Markdown often is) trip the >3 threshold just like four separate lines do.
+
 **Note**: The scanner only "flags suspects" — whether a flagged phrase actually needs changing is still the author's call (some "boilerplate" is a deliberate choice in a particular context).
 
 ---
@@ -86,9 +88,11 @@ python3 scripts/citation-consistency.py path/to/paper/main.md
 - A whole-text uniformity audit before submission
 - A regression check after introducing new sources
 
+**Exit codes**: `0` = no issues · `1` = issues found (review needed) · `2` = input unreadable (missing file / directory passed)
+
 **Important boundaries**:
 - This script only checks "is it consistent," not "does it conform to APA / Chicago / GB/T 7714"
-- For conformance checking, work through `_writing-config/引用格式速查.md` by hand
+- For conformance checking, work through the `_writing-config/引用格式速查.md` **inside your own paper project** by hand — that file lives in the user's project (created per `references/project-management.md`), it is *not* a file of this repository
 - Heuristic regex scanning may produce a few false positives; results need human review
 
 ---
@@ -122,6 +126,10 @@ python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
 
 **Supported BibTeX types**: `@book`, `@article`, `@incollection`, `@inbook`, `@inproceedings`, `@thesis`, `@phdthesis`
 
+**Parser behavior**: the balanced-brace parser handles nested braces (`title = {The {DNA} Story}`), single-line entries, and quoted values — the common shapes of real Zotero exports. Entries that cannot be parsed are **reported on stderr and skipped, never silently merged or corrupted**.
+
+**Exit codes**: `0` = all entries converted · `1` = some entries could not be parsed (reported; the rest are converted) · `2` = nothing parsed or input unreadable
+
 **Important boundaries**:
 - **Not a replacement for BibLaTeX / CSL** — those support each journal's idiosyncratic variants; if your toolchain can use BibLaTeX, prefer it
 - This script serves the "in-flight" scenario: you have a BibTeX library on hand and want to generate a list for a particular journal right now
@@ -132,7 +140,7 @@ python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
 
 ### 5. `citation-verify.py` · Citation-authenticity check (new in v4.0)
 
-**Purpose**: Scans every inline citation in a Markdown draft and checks each one for existence against the public Crossref API. **Primarily for catching LLM citation hallucinations** (fake journal-article citations the AI fabricates from "memory").
+**Purpose**: Scans every inline citation in a Markdown draft and checks each one for existence against the public Crossref API, **cascading to OpenAlex** (free, no key needed) when Crossref has no match — OpenAlex covers many monographs and older humanities works that Crossref misses. **Primarily for catching LLM citation hallucinations** (fake journal-article citations the AI fabricates from "memory").
 
 **Usage**:
 ```bash
@@ -143,10 +151,20 @@ python3 scripts/citation-verify.py path/to/draft.md
 python3 scripts/citation-verify.py path/to/draft.md --quiet --json
 ```
 
-**Results fall into three categories**:
-- **✓ FOUND**: Crossref has a match (high confidence ≥ 0.85) — usually trustworthy
-- **⚠ FUZZY_MATCH**: a near but imperfect match (0.5–0.85) — could be a misspelling, a wrong year, or a different author of the same name; needs review
-- **✗ NOT_FOUND**: no match in Crossref — **be alert**, but **not necessarily a hallucination** (see boundaries below)
+**Runtime**: requests are rate-limited to 1/sec per API, so a draft with 50 citations takes roughly **1–2 minutes** (longer when the OpenAlex cascade kicks in). Budget accordingly.
+
+**Results fall into four categories**:
+- **✓ FOUND**: a publication by that surname exists in that year, with the title and container shown in the output — **this only proves surname + year + that title exist**. It does *not* prove the citation is correct: common surnames like (Smith, 2010) will match unrelated works. **Always eyeball the reported title/container against what you actually cited.**
+- **⚠ FUZZY_MATCH**: a near but imperfect name match (0.5–0.85) — could be a misspelling, a wrong year, or a different author of the same name; needs review
+- **✗ NOT_FOUND**: no match in Crossref **or** OpenAlex — **be alert**, but **not necessarily a hallucination** (see boundaries below)
+- **⚡ ERROR**: the lookup itself failed (network timeout, API outage) — this is a **lookup failure, not evidence the work is fake**. Never delete a citation because of an ERROR verdict; re-run later or check manually. (Errors are reported distinctly and never silently counted as NOT_FOUND.)
+
+**Exit codes** (for CI / agent gating):
+| Code | Meaning |
+|------|---------|
+| `0` | every citation FOUND (or no citations parsed) |
+| `1` | at least one FUZZY_MATCH or NOT_FOUND — review needed |
+| `2` | at least one ERROR (network/parse failure), or unreadable input file |
 
 **When to run**:
 - After Mode B (chapter-level review), before Mode G (blind-reading check)
@@ -154,10 +172,11 @@ python3 scripts/citation-verify.py path/to/draft.md --quiet --json
 - The final compliance check before submission
 
 **Important boundaries**:
-- **Crossref does not index everything.** Many humanities works (especially: monographs from small university presses, untranslated foreign-language books, dissertations, archival sources, classical texts) are **not in Crossref** — for these, "NOT_FOUND" is the expected result and does **not** indicate a problem
-- What this script is good at is catching **hallucinated LLM journal-article citations** — the area Crossref covers best
+- **FOUND ≠ verified.** The output always carries the matched title + container so *you* can judge whether it is the work you cited — that judgment stays with the author
+- **Crossref and OpenAlex together still do not index everything.** Many humanities works (especially: monographs from small university presses, untranslated foreign-language books, dissertations, archival sources, classical texts) are **absent from both** — for these, "NOT_FOUND" is the expected result and does **not** indicate a problem
+- What this script is good at is catching **hallucinated LLM journal-article citations** — the area index coverage is best
 - For monograph, archival, and classics citations, the right tool is the `[VERIFY]` / `[待核对]` marker protocol (see SKILL.md), not this script
-- Network requests are politely rate-limited to 1 per second to protect the Crossref public-good service
+- Network requests are politely rate-limited to 1 per second per API to protect these public-good services (set the optional `OPENALEX_API_KEY` environment variable if OpenAlex throttles anonymous searches under heavy load)
 
 ---
 
@@ -170,6 +189,17 @@ chmod +x scripts/ai-trace-scan.sh scripts/pending-checks.sh
 ```
 
 The Python scripts need no special installation — they depend only on the Python 3 standard library.
+
+---
+
+## Tests
+
+`scripts/tests/run_tests.sh` (zsh) is a minimal regression suite over all five scripts, with fixtures under `scripts/tests/fixtures/` (mixed Chinese/English citations, a directory with planted AI clichés, nested-brace BibTeX, pending markers). It asserts hit counts, exit-code contracts, directory-mode scanning, and friendly errors on missing files. CI runs it on every push.
+
+```bash
+zsh scripts/tests/run_tests.sh                 # full run (includes one live network test)
+SKIP_NETWORK=1 zsh scripts/tests/run_tests.sh  # offline run (CI default)
+```
 
 ---
 

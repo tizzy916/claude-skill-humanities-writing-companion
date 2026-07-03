@@ -19,7 +19,14 @@ Design notes:
       hints, and you want a clean references list in one specific style for submission.
     - Crucially, the script does NOT change inline citations within the prose itself —
       that requires understanding the document structure. Use it for the reference list.
-    - Heuristic parser — for well-formed BibTeX. Malformed entries are reported, not silently dropped.
+    - Balanced-brace parser: handles nested braces (title = {The {DNA} Story}),
+      single-line entries, and quoted values. Entries that cannot be parsed are
+      REPORTED on stderr and skipped — never silently merged or corrupted.
+
+Exit codes:
+    0 — all entries parsed and converted
+    1 — some entries could not be parsed (reported on stderr; output contains the rest)
+    2 — no entries parsed at all, or input file unreadable
 
 诚实声明 / Honest disclaimer:
     Each style has many subtle rules and journal-specific variants. This converter
@@ -35,22 +42,145 @@ from pathlib import Path
 
 # ----------------------------- BibTeX parsing -----------------------------
 
-ENTRY_RE = re.compile(r'@(?P<type>\w+)\s*\{\s*(?P<key>[^,]+),\s*(?P<body>.*?)\n\}',
-                      re.DOTALL)
-FIELD_RE = re.compile(r'(?P<name>\w+)\s*=\s*[\{"](?P<value>.*?)["\}](?:\s*,|\s*$)',
-                      re.DOTALL)
+_ENTRY_HEAD_RE = re.compile(r'@(\w+)\s*\{')
+_FIELD_NAME_RE = re.compile(r'([\w\-]+)\s*=\s*')
+
+# Non-bibliographic BibTeX constructs — skipped, they are not entries
+_NON_ENTRIES = {"comment", "string", "preamble"}
+
+
+def _clean_value(raw):
+    """Normalize a field value: collapse whitespace, drop BibTeX grouping braces
+    (they protect capitalization; the content stays: {The {DNA} Story} → The DNA Story)."""
+    value = re.sub(r'\s+', ' ', raw).strip()
+    return value.replace('{', '').replace('}', '').strip()
+
+
+def _parse_fields(body):
+    """Parse 'name = value' pairs from an entry body using balanced-brace counting.
+    Handles {nested {braces}}, "quoted values", and bare values (year = 2020).
+    Raises ValueError with a description when the body cannot be parsed."""
+    fields = {}
+    k, n = 0, len(body)
+    while k < n:
+        while k < n and (body[k].isspace() or body[k] == ','):
+            k += 1
+        if k >= n:
+            break
+        m = _FIELD_NAME_RE.match(body, k)
+        if not m:
+            raise ValueError(f"cannot parse field near: {body[k:k+40]!r}")
+        name = m.group(1).lower()
+        k = m.end()
+        if k >= n:
+            raise ValueError(f"field '{name}' has no value")
+        c = body[k]
+        if c == '{':
+            depth, k = 1, k + 1
+            start = k
+            while k < n and depth > 0:
+                if body[k] == '{':
+                    depth += 1
+                elif body[k] == '}':
+                    depth -= 1
+                k += 1
+            if depth != 0:
+                raise ValueError(f"unbalanced braces in field '{name}'")
+            fields[name] = _clean_value(body[start:k - 1])
+        elif c == '"':
+            k += 1
+            start = k
+            depth = 0
+            while k < n:
+                ch = body[k]
+                if ch == '{':
+                    depth += 1
+                elif ch == '}':
+                    depth -= 1
+                elif ch == '"' and depth == 0:
+                    break
+                k += 1
+            if k >= n:
+                raise ValueError(f"unterminated quoted value in field '{name}'")
+            fields[name] = _clean_value(body[start:k])
+            k += 1
+        else:
+            m2 = re.match(r'[^,\n]+', body[k:])
+            fields[name] = _clean_value(m2.group(0))
+            k += m2.end()
+    return fields
 
 
 def parse_bibtex(text):
-    """Parse simple BibTeX. Returns list of dicts (one per entry)."""
+    """Parse BibTeX with balanced-brace scanning (nested braces and single-line
+    entries both work). Returns (entries, problems):
+        entries  — list of dicts (one per successfully parsed entry)
+        problems — list of human-readable strings for entries that could NOT be
+                   parsed. They are reported, never silently dropped or merged."""
     entries = []
-    for m in ENTRY_RE.finditer(text):
-        entry = {"_type": m.group("type").lower(), "_key": m.group("key").strip()}
-        body = m.group("body")
-        for fm in FIELD_RE.finditer(body):
-            entry[fm.group("name").lower()] = fm.group("value").strip()
+    problems = []
+    i, n = 0, len(text)
+    while True:
+        at = text.find('@', i)
+        if at == -1:
+            break
+        line_no = text.count('\n', 0, at) + 1
+        m = _ENTRY_HEAD_RE.match(text, at)
+        if not m:
+            # '@' that does not open a brace-delimited entry (e.g. an email in a
+            # comment, or the unsupported @entry(...) paren form) — note and move on.
+            frag = text[at:at + 30].split('\n')[0]
+            problems.append(f"L{line_no}: '@' is not a parsable entry header ({frag!r}) — skipped")
+            i = at + 1
+            continue
+        etype = m.group(1).lower()
+        if etype in _NON_ENTRIES:
+            # @comment/@string/@preamble: skip the balanced block silently
+            depth, j = 1, m.end()
+            while j < n and depth > 0:
+                if text[j] == '{':
+                    depth += 1
+                elif text[j] == '}':
+                    depth -= 1
+                j += 1
+            i = j
+            continue
+        depth, j = 1, m.end()
+        while j < n and depth > 0:
+            if text[j] == '{':
+                depth += 1
+            elif text[j] == '}':
+                depth -= 1
+            j += 1
+        if depth != 0:
+            problems.append(f"@{etype} at L{line_no}: unbalanced braces to end of file — entry skipped")
+            # Resync at the next line starting with '@' to salvage later entries
+            nxt = text.find('\n@', at)
+            if nxt == -1:
+                break
+            i = nxt + 1
+            continue
+        body = text[m.end():j - 1]
+        comma = body.find(',')
+        if comma == -1:
+            key, field_src = body.strip(), ""
+        else:
+            key, field_src = body[:comma].strip(), body[comma + 1:]
+        if not key:
+            problems.append(f"@{etype} at L{line_no}: missing citation key — entry skipped")
+            i = j
+            continue
+        try:
+            fields = _parse_fields(field_src)
+        except ValueError as exc:
+            problems.append(f"@{etype}{{{key}}} at L{line_no}: {exc} — entry skipped (not silently merged)")
+            i = j
+            continue
+        entry = {"_type": etype, "_key": key}
+        entry.update(fields)
         entries.append(entry)
-    return entries
+        i = j
+    return entries, problems
 
 
 def parse_authors(author_str):
@@ -293,8 +423,22 @@ def main():
                         help="Sort order (default: by first author)")
     args = parser.parse_args()
 
-    text = Path(args.input).read_text(encoding="utf-8")
-    entries = parse_bibtex(text)
+    path = Path(args.input)
+    try:
+        text = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        print(f"[!] Input file does not exist: {path}", file=sys.stderr)
+        sys.exit(2)
+    except IsADirectoryError:
+        print(f"[!] Input is a directory, expected a .bib file: {path}", file=sys.stderr)
+        sys.exit(2)
+    except OSError as exc:
+        print(f"[!] Cannot read input file {path}: {exc}", file=sys.stderr)
+        sys.exit(2)
+
+    entries, problems = parse_bibtex(text)
+    for p in problems:
+        print(f"[!] {p}", file=sys.stderr)
     if not entries:
         print("[!] No entries parsed. Check input formatting.", file=sys.stderr)
         sys.exit(2)
@@ -321,6 +465,11 @@ def main():
         print(f"[✓] Wrote {len(lines)} entries to {args.out}", file=sys.stderr)
     else:
         sys.stdout.write(output)
+
+    if problems:
+        print(f"[!] {len(problems)} entr{'y' if len(problems) == 1 else 'ies'} could not be parsed "
+              f"(listed above) and are NOT in the output.", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

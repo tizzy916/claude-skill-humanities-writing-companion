@@ -12,6 +12,27 @@
 
 ---
 
+## Table of contents
+
+- [Positioning](#positioning)
+- [What this skill takes seriously](#what-this-skill-takes-seriously)
+- [A typical interaction](#a-typical-interaction)
+- [Core features](#core-features)
+- [Supported humanities disciplines](#supported-humanities-disciplines)
+- [Showcase: Before / After](#showcase-before--after)
+- [Install](#install)
+- [Quick start · three typical scenarios](#quick-start--three-typical-scenarios)
+- [Comparison with adjacent tools](#comparison-with-adjacent-tools)
+- [Project structure](#project-structure)
+- [Design philosophy](#design-philosophy)
+- [Citation](#citation)
+- [Contributing](#contributing)
+- [About the Author](#about-the-author)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+---
+
 ## Positioning
 
 **End-to-end writing assistant for humanities scholars** — covering the full lifecycle of a humanities paper from research question to submission disclosure:
@@ -160,25 +181,32 @@ Borrowed from software engineering, in service of humanities writing:
 - **Systematic verification checklists**: argument completeness / concept consistency / citation completeness / style consistency
 - **`[VERIFY]` / `[待核对]` hard marker**: anti-citation-hallucination — cannot enter submission version
 
-### Seven work modes (not one)
+### Twelve work modes (not one)
 
 - **Mode A** — paragraph-level dialogue
 - **Mode B** — chapter-level review
 - **Mode C** — conception → new content writing (with collaborative drafting protocol)
-- **Mode D** — devil's advocate
+- **Mode D** — devil's advocate (calibratable 1–5, methodology-focus sub-mode)
 - **Mode E** — writing bottleneck assistance (5 unblocking strategies)
-- **Mode F** — draft revision (two-version comparison, anti-AI-cliché)
+- **Mode F** — draft revision (two-version comparison, anti-AI-cliché, revision-coach sub-mode)
 - **Mode G** — blind reading (mechanical promise-delivery check)
+- **Mode H** — research-question sharpening (Socratic dialogue: from vague interest to a sharp, write-able question, with "so what" test and interlocutor identification)
+- **Mode I** — literature mapping (organizes what you have already read into camps and debates — never searches literature for you)
+- **Mode J** — plan-only outlining (discipline-aware standard arcs; plans the paper without writing prose)
+- **Mode K** — AI-use disclosure (audits actual AI involvement, 4-tier categorization, journal-ready disclosure statement)
+- **Mode L** — revision workflow (defense/external-review comment integration: one revision dossier per comment, status-authoritative master table)
 
 ### Engineering helper scripts
 
-[`scripts/`](./scripts) provides three zero-dependency tools:
+[`scripts/`](./scripts) provides five zero-dependency tools:
 
 | Script | Purpose |
 |--------|---------|
 | `ai-trace-scan.sh` | Scan clichés and transition pile-ups |
 | `pending-checks.sh` | Aggregate all `[VERIFY]` / `[待核对]` / `❓ to discuss` / `[AI DRAFT]` markers |
 | `citation-consistency.py` | Citation-format consistency check (brackets / commas / connectors / EN/CN names / page numbers) |
+| `citation-format-convert.py` | Convert a BibTeX bibliography between Chicago (Author-Date) / MLA 9 / APA 7 / GB/T 7714 |
+| `citation-verify.py` | Verify in-prose citations against the Crossref API (anti-hallucination: FOUND / FUZZY_MATCH / NOT_FOUND) |
 
 ---
 
@@ -314,9 +342,30 @@ git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.
 
 Claude Code auto-scans `~/.claude/skills/` and `./.claude/skills/` on startup. After install, say "I'm working on a humanities paper" or any of the trigger phrases below.
 
+### Without git (ZIP download)
+
+No git required: on the [GitHub repository page](https://github.com/tizzy916/claude-skill-humanities-writing-companion), click **Code → Download ZIP**, unzip, and move the unzipped folder to `~/.claude/skills/humanities-writing-companion` (or `./.claude/skills/humanities-writing-companion` for project-level install). Then make the shell scripts executable:
+
+```bash
+chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
+```
+
+### Claude desktop app / claude.ai
+
+The Claude desktop app and claude.ai also support custom skills: package the skill folder (the directory containing `SKILL.md`) as a `.zip` and upload it in your Claude settings, under the capabilities/skills section (the exact menu wording may vary as the product evolves — look for "Skills"). Note that the `scripts/` toolchain requires a shell-capable environment (Claude Code / agent mode); in chat-only environments the skill's dialogue modes work, but scripts do not run.
+
 ### Claude Agent SDK
 
 `SKILL.md` can be loaded into your system prompt directly. The skill is plain text — no runtime dependencies.
+
+### Verify the installation
+
+After installing, start a new conversation and either:
+
+1. Ask Claude: **"What skills do you currently have loaded?"** — `humanities-writing-companion` should appear in the list; or
+2. Say a trigger phrase directly, e.g. **"review my section"** or **"帮我看看这段"** — the skill should activate and respond in its four-layer-critique voice rather than as a generic polisher.
+
+If neither works, check that the folder sits directly under `~/.claude/skills/` (i.e., `~/.claude/skills/humanities-writing-companion/SKILL.md` exists) and restart Claude Code.
 
 ### Trigger phrases
 
@@ -372,10 +421,20 @@ Mode F · draft revision → compare AI-polished vs. original → keep improveme
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← Main skill file (EN, ~1500 lines, 12 modes)
+├── SKILL.md                          ← Core skill file (EN, ~830 lines: principles, router, four-layer critique, mode stubs)
 ├── SKILL.zh.md                       ← Chinese mirror (中文版)
-├── references/
-│   ├── ai-trace-checklist.md         ← AI-trace scan checklist (currently Chinese; EN translation TODO)
+├── references/                       ← On-demand manuals (each with a `.zh.md` Chinese mirror)
+│   ├── disciplines.md                ← Full discipline dimension tables (L1/L2/L3/adjacent + fallback)
+│   ├── modes-prewriting.md           ← Mode H / I / J full protocols
+│   ├── mode-c-drafting.md            ← Mode C four-stage drafting flow
+│   ├── mode-d-adversarial.md         ← Mode D devil's-advocate full protocol
+│   ├── mode-e-bottleneck.md          ← Mode E bottleneck strategies
+│   ├── mode-f-revision.md            ← Mode F revision workflow
+│   ├── modes-submission.md           ← Mode G / K full protocols
+│   ├── deep-style.md                 ← Deep style understanding & preservation
+│   ├── multilingual-writing.md       ← Mixed-language writing norms
+│   ├── style-profile-template.md     ← Style profile ("constitution of voice") template
+│   ├── ai-trace-checklist.md         ← AI-trace scan checklist
 │   ├── project-management.md         ← Project folder + version management
 │   ├── revision-workflow.md          ← Mode L revision-dossier workflow manual
 │   └── target-reader-profile-template.md  ← Target reader profile template
@@ -393,7 +452,7 @@ humanities-writing-companion/
 └── CITATION.cff                      ← Academic citation metadata
 ```
 
-**Bilingual status**: SKILL.md and README are bilingual (EN + CN). `references/` files and `scripts/` comments are currently primarily Chinese; English translations are TODO. Both languages of trigger work either way (the description field in SKILL.md handles both).
+**Bilingual status**: the project is fully bilingual. SKILL.md, README, CONTRIBUTING, all four `references/` manuals, and `scripts/README` each exist as an English file plus a `.zh.md` Chinese mirror; script comments are bilingual as well. Both languages of trigger work either way (the description field in SKILL.md handles both).
 
 ---
 
@@ -431,7 +490,7 @@ If your research uses this skill, please cite it in the methodology section.
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {4.1.1},
+  version      = {5.0.0},
   doi          = {10.5281/zenodo.20280773},
   url          = {https://doi.org/10.5281/zenodo.20280773}
 }
@@ -463,7 +522,7 @@ Issues and PRs welcome:
 - Extensions to the AI-trace checklist
 - Discipline-specific examples (medieval studies, art conservation, ethnomusicology, etc.)
 - Additional citation-format support (APA / Chicago / MLA / GB/T 7714 / journal-specific)
-- English translation of `references/` files
+- Translation-quality improvements to the bilingual mirrors (`references/`, `scripts/`)
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 

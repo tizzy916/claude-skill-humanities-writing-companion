@@ -31,6 +31,8 @@
 
 **输出**：每条匹配的行号 + 行内容 + 频次警告
 
+**频次如何统计**：连接词频次（此外 / 同时 / ……）按**出现次数**统计，而非行数——中文 Markdown 常常一段一行，同一段（同一行）里挤 4 个「此外」照样触发 >3 阈值，与分散在 4 行的效果相同。
+
 **注意**：扫描器只是"找出嫌疑"——是否真的需要改，仍需作者判断（有些"套话"在特定语境下是有意识的选择）。
 
 ---
@@ -85,9 +87,11 @@ python3 scripts/citation-consistency.py path/to/paper/main.md
 - 投稿前的全文统一性核验
 - 引入新文献后的回归检查
 
+**退出码**：`0` = 无问题 · `1` = 发现需审查的问题 · `2` = 输入不可读（文件不存在 / 传入了目录）
+
 **重要边界**：
 - 此脚本只检查"是否一致"，不检查"是否符合 APA / Chicago / GB/T 7714"
-- 规范性检查请对照 `_writing-config/引用格式速查.md` 手动进行
+- 规范性检查请对照**你自己论文项目内**的 `_writing-config/引用格式速查.md` 手动进行——该文件属于用户的论文项目（建法见 `references/project-management.md`），*不是*本仓库的文件
 - 启发式正则扫描可能有少量误报，结果需要人工复核
 
 ---
@@ -121,6 +125,10 @@ python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
 
 **支持的 BibTeX 类型**:`@book`, `@article`, `@incollection`, `@inbook`, `@inproceedings`, `@thesis`, `@phdthesis`
 
+**解析器行为**:平衡括号计数解析器可正确处理嵌套花括号(`title = {The {DNA} Story}`)、单行条目和引号包裹的字段值——真实 Zotero 导出的常见形态。无法解析的条目会**在 stderr 显式报告并跳过,绝不静默合并或损坏**。
+
+**退出码**:`0` = 全部条目转换成功 · `1` = 部分条目无法解析(已报告;其余照常转换) · `2` = 无任何条目解析成功或输入不可读
+
 **重要边界**:
 - **不是 BibLaTeX / CSL 的替代品**——后者支持每个期刊的特异性变体,如果你的工具链可以用 BibLaTeX,优先用那个
 - 此脚本服务于"飞行中"的场景:你手上有 BibTeX 库,想立即生成一份清单为某期刊准备
@@ -131,7 +139,7 @@ python3 scripts/citation-format-convert.py refs.bib --to mla --sort year
 
 ### 5. `citation-verify.py` · 引用真实性核查(v4.0 新增)
 
-**用途**:扫描 Markdown 草稿中的所有 inline 引用,逐一在 Crossref 公共 API 中核查存在性。**主要用于捕捉 LLM 引用幻觉**(AI 凭"记忆"编造的假期刊文章引用)。
+**用途**:扫描 Markdown 草稿中的所有 inline 引用,逐一在 Crossref 公共 API 中核查存在性,Crossref 查不到时**级联查询 OpenAlex**(免费、无需 key)——OpenAlex 覆盖了许多 Crossref 缺失的专著与较早的人文文献。**主要用于捕捉 LLM 引用幻觉**(AI 凭"记忆"编造的假期刊文章引用)。
 
 **用法**:
 ```bash
@@ -142,10 +150,20 @@ python3 scripts/citation-verify.py path/to/draft.md
 python3 scripts/citation-verify.py path/to/draft.md --quiet --json
 ```
 
-**核查结果分三类**:
-- **✓ FOUND**:Crossref 有匹配项(高置信度 ≥ 0.85)——通常可信
-- **⚠ FUZZY_MATCH**:有近似匹配但不完全(0.5-0.85)——可能拼写错、年份错、或不同的同名作者著作,需要复核
-- **✗ NOT_FOUND**:Crossref 无匹配——**警惕**,但**未必是幻觉**(见下方边界)
+**运行时长**:每个 API 限速 1 次/秒,50 条引用的草稿大约需要 **1-2 分钟**(触发 OpenAlex 级联时更久)。请预留时间。
+
+**核查结果分四类**:
+- **✓ FOUND**:该姓氏该年确有出版物,输出中附命中文献的标题与载体(期刊/文集)——**这仅证明"姓氏 + 年份 + 该标题"存在**,*不*证明引用正确:常见姓氏如 (Smith, 2010) 会匹配到无关论文。**务必把输出里的标题/载体与你实际引用的文献对照核实。**
+- **⚠ FUZZY_MATCH**:姓名近似匹配但不完全(0.5-0.85)——可能拼写错、年份错、或不同的同名作者著作,需要复核
+- **✗ NOT_FOUND**:Crossref **和** OpenAlex 均无匹配——**警惕**,但**未必是幻觉**(见下方边界)
+- **⚡ ERROR**:查询本身失败(网络超时、API 故障)——这是**查询失败,不是文献造假的证据**。绝不要因为 ERROR 判定而删除引用;稍后重跑或手动核实。(错误会被明确区分报告,绝不静默计入 NOT_FOUND。)
+
+**退出码**(供 CI / agent 门禁用):
+| 退出码 | 含义 |
+|------|---------|
+| `0` | 全部引用 FOUND(或未解析到引用) |
+| `1` | 至少一条 FUZZY_MATCH 或 NOT_FOUND——需要复核 |
+| `2` | 至少一条 ERROR(网络/解析失败),或输入文件不可读 |
 
 **何时运行**:
 - 模式 B (章节级审读) 之后,模式 G (盲读核对) 之前
@@ -153,10 +171,11 @@ python3 scripts/citation-verify.py path/to/draft.md --quiet --json
 - 投稿前的最终合规检查
 
 **重要边界**:
-- **Crossref 不索引一切**。许多人文学科作品(尤其:小型大学出版社的专著、未翻译的外文著作、学位论文、档案史料、古典文献)**不在 Crossref 中**——对这些作品,"NOT_FOUND" 是预期结果,**不**代表问题
-- 本脚本擅长的是捕捉 **LLM 幻觉的期刊文章引用**——那是 Crossref 覆盖最好的地方
+- **FOUND ≠ 核实通过**。输出始终附带命中文献的标题 + 载体,让*你*能判断它是否就是你引用的那部作品——这个判断权始终在作者手里
+- **Crossref 加 OpenAlex 也不索引一切**。许多人文学科作品(尤其:小型大学出版社的专著、未翻译的外文著作、学位论文、档案史料、古典文献)**两个库都没有**——对这些作品,"NOT_FOUND" 是预期结果,**不**代表问题
+- 本脚本擅长的是捕捉 **LLM 幻觉的期刊文章引用**——那是索引覆盖最好的地方
 - 对专著、档案、古典学引用,正确的工具是 `[VERIFY]` / `[待核对]` 标记协议(参见 SKILL.md),而非本脚本
-- 网络请求,礼貌地限速到 1 次/秒以保护 Crossref 公益服务
+- 网络请求,每个 API 礼貌地限速到 1 次/秒以保护公益服务(若 OpenAlex 高负载时对匿名搜索限流,可设置可选环境变量 `OPENALEX_API_KEY`)
 
 ---
 
@@ -169,6 +188,17 @@ chmod +x scripts/ai-trace-scan.sh scripts/pending-checks.sh
 ```
 
 Python 脚本无需特殊安装——只依赖 Python 3 标准库。
+
+---
+
+## 测试
+
+`scripts/tests/run_tests.sh`(zsh)是覆盖全部五个脚本的最小回归测试套件,测试夹具在 `scripts/tests/fixtures/`(中英混排引用稿、埋有 AI 套话的目录结构、含嵌套花括号的 BibTeX、待办标记文件)。断言内容:命中数、退出码契约、目录模式扫描、缺失文件的友好报错。CI 在每次 push 时运行。
+
+```bash
+zsh scripts/tests/run_tests.sh                 # 完整运行(含一个真实网络测试)
+SKIP_NETWORK=1 zsh scripts/tests/run_tests.sh  # 离线运行(CI 默认)
+```
 
 ---
 

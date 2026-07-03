@@ -9,32 +9,40 @@
 
 ## 一、项目文件夹结构
 
-每篇论文/大文章是一个独立项目文件夹，位于 `02 · Knowledge 知识库/Papers 论文写作/` 下：
+每篇论文/大文章是一个独立项目文件夹。**首次使用时先询问用户：项目根目录放在哪里——不要假设位置。** 任何稳定的目录都可以（如 `~/Documents/Papers/`，或用户笔记库里的一个文件夹）。下文示例统一以通用根目录 `Papers/` 表示：
 
 ```
-Papers 论文写作/
+Papers/                                 ← 项目根目录（位置由用户指定——先问，不要假设）
 ├── _writing-config/                    ← 全局写作配置（跨论文共享）
-│   ├── 写作风格档案.md                  ← AI 累积学习的文风记录
-│   ├── 目标读者档案.md                  ← 与文风档案配对——voice 和 audience 缺一不可
-│   ├── 引用格式速查.md                  ← 用户选择的引用格式参考
-│   └── 学术写作检查清单.md               ← 提交前自查
+│   ├── 写作风格档案.md                  ← 作者声音记录（由 references/style-profile-template.md 复制后填写；英文路径 style-profile.md）
+│   ├── 目标读者档案.md                  ← 与文风档案配对——voice 和 audience 缺一不可（由 references/target-reader-profile-template.md 复制；英文路径 reader-profile.md）
+│   ├── 学科档案.md                      ← L1/L2/L3 学科声明，onboarding 时写入（英文路径 discipline.md）
+│   ├── 研究问题.md                      ← Mode H 输出（英文路径 research-question.md）
+│   ├── 文献地图.md                      ← Mode I 输出（英文路径 literature-map.md）
+│   ├── 论文大纲.md                      ← Mode J 输出（英文路径 outline.md）
+│   ├── 引用格式速查.md                  ← 用户选择的引用格式参考（英文路径 citation-style.md）
+│   └── 学术写作检查清单.md               ← 提交前自查（英文路径 academic-writing-checklist.md）
 │
 └── [论文名]/                           ← 论文项目文件夹
     ├── [论文名].md                     ← 主稿（短篇论文：完整单文件）
     ├── chapters/                       ← 主稿（长篇论文/学位论文：分章多文件，二选一）
     ├── _meta/
-    │   ├── 修改日志.md                  ← changelog，记录每次修改
-    │   ├── 版本归档/                    ← 大版本快照
-    │   ├── 修订工作流/                  ← Mode L 修订档案（见 revision-workflow.md）
-    │   ├── 写作进度.md                  ← 章节完成度追踪
-    │   └── 交互记录.md                  ← 写作讨论日志
+    │   ├── 修改日志.md                  ← changelog，记录每次修改（英文路径 revision-log.md）
+    │   ├── 版本归档/                    ← 大版本快照（英文路径 version-archive/）
+    │   ├── 修订工作流/                  ← Mode L 修订档案（见 revision-workflow.md；英文路径 revision-workflow/）
+    │   ├── 写作进度.md                  ← 章节完成度追踪（英文路径 writing-progress.md）
+    │   └── 交互记录.md                  ← 写作讨论日志（英文路径 interaction-log.md）
     ├── _drafts/                        ← 章节草稿、实验性片段（类似 feature branch）
     ├── _feedback/                      ← 反馈报告存档
     ├── _export/                        ← 导出脚本与模板（docx/pdf 导出物不是真相源）
     └── _references/
-        ├── 参考文献表.md                ← 按用户选择的格式整理的文献列表
+        ├── 参考文献表.md                ← 按用户选择的格式整理的文献列表（英文路径 reference-list.md）
         └── attachments/                ← 电子版文献（PDF/EPUB）
 ```
+
+**文件路径命名说明**：本页目录图以中文文件名为默认（SKILL.md 中的示例用英文默认），括号内的英文路径同样有效。用哪种取决于作者的写作语言——重要的是结构，不是标签的语言。
+
+`_writing-config/` 下的文件不是第一天就全部存在：两份档案在 onboarding 时创建；`学科档案.md` 在学科声明时写入；`研究问题.md` / `文献地图.md` / `论文大纲.md` 只在实际运行 Mode H / I / J 后才出现。
 
 ### 单文件 vs 分章多文件
 
@@ -56,10 +64,13 @@ chapters/
 ### 首次初始化
 
 用户首次使用时，按上述结构创建项目文件夹。需确认：
+- 项目根目录放在哪里（先问——见上）
 - 论文名（用于文件夹和主稿命名）
 - 单文件还是分章多文件（按上述标准建议）
 - 引用格式（创建对应的格式速查文件）
 - 是否已有草稿（如有则导入为 v1.0）
+
+创建 `_writing-config/` 时，两份档案从模板复制（`references/style-profile-template.md`、`references/target-reader-profile-template.md`），不要临场发明结构——写作风格档案随后通过分析 2-3 篇作者未经 AI 处理的旧作填写。
 
 ---
 
@@ -81,6 +92,7 @@ chapters/
 ## vX.Y.Z · YYYY-MM-DD HH:MM
 **修改范围**：[章节/段落位置]
 **修改类型**：[论证重构/表达润色/引用修正/结构调整/新增内容]
+**修改来源**：[AI-suggested / author-initiated / co-developed]
 **改动摘要**：一句话概括
 **具体改动**：
 > [!diff]
@@ -88,6 +100,30 @@ chapters/
 > + 修改：「...」
 **修改理由**：[为什么这样改]
 **验证状态**：[✅ 通过文风一致性检查 / ⚠️ 需作者确认]
+```
+
+**`修改来源`字段每条必填。** 它记录这处修改由谁发起：
+
+- `AI-suggested`（AI 建议）：AI 提出修改，作者审阅后接受
+- `author-initiated`（作者发起）：作者决定的修改（AI 代为执行，或作者直接改）
+- `co-developed`（共同发展）：方向在对话中生成，不单独属于任何一方
+
+Mode K（AI 使用披露）的审计依赖此字段还原 AI 介入的真实层级——没有它，披露声明就退化为凭记忆猜测。在 `AI-suggested` 和 `co-developed` 之间拿不准时，问一句：没有 AI 的提议，这处修改会存在吗？不会，就至少是 `AI-suggested`。
+
+示例条目：
+
+```markdown
+## v2.3.1 · 2026-05-12 14:30
+**修改范围**：第二章第三节第 2 段
+**修改类型**：表达润色
+**修改来源**：AI-suggested
+**改动摘要**：删除段首空洞引导语，判断句提前
+**具体改动**：
+> [!diff]
+> - 原文：「值得注意的是，这一转变并非孤立事件。」
+> + 修改：「这一转变并非孤立事件。」
+**修改理由**：「值得注意的是」是高频套话（见 ai-trace-checklist.zh.md），删除后判断更直接
+**验证状态**：✅ 通过文风一致性检查
 ```
 
 ### 大版本 (major)

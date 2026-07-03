@@ -5,6 +5,11 @@ citation-consistency.py — 引用格式一致性扫描 / Citation-format consis
 用法 / Usage:
     python3 citation-consistency.py <file.md>
 
+退出码 / Exit codes:
+    0 — 未发现格式问题 / no format issues found
+    1 — 发现需审查的格式问题 / format issues found (review needed)
+    2 — 输入文件不可读（不存在 / 是目录等） / input file unreadable (missing / a directory / etc.)
+
 检查项 / Checks:
     1. 括号类型混用（半角 () vs 全角 （）） / Mixed parenthesis types (half-width () vs full-width （）)
     2. 引用内逗号混用（半角 , vs 全角 ，） / Mixed commas inside citations (half-width , vs full-width ，)
@@ -118,7 +123,13 @@ def main():
             text = f.read()
     except FileNotFoundError:
         print(f"文件不存在 / File does not exist: {filepath}", file=sys.stderr)
-        sys.exit(1)
+        sys.exit(2)
+    except IsADirectoryError:
+        print(f"输入是目录而非文件（请传入单个 .md 文件） / Input is a directory, expected a single .md file: {filepath}", file=sys.stderr)
+        sys.exit(2)
+    except OSError as exc:
+        print(f"无法读取文件 / Cannot read file {filepath}: {exc}", file=sys.stderr)
+        sys.exit(2)
 
     issues = scan(text)
 
@@ -138,7 +149,13 @@ def main():
     print()
     print("注 / Note：此扫描仅检测'不一致'，不评判'是否符合特定规范'。")
     print("    This scan only detects 'inconsistency', it does not judge 'conformance to a specific style'.")
-    print("    全文规范检查请对照 / For full-text style checks, compare against _writing-config/引用格式速查.md。")
+    print("    全文规范检查请对照你论文项目内的 _writing-config/引用格式速查.md（用户项目文件，非本仓库文件，")
+    print("    建法见 references/project-management.md）。")
+    print("    For full-text style checks, compare against _writing-config/引用格式速查.md inside YOUR paper")
+    print("    project (a user-project file, not part of this repo — see references/project-management.md).")
+
+    # Exit-code contract: 0 = clean, 1 = issues found (for CI / agent gating)
+    sys.exit(1 if issue_count > 0 else 0)
 
 
 if __name__ == '__main__':

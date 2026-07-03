@@ -12,6 +12,27 @@
 
 ---
 
+## 目录
+
+- [定位](#定位)
+- [本 skill 严肃对待的三件事](#本-skill-严肃对待的三件事)
+- [一次典型的交互](#一次典型的交互)
+- [核心特性](#核心特性)
+- [支持的人文学科](#支持的人文学科)
+- [Showcase · 真实 Before / After 案例](#showcase--真实-before--after-案例)
+- [安装](#安装)
+- [快速上手 · 三个典型场景](#快速上手--三个典型场景)
+- [与同类工具的差异](#与同类工具的差异)
+- [项目结构](#项目结构)
+- [设计哲学](#设计哲学)
+- [引用本工作](#引用本工作)
+- [贡献](#贡献)
+- [关于作者](#关于作者--about-the-author)
+- [License](#license)
+- [致谢](#致谢)
+
+---
+
 ## 定位
 
 **人文学者的端到端写作助手**——覆盖一篇人文论文从研究问题到投稿披露的完整生命周期:
@@ -156,25 +177,32 @@
 - **系统性验证清单**：论证完整性 / 概念一致性 / 引用完整性 / 文风一致性
 - **`[VERIFY]` / `[待核对]` 硬标记**：抗引用幻觉——绝不允许进入投稿版本
 
-### 七个工作模式（不是单一对话模式）
+### 十二个工作模式（不是单一对话模式）
 
 - **模式 A** — 段落级对话
 - **模式 B** — 章节级审读
 - **模式 C** — 构思 → 新内容写作（含协作式起草协议）
-- **模式 D** — 魔鬼代言人
+- **模式 D** — 魔鬼代言人（1–5 级 calibration，方法论专项子模式）
 - **模式 E** — 写作瓶颈辅助（五种解冻策略）
-- **模式 F** — 底稿修订（双版本对照，对抗 AI 腔调）
+- **模式 F** — 底稿修订（双版本对照，对抗 AI 腔调，含 revision-coach 子模式）
 - **模式 G** — 盲读核对（机械检查"承诺-兑现"）
+- **模式 H** — 研究问题锐化（苏格拉底式对话：从模糊兴趣到可写的锋利问题，含 "so what" 测试与真实对话者识别）
+- **模式 I** — 文献脉络梳理（把你已经读过的文献整理成阵营与论战地图——绝不替你搜文献）
+- **模式 J** — 规划专项（学科感知的标准论证弧线；只做大纲，不写正文）
+- **模式 K** — AI 使用披露（审计实际 AI 参与度，四级分类，生成期刊可用的披露声明）
+- **模式 L** — 修订工作流（答辩/外审意见整合：一条意见一份修订档案，状态权威主表索引）
 
 ### 工程化辅助脚本
 
-[`scripts/`](./scripts) 提供三个零依赖工具：
+[`scripts/`](./scripts) 提供五个零依赖工具：
 
 | 脚本 | 用途 |
 |------|------|
 | `ai-trace-scan.sh` | 扫描套话与连接词堆砌 |
 | `pending-checks.sh` | 汇总所有 `[VERIFY]` / `[待核对]` / `❓ 待讨论` / `[AI 草稿]` 标记 |
 | `citation-consistency.py` | 引用格式一致性扫描（括号 / 逗号 / 连接词 / 中英姓名 / 页码） |
+| `citation-format-convert.py` | BibTeX 文献表在 Chicago（著者-出版年）/ MLA 9 / APA 7 / GB/T 7714 之间转换 |
+| `citation-verify.py` | 对照 Crossref API 核查文中引用（抗幻觉：FOUND / FUZZY_MATCH / NOT_FOUND） |
 
 ---
 
@@ -309,9 +337,30 @@ git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.
 
 Claude Code 启动时会自动扫描 `~/.claude/skills/` 和 `./.claude/skills/`。安装后说"我在写人文论文"或下方任意触发词即可激活。
 
+### 不用 git（ZIP 下载）
+
+无需 git：在 [GitHub 仓库页面](https://github.com/tizzy916/claude-skill-humanities-writing-companion) 点击 **Code → Download ZIP**，解压后把解压出的文件夹移动到 `~/.claude/skills/humanities-writing-companion`（项目级安装则放到 `./.claude/skills/humanities-writing-companion`），然后给 shell 脚本加执行权限：
+
+```bash
+chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
+```
+
+### Claude 桌面版 / claude.ai
+
+Claude 桌面版与 claude.ai 也支持自定义 skill：把 skill 文件夹（即包含 `SKILL.md` 的目录）打包为 `.zip`，在 Claude 设置中的能力/skills 相关板块上传（具体菜单措辞可能随产品迭代变化——找 "Skills" 字样即可）。注意：`scripts/` 工具链需要可执行 shell 的环境（Claude Code / agent 模式）；纯对话环境下 skill 的各对话模式可用，但脚本不会运行。
+
 ### Claude Agent SDK 接入
 
 `SKILL.md` 可直接加载到系统提示词中。skill 是纯文本，无运行时依赖。
+
+### 验证安装
+
+安装后新开一个对话，二选一：
+
+1. 直接问 Claude：**"你现在加载了哪些 skills？"**——列表中应出现 `humanities-writing-companion`；或
+2. 直接说一个触发词，例如 **"帮我看看这段"** 或 **"review my section"**——skill 应当激活，并以四层批判的方式回应，而不是像通用润色工具那样回答。
+
+如果两者都不生效，检查文件夹是否直接位于 `~/.claude/skills/` 之下（即 `~/.claude/skills/humanities-writing-companion/SKILL.md` 存在），然后重启 Claude Code。
 
 ### 触发词
 
@@ -367,10 +416,20 @@ skill 进入 onboarding：确认引用格式、目标读者、已有写作样本
 
 ```
 humanities-writing-companion/
-├── SKILL.md                          ← 主 skill 文件(英文,约 1500 行,12 个模式)
+├── SKILL.md                          ← 核心 skill 文件(英文,约 830 行:原则、路由表、四层批判、模式存根)
 ├── SKILL.zh.md                       ← 中文镜像版
-├── references/
-│   ├── ai-trace-checklist.md         ← AI 痕迹排查清单(当前中文为主;英文翻译 TODO)
+├── references/                       ← 按需加载手册(每个都有 `.zh.md` 中文镜像)
+│   ├── disciplines.md                ← 完整学科维度表(L1/L2/L3/邻近 + 兜底协议)
+│   ├── modes-prewriting.md           ← 模式 H / I / J 完整协议
+│   ├── mode-c-drafting.md            ← 模式 C 四阶段起草流程
+│   ├── mode-d-adversarial.md         ← 模式 D 魔鬼代言人完整协议
+│   ├── mode-e-bottleneck.md          ← 模式 E 写作瓶颈策略
+│   ├── mode-f-revision.md            ← 模式 F 底稿修订工作流
+│   ├── modes-submission.md           ← 模式 G / K 完整协议
+│   ├── deep-style.md                 ← 文风深层理解与保持
+│   ├── multilingual-writing.md       ← 多语言写作规范
+│   ├── style-profile-template.md     ← 写作风格档案("声音宪法")模板
+│   ├── ai-trace-checklist.md         ← AI 痕迹排查清单
 │   ├── project-management.md         ← 项目文件夹 + 版本管理规范
 │   ├── revision-workflow.md          ← Mode L 修订档案制工作流手册
 │   └── target-reader-profile-template.md  ← 目标读者档案模板
@@ -388,7 +447,7 @@ humanities-writing-companion/
 └── CITATION.cff                      ← 学术引用元数据
 ```
 
-**双语状态**：SKILL.md 和 README 均有中英文版本。`references/` 文件和 `scripts/` 注释当前以中文为主，英文翻译待补。两种语言的触发词都能激活 skill（SKILL.md 的 description 字段同时处理两种语言）。
+**双语状态**：项目已完全双语化。SKILL.md、README、CONTRIBUTING、`references/` 的全部四份手册以及 `scripts/README` 均为英文文件 + `.zh.md` 中文镜像成对存在；脚本注释同样双语。两种语言的触发词都能激活 skill（SKILL.md 的 description 字段同时处理两种语言）。
 
 ---
 
@@ -426,7 +485,7 @@ humanities-writing-companion/
   title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {4.1.1},
+  version      = {5.0.0},
   doi          = {10.5281/zenodo.20280773},
   url          = {https://doi.org/10.5281/zenodo.20280773}
 }
@@ -458,7 +517,7 @@ https://github.com/Imbad0202/academic-research-skills
 - AI 痕迹排查清单的扩充
 - 学科特异性示例（中世纪研究、艺术保护、民族音乐学等）
 - 不同引用格式（APA / Chicago / MLA / GB/T 7714 / 期刊自定义）的支持
-- `references/` 文件的英文翻译
+- 双语镜像的翻译质量改进（`references/`、`scripts/`）
 
 详见 [`CONTRIBUTING.zh.md`](./CONTRIBUTING.zh.md)。
 

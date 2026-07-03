@@ -9,34 +9,40 @@
 
 ## 1. Project Folder Structure
 
-Each paper or long-form piece is a self-contained project folder, located under `02 · Knowledge 知识库/Papers 论文写作/`:
+Each paper or long-form piece is a self-contained project folder. **On first use, ask the user where the project root should live — do not assume a location.** Any stable directory works (e.g., `~/Documents/Papers/`, or a folder inside the user's note vault). All examples below use a generic root named `Papers/`:
 
 ```
-Papers 论文写作/
-├── _writing-config/                    ← 全局写作配置（跨论文共享）
-│   ├── 写作风格档案.md                  ← AI 累积学习的文风记录
-│   ├── 目标读者档案.md                  ← 与文风档案配对——voice 和 audience 缺一不可
-│   ├── 引用格式速查.md                  ← 用户选择的引用格式参考
-│   └── 学术写作检查清单.md               ← 提交前自查
+Papers/                                 ← project root (location chosen by the user — ask, don't assume)
+├── _writing-config/                    ← global writing configuration (shared across papers)
+│   ├── style-profile.md                ← the author's voice record (copy from references/style-profile-template.md; Chinese: 写作风格档案.md)
+│   ├── reader-profile.md               ← paired with the style profile — voice and audience are inseparable (copy from references/target-reader-profile-template.md; Chinese: 目标读者档案.md)
+│   ├── discipline.md                   ← L1/L2/L3 discipline declaration, written during onboarding (Chinese: 学科档案.md)
+│   ├── research-question.md            ← Mode H output (Chinese: 研究问题.md)
+│   ├── literature-map.md               ← Mode I output (Chinese: 文献地图.md)
+│   ├── outline.md                      ← Mode J output (Chinese: 论文大纲.md)
+│   ├── citation-style.md               ← the user's chosen citation-format quick reference (Chinese: 引用格式速查.md)
+│   └── academic-writing-checklist.md   ← pre-submission self-check (Chinese: 学术写作检查清单.md)
 │
-└── [论文名]/                           ← 论文项目文件夹
-    ├── [论文名].md                     ← 主稿（短篇论文：完整单文件）
-    ├── chapters/                       ← 主稿（长篇/学位论文：分章多文件，二选一）
+└── [paper-name]/                       ← paper project folder
+    ├── [paper-name].md                 ← main draft (short papers: complete single file)
+    ├── chapters/                       ← main draft (long-form/dissertations: chaptered multi-file; choose one of the two)
     ├── _meta/
-    │   ├── 修改日志.md                  ← changelog，记录每次修改
-    │   ├── 版本归档/                    ← 大版本快照
-    │   ├── 修订工作流/                  ← Mode L revision dossiers (see revision-workflow.md)
-    │   ├── 写作进度.md                  ← 章节完成度追踪
-    │   └── 交互记录.md                  ← 写作讨论日志
-    ├── _drafts/                        ← 章节草稿、实验性片段（类似 feature branch）
-    ├── _feedback/                      ← 反馈报告存档
+    │   ├── revision-log.md             ← changelog, one entry per change (Chinese: 修改日志.md)
+    │   ├── version-archive/            ← major-version snapshots (Chinese: 版本归档/)
+    │   ├── revision-workflow/          ← Mode L revision dossiers (see revision-workflow.md; Chinese: 修订工作流/)
+    │   ├── writing-progress.md         ← chapter completion tracking (Chinese: 写作进度.md)
+    │   └── interaction-log.md          ← writing-discussion log (Chinese: 交互记录.md)
+    ├── _drafts/                        ← chapter drafts, experimental fragments (like a feature branch)
+    ├── _feedback/                      ← feedback-report archive
     ├── _export/                        ← export scripts/templates (docx/pdf are exports, not sources of truth)
     └── _references/
-        ├── 参考文献表.md                ← 按用户选择的格式整理的文献列表
-        └── attachments/                ← 电子版文献（PDF/EPUB）
+        ├── reference-list.md           ← bibliography in the user's chosen format (Chinese: 参考文献表.md)
+        └── attachments/                ← electronic copies (PDF/EPUB)
 ```
 
-**File-path naming note**: the directory and file names above use Chinese defaults, but English equivalents are equally valid. Use whichever matches the author's writing language — the structure is what matters, not the language of the labels.
+**File-path naming note**: the tree above shows English defaults (matching the examples in SKILL.md); the Chinese equivalents in parentheses are equally valid. Use whichever matches the author's writing language — the structure is what matters, not the language of the labels.
+
+Not every `_writing-config/` file exists from day one: the two profiles are created at onboarding; `discipline.md` is written during the discipline declaration; `research-question.md` / `literature-map.md` / `outline.md` appear only when Modes H / I / J are actually run.
 
 ### Single file vs. chaptered multi-file
 
@@ -58,10 +64,13 @@ chapters/
 ### First-time initialization
 
 On a user's first session, create the project folder following the structure above. Confirm:
+- Where the project root should live (ask — see above)
 - The paper title (used to name the folder and the main draft)
 - Single file or chaptered multi-file (advise using the criteria above)
 - The citation format (create the matching quick-reference file)
 - Whether a draft already exists (if so, import it as v1.0)
+
+When creating `_writing-config/`, copy the two profile templates (`references/style-profile-template.md`, `references/target-reader-profile-template.md`) rather than improvising a structure — the style profile is then filled by analyzing 2–3 of the author's pre-AI writing samples.
 
 ---
 
@@ -81,15 +90,40 @@ Trigger: a local change within a single conversation. Does not generate a snapsh
 Record in the changelog:
 ```markdown
 ## vX.Y.Z · YYYY-MM-DD HH:MM
-**修改范围**：[章节/段落位置]
-**修改类型**：[论证重构/表达润色/引用修正/结构调整/新增内容]
-**改动摘要**：一句话概括
-**具体改动**：
+**Scope**: [chapter/paragraph location]
+**Type**: [argument restructuring / expression polish / citation fix / structural adjustment / new content]
+**Source**: [AI-suggested / author-initiated / co-developed]
+**Summary**: one sentence
+**Diff**:
 > [!diff]
-> - 原文：「...」
-> + 修改：「...」
-**修改理由**：[为什么这样改]
-**验证状态**：[✅ 通过文风一致性检查 / ⚠️ 需作者确认]
+> - Original: "..."
+> + Revised: "..."
+**Reason**: [why this change]
+**Verification**: [✅ passed voice-consistency check / ⚠️ needs author confirmation]
+```
+
+**The `Source` field is required on every entry.** It records who initiated the change:
+
+- `AI-suggested`: the AI proposed the revision; the author reviewed and accepted it
+- `author-initiated`: the author decided the change (the AI executed it, or the author edited directly)
+- `co-developed`: the direction emerged from dialogue and belongs to neither side alone
+
+Mode K (AI-use disclosure) audits this field to reconstruct the actual tier of AI involvement — without it, the disclosure statement degenerates into memory-based guessing. When unsure between `AI-suggested` and `co-developed`, ask: would this change exist without the AI's proposal? If not, it is at least `AI-suggested`.
+
+Example entry:
+
+```markdown
+## v2.3.1 · 2026-05-12 14:30
+**Scope**: Chapter 2, section 3, paragraph 2
+**Type**: expression polish
+**Source**: AI-suggested
+**Summary**: removed a hollow lead-in; the judgment sentence moved forward
+**Diff**:
+> [!diff]
+> - Original: "It is worth noting that this shift was not an isolated event."
+> + Revised: "This shift was not an isolated event."
+**Reason**: "It is worth noting" is a high-frequency cliché (see ai-trace-checklist.md); the judgment is more direct without it
+**Verification**: ✅ passed voice-consistency check
 ```
 
 ### Major version (major)
@@ -102,7 +136,7 @@ Trigger conditions (any one):
 
 Procedure:
 1. Increment the version number (e.g., v1.5 → v2.0)
-2. Copy the main draft to `_meta/版本归档/vX.Y_YYYYMMDD.md`
+2. Copy the main draft to `_meta/version-archive/vX.Y_YYYYMMDD.md`
 3. Update the `version` field in the main draft's frontmatter
 4. Update the writing-progress table
 5. Record a major-version summary in the changelog
@@ -119,7 +153,7 @@ Core principle: **resident sources + milestone archives + versioned exports**. V
 ### Using _drafts/
 
 When the author wants to try an uncertain line of argument:
-1. Create a new file in `_drafts/` (e.g., `_drafts/第三章_替代方案A.md`)
+1. Create a new file in `_drafts/` (e.g., `_drafts/chapter3_alternative-A.md`)
 2. Experiment freely there
 3. If the approach is adopted → merge it into the main draft and delete the draft
 4. If abandoned → keep it as a record of thinking, or delete it
@@ -130,7 +164,7 @@ When the author wants to try an uncertain line of argument:
 
 ### Bibliographic information
 
-All cited works are recorded in `_references/参考文献表.md`, including:
+All cited works are recorded in `_references/reference-list.md`, including:
 - Complete entries formatted in the citation style the user chose
 - Citation-location markers (which chapters cite the work)
 - Source markers for the electronic copy (📁 Drive / 📝 Vault note / ⚠️ to be obtained)
@@ -153,8 +187,8 @@ When the author is about to begin a systematic revision, it is worth building a 
    - Search Google Drive first (`google_drive_search`)
    - Then check whether the vault holds a PDF attached to a reading note
    - Mark works that cannot be obtained as ⚠️
-3. **Download locally**: store every PDF found in `_references/attachments/`, following the naming rule `作者姓Year.pdf` (e.g., `Foucault1975.pdf`)
-4. **Build a reference index**: create `_references/文献索引.md`; each entry holds its citation key, a one-sentence summary, core-concept keywords, the chapters that cite it, and the status of its local path
+3. **Download locally**: store every PDF found in `_references/attachments/`, following the naming rule `SurnameYear.pdf` (e.g., `Foucault1975.pdf`)
+4. **Build a reference index**: create `_references/reference-index.md`; each entry holds its citation key, a one-sentence summary, core-concept keywords, the chapters that cite it, and the status of its local path
 5. **Incremental updates**: update the index each time a new citation is added later
 
 ### Vault integration
@@ -166,7 +200,7 @@ When the author is about to begin a systematic revision, it is worth building a 
 
 ## 4. Interaction Log
 
-After every substantive writing discussion, append to `_meta/交互记录.md`:
+After every substantive writing discussion, append to `_meta/interaction-log.md`:
 - **Paper thread**: what was discussed, what decisions were made
 - **Skill thread**: what needs surfaced, what improvements were made (if you are developing the skill in parallel)
 - **Reflexive notes**: thoughts that could feed the paper's reflexive-critique chapter (where applicable)

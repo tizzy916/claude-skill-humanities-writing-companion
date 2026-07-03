@@ -7,6 +7,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.0] — 2026-07-03
+
+**Progressive-disclosure restructure. Ships together with 4.3.0 (below) in a single release.**
+
+The 4.3.0 audit's single largest finding was token economy: the SKILL.md body (~2,000 lines, ~35k tokens) was injected in full on every activation — 3.7× the official <500-line guideline — while the in-file "Selective Loading Guide" promised an on-demand behavior the platform cannot deliver for same-file sections. v5.0.0 makes that guide true by moving the conditional 60% of the body into `references/`.
+
+### Changed — architecture (no content was rewritten; sections moved verbatim, then re-pointed)
+
+- **SKILL.md body: ~2,000 → ~830 lines** (SKILL.zh.md likewise). What stays resident: positioning, core principles (incl. rule precedence + flagged-diff), setting up, four-layer critique + quick-decision routing, discipline routing protocol + index, feedback reports, systematic verification, Smart Reference Loading (`[VERIFY]`), scripts table, work-mode entries (A/B/C/L full; D/E/F/G/H/I/J/K as decision-carrying stubs), multi-agent collaboration, cross-skill, conversation style, ADHD interaction, anti-drift.
+- **Nine new on-demand reference pairs** (all bilingual, CI-checked): `disciplines` (full L1/L2/L3/adjacent dimension tables, arcs, methodology attack tables, fallback protocol), `modes-prewriting` (H/I/J), `mode-c-drafting` (four-stage flow, speak-first drafting, from-scratch orchestration, reflexive writing), `mode-d-adversarial` (personas, anti-sycophancy phrasings, calibration, evidence contract details), `mode-e-bottleneck` (strategies, rhetorical-action menu, capability boundary), `mode-f-revision`, `modes-submission` (G/K), `deep-style`, `multilingual-writing`.
+- **Selective Loading Guide rewritten as the actual router**: task → sections in the core file → which `references/` file to Read. The Navigation table (redundant with it) was removed.
+- Every mode stub carries its hard constraints and routing signals inline (e.g., Mode E keeps the first-response protocol and typology table; Mode D keeps the concession threshold and evidence contract summary) — the stub is enough to act correctly; the reference file is the full protocol.
+- All cross-references re-pointed (fallback protocol, Stage-3 handoffs, perspective-skill integration); READMEs' project structure updated; CI heading-parity check extended to all 18 bilingual pairs.
+
+### Impact
+
+- Per-activation context cost drops from ~35k to ~14k tokens (−60%); a typical task re-reads one reference file (+1–3k) only when routed there.
+- Deployment note: the skill already required multi-file support (references/ existed since v4.x); packaging shape is unchanged — targets that flatten to a single file should concatenate `references/*.md` after SKILL.md.
+
+---
+
+## [4.3.0] — 2026-07-03
+
+**Audit-driven release: a 31-agent QA audit (14 mode simulations, 4 static audits, 7-channel market scan, 5-judge panel) → every confirmed defect fixed, plus mechanisms adapted from the strongest peer tools.**
+
+### Fixed — routing & metadata
+
+- **Frontmatter description rewritten to 992 chars (was 1,727 — 69% over the 1,024-char Agent Skills spec limit).** On platforms that truncate at 1,024/1,536 chars, the most aggressive casual triggers never reached the router. New structure: one-line positioning → strongest ~10 triggers (bilingual, merged) → three "Not"s. Chinese twin compressed to 393 chars.
+- **Selective-loading wiring**: Mode A/B/C rows now load Discipline-Specific Dimensions + discipline.md (the routing protocol demanded them "on every critique" but the loading table never wired them into the two highest-frequency scenarios) and Smart Reference Loading (`[VERIFY]` rules) during drafting/revision.
+- Quick-decision table: three new routes — oral-first drafting → Mode C Stage 3; de-AI with no original → Mode F fallback; "does this concept hold up?" during conception → Mode C step 1 first, Mode D only after initial shape.
+
+### Fixed — internal contradictions (all confirmed by simulation)
+
+- **Rule precedence block** (new, in Core Principles): mode-internal hard constraints > cross-cutting style rules; quick-wins-first suspended while a 🔴 Layer-1 blocker is open; the "2–3 options" rule suspended during Socratic questioning.
+- From-scratch scenario rewritten as an H→I→J→C orchestration — its old step 2 ("suggest reading") directly violated Mode I's iron rule.
+- Mode C step 1.4 self-contradiction resolved: questions first; candidate paths only from what the author articulated.
+- Bottleneck Strategy 5 no longer suggests reading from memory (directional themes only) and warns against prescribing reading for self-doubt bottlenecks.
+- "Three scripts" → five (both SKILL files).
+
+### Added — mode upgrades
+
+- **Global flagged-diff rule**: every substantive edit ships as original → proposed + one-line reason, executed only on confirmation.
+- **Minimal-start protocol**: casual first contact gets ≤2 questions and immediate work; full 6-item onboarding only once a durable project relationship forms; chat-only environments keep profiles inline; distress arrivals skip onboarding → Mode E.
+- **Mode D**: evidence contract (every challenge pinned to chapter/paragraph/quote; no manufactured criticism; no praise sandwich); review-the-review self-check with per-challenge confidence tags; two-stage option (confirm targets, then deep-dive; real review forms override generic personas); Reviewer B re-cast as discipline-routed empiricist; Reader D de-duplicated from Reviewer A; Level 4 mechanical anchor; methodology-focus discipline.md fallback.
+- **Mode E** (lowest-scoring mode in simulation, 5.5/10): first-response protocol (acknowledge → classify with ≤2 questions → route); bottleneck typology → strategy routing (question-not-sharp / argument-hollow / emotional / input-shortage / perfectionism); rhetorical-action menu (moves, never finished sentences); capability boundary with human-support referral; mode-switching exits (was a routing dead end).
+- **Mode L**: four-way triage (accept / partially accept / defend / reviewer-misread, with response-only dossiers and "verify the misreading against the text first"); response-letter / 修改说明 workflow step with register principles and CN thesis conventions; master table doubles as traceability matrix; optional rebuttal re-review via Mode D persona; the 1–3-comment exclusion no longer applies when a response letter is required.
+- **Mode K**: journal policy never asserted from memory (paste or fetch, else conservative default); Template C is now an actual template (paragraph + per-section appendix); tool+version+dates in all templates; placement guidance; tiers merge upward; "I rewrote it heavily" does not demote Tier 3 (regeneration test); log-reconstruction interview; Tier-4 warning carries a remediation path.
+- **Modes H/I/J**: anti-fabrication rules mirroring Mode I's iron rule (H's puzzle-mapping; I's gap probes carry low-confidence framing; literature-map claims carry provenance tags); stalemate/exit ramps and re-entry shortcuts (J→C enters at Stage 3; H→C skips core-pressing); Mode J genre arcs (book review, response essay, grant proposal, self-translation) and a restructuring sub-flow; interlocutor placeholders; bilingual name merging (巫鸿/Wu Hung).
+- **Modes B/G**: partial/forked-draft handling (unwritten ≠ undelivered); AI-draft review semantics; "blind" defined in one place (two switches, both off); completeness pre-check; distributed-delivery matching.
+- **Anti-drift**: checkpoint triggers are deterministic events (post-batch, post-decision, every ~10 turns) instead of the undetectable "session end"; interaction-log reads bounded (last 2 checkpoints + open items).
+- **Multi-agent collaboration**: sub-agent contract (profile excerpts + discipline dimensions + calibration + four-tier return schema + anchored findings + anti-sycophancy self-check); fan-out confirmation and ≤5 reviewer cap; "the author is the final eye."
+- **Claim-support audit** in Systematic Verification: six-category classification (no support / weak / overstated / misattributed / contradicts / unverifiable) — existence is the script's job, support requires the loaded text.
+- STS explicitly served under L3.4; feedback report's two axes defined (body = content, four-tier list = index).
+
+### Added — toolchain & infrastructure
+
+- **scripts/citation-verify.py**: Crossref → OpenAlex cascade; FOUND now prints the matched title + container for human confirmation (surname+year alone had rubber-stamped a *different* Foucault's optics paper); new ERROR verdict for network failures (no more "timeout → NOT_FOUND → delete a real reference"); exit-code contract (0/1/2); unimplemented `--bib` removed.
+- **scripts/ai-trace-scan.sh**: directory mode fixed (zsh array + quoted globs — it previously matched nothing and printed a false "✅ no AI traces" with exit 0); counts occurrences, not lines.
+- **scripts/citation-format-convert.py**: regex parser replaced with a balanced-brace parser — nested braces, single-line entries, quoted/bare values all parse; unparseable entries reported and skipped, never silently mangled.
+- **scripts/citation-consistency.py**: friendly errors; exit codes for CI use.
+- **scripts/tests/**: 7 fixtures + 58-assertion offline suite (61 with network), all passing. **.github/workflows/ci.yml**: py_compile, zsh -n, tests, description-length check, bilingual heading-parity across 9 file pairs.
+- **references/style-profile-template.md(.zh.md)** (new pair): the "constitution of voice" finally has a template.
+- **references/ai-trace-checklist**: reverse check — over-imitation guard (signature-feature density vs the author's base rate) + noise budget; explicit note that the checklist is not an AIGC-detector evasion tool.
+- **references/revision-workflow**: triage + response-letter sections (templates, register, CN 修改说明 conventions, traceability matrix, rebuttal re-review).
+- **references/project-management**: private vault path removed; directory map includes discipline.md / research-question.md / literature-map.md / outline.md; revision-log `Source:` field defined (Mode K's audit basis).
+- **docs/release-checklist.md(.zh.md)** (new pair).
+
+### Changed
+
+- README pairs: TOC; "Seven work modes" → twelve; script table 3 → 5; zip/desktop install paths + verify step; BibTeX 4.3.0; bilingual-status updated. CITATION.cff / .zenodo.json: version, date, abstract brought current. CHANGELOG gained the missing [4.1.1] entry.
+
+### Rationale
+
+v4.2 folded field practice into the skill; v4.3 folds *testing* into it. The audit's five-judge panel scored the pre-release skill 6.9/10 weighted — strongest on humanities specificity (8) and lifecycle coverage (7.5), weakest on token economy (3) and metadata (4.5). This release repairs everything repairable without restructuring. The remaining token-economy debt (SKILL.md body ~500 lines with content sunk to references/) is deliberately deferred to v5.0 — it changes packaging across deployment targets and deserves an atomic, reviewable change of its own.
+
+---
+
 ## [4.2.0] — 2026-06-11
 
 **Field-distilled release: everything in this version was first proven in real paper-revision practice, then folded back into the skill.**
@@ -40,6 +117,17 @@ The source material: a complete defense-feedback integration cycle on a master's
 ### Rationale
 
 v4.0/4.1 expanded the skill's *coverage* (modes H-K, discipline architecture). v4.2 closes the loop in the other direction: practices that emerged spontaneously during real use — revision dossiers, perspective-skill reviewers, evidence tiers for oral-history claims, chapters/ structure — were being re-invented per project from memory. Folding them into the skill makes them load-bearing infrastructure instead of tribal knowledge. This is also the skill practicing what it preaches: the interaction log's "Skill line" exists precisely so that usage experience flows back into the tool.
+
+---
+
+## [4.1.1] — 2026-05-19
+
+**Version bump only — first Zenodo-archived release.**
+
+### Changed
+
+- `CITATION.cff` version bumped to 4.1.1 (single-line change; functionally identical to v4.1.0).
+- Published primarily to trigger the first archive event of the newly activated Zenodo↔GitHub integration, establishing the permanent Concept DOI [10.5281/zenodo.20280773](https://doi.org/10.5281/zenodo.20280773) citable in papers that use this skill.
 
 ---
 

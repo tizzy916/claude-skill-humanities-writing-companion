@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
 title: "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing"
-version: 4.2.0
-date-released: 2026-05-19
+version: 5.0.0
+date-released: 2026-07-03
 authors:
   - family-names: Shen
     given-names: Cong
@@ -13,21 +13,27 @@ authors:
 abstract: >
   An end-to-end Claude Code / Claude Agent SDK skill for humanities
   scholars (history, philosophy, literature, cultural studies, art history,
-  religious studies, classics, intellectual history, science studies) whose
-  primary deliverable is a long-form argumentative text. Covers the full
-  writing lifecycle: research-question sharpening (Mode H Socratic),
-  literature mapping (Mode I), plan-only outlining (Mode J), conception
-  and drafting (Mode C), paragraph dialogue (Mode A), chapter review
-  (Mode B four-layer critique), devil's advocate with 1-5 calibration and
-  methodology-focus sub-mode (Mode D), writing-bottleneck assistance
-  (Mode E), draft revision with revision-coach sub-mode (Mode F), blind
-  reading (Mode G), and AI-use disclosure for humanities journals
-  (Mode K). Deep-voice preservation ("my hand writes my voice"), discipline-
-  specific critique routing (seven main humanities disciplines + cross-
-  disciplinary case), ADHD-friendly interaction design, and engineering-
-  grade infrastructure (version control, systematic validation, AI-trace
-  scanning, citation toolchain with format conversion and Crossref
-  verification). Bilingual: SKILL.md and README in English and Chinese.
+  religious studies, classics, intellectual history, science studies, and
+  adjacent fields) whose primary deliverable is a long-form argumentative
+  text. Twelve work modes (A-L) cover the full writing lifecycle:
+  research-question sharpening (Mode H Socratic), literature mapping
+  (Mode I), plan-only outlining (Mode J), conception and drafting (Mode C),
+  paragraph dialogue (Mode A), chapter review (Mode B four-layer critique),
+  devil's advocate with 1-5 calibration and methodology-focus sub-mode
+  (Mode D), writing-bottleneck assistance (Mode E), draft revision with
+  revision-coach sub-mode (Mode F), blind reading (Mode G), AI-use
+  disclosure for humanities journals (Mode K), and defense/external-review
+  comment integration via a revision-dossier workflow (Mode L). Deep-voice
+  preservation ("my hand writes my voice"), discipline-specific critique
+  routing on a three-layer architecture (6 L1 main disciplines with
+  subfield inheritance, 9 L3 cross-disciplinary fields, 2 humanities-
+  adjacent fields), ADHD-friendly interaction design, multi-agent parallel
+  review fan-out in agent-capable environments, and engineering-grade
+  infrastructure (version control, systematic validation, and a five-script
+  zero-dependency toolchain: AI-trace scanning, pending-marker aggregation,
+  citation-consistency checking, citation format conversion, and Crossref
+  citation verification). Bilingual: SKILL.md, README, and references in
+  English and Chinese.
 keywords:
   - claude-skill
   - claude-code

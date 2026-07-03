@@ -14,6 +14,8 @@ Usage: $0 <file.md | directory>
 Scans for two categories of issues:
   1. High-frequency clichés (flagged on any occurrence) — 值得注意的是 / 不难发现 / 综上所述 etc.
   2. Overused connectors (warning at >3 occurrences) — 此外 / 同时 / 另外 etc.
+     Frequency is counted by OCCURRENCE, not by line — four 此外 in one
+     paragraph (one line) trigger the threshold just like four lines do.
 
 Output: line number + line content for each match
 EOF
@@ -50,11 +52,14 @@ FREQUENCY_PATTERNS=(
 )
 FREQ_THRESHOLD=3
 
-# grep options: recursive + .md only
+# grep options as a zsh ARRAY — a plain string would not be word-split by zsh,
+# and an unquoted literal --include=*.md would trip zsh's NOMATCH globbing.
 if [ -d "$INPUT" ]; then
-    GREP_OPTS="-rn --include=*.md"
+    grep_opts=(-r -n --include='*.md')
+    grep_opts_nofn=(-r -h --include='*.md')   # no filename/line prefix, for counting
 else
-    GREP_OPTS="-n"
+    grep_opts=(-n)
+    grep_opts_nofn=(-h)
 fi
 
 echo "=== AI trace scan · $INPUT ==="
@@ -65,7 +70,7 @@ found_any=0
 echo "## 1. High-frequency clichés (review on any occurrence)"
 echo ""
 for pat in "${SINGLE_PATTERNS[@]}"; do
-    if matches=$(grep $GREP_OPTS -E "$pat" "$INPUT" 2>/dev/null); then
+    if matches=$(grep "${grep_opts[@]}" -E "$pat" "$INPUT" 2>/dev/null); then
         found_any=1
         echo "▶ 「$pat」"
         echo "$matches" | sed 's/^/    /'
@@ -73,18 +78,19 @@ for pat in "${SINGLE_PATTERNS[@]}"; do
     fi
 done
 
-echo "## 2. Connector frequency warning (threshold >$FREQ_THRESHOLD per file)"
+echo "## 2. Connector frequency warning (threshold >$FREQ_THRESHOLD occurrences)"
 echo ""
 for word in "${FREQUENCY_PATTERNS[@]}"; do
-    if [ -d "$INPUT" ]; then
-        count=$( (grep -rh --include=*.md "$word" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
-    else
-        count=$( (grep -h "$word" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
-    fi
+    # Count OCCURRENCES (grep -o), not matching lines — Chinese markdown often
+    # keeps a whole paragraph on one line, so line-count systematically undercounts.
+    count=$( (grep "${grep_opts_nofn[@]}" -o -- "$word" "$INPUT" 2>/dev/null || true) | wc -l | tr -d ' ')
     if [ "$count" -gt "$FREQ_THRESHOLD" ]; then
         echo "⚠ 「$word」 appears $count times (threshold $FREQ_THRESHOLD)"
-        grep $GREP_OPTS "$word" "$INPUT" 2>/dev/null | sed 's/^/    /' | head -5
-        [ "$count" -gt 5 ] && echo "    ... (showing first 5 only)"
+        # `|| true` guards the SIGPIPE that `head` sends upstream under pipefail
+        { grep "${grep_opts[@]}" -- "$word" "$INPUT" 2>/dev/null || true; } | sed 's/^/    /' | head -5
+        if [ "$count" -gt 5 ]; then
+            echo "    ... (showing first 5 matching lines only)"
+        fi
         echo ""
         found_any=1
     fi
