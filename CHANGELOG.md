@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.2] — 2026-07-13
+
+**Citation-metadata fix only.**
+
+### Fixed
+
+- **Concept DOI corrected everywhere**: all "Concept DOI" references pointed to `10.5281/zenodo.20280773`, which is actually the **v4.1.1 version-specific DOI** — it permanently resolves to the v4.1.1 archive (old title, old repository name) instead of the latest version. The true Concept DOI is [`10.5281/zenodo.20280772`](https://doi.org/10.5281/zenodo.20280772), which always resolves to the newest archived release. Corrected in the README DOI badges and BibTeX blocks (both languages), CITATION.cff identifiers, the release checklists, and the v4.1.1 changelog entry's DOI link (kept as an erratum-style correction since it is a live pointer, not a historical record).
+
+---
+
 ## [5.0.1] — 2026-07-13
 
 **Platform-neutral repositioning. Docs and metadata only — no skill content changed.**
@@ -138,7 +148,7 @@ v4.0/4.1 expanded the skill's *coverage* (modes H-K, discipline architecture). v
 ### Changed
 
 - `CITATION.cff` version bumped to 4.1.1 (single-line change; functionally identical to v4.1.0).
-- Published primarily to trigger the first archive event of the newly activated Zenodo↔GitHub integration, establishing the permanent Concept DOI [10.5281/zenodo.20280773](https://doi.org/10.5281/zenodo.20280773) citable in papers that use this skill.
+- Published primarily to trigger the first archive event of the newly activated Zenodo↔GitHub integration, establishing the permanent Concept DOI [10.5281/zenodo.20280772](https://doi.org/10.5281/zenodo.20280772) citable in papers that use this skill.
 
 ---
 

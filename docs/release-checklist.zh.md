@@ -45,7 +45,7 @@
 ## 5 · 发布后线上核对
 
 - [ ] Zenodo 归档核对：Concept DOI
-      [10.5281/zenodo.20280773](https://doi.org/10.5281/zenodo.20280773) 下出现新版本、
+      [10.5281/zenodo.20280772](https://doi.org/10.5281/zenodo.20280772) 下出现新版本、
       铸出版本专属 DOI，且元数据（标题 / 版本 / 摘要）与 `CITATION.cff` 和 `.zenodo.json` 一致
 - [ ] 验证 `vX.Y.Z` 的 GitHub release 页面：发布说明正常渲染、标签指向预期的 commit、
       README 的 DOI 徽章 / "Cite this repository" 按钮解析到最新版本

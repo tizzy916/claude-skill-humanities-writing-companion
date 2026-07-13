@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
 title: "Humanities Writing Companion: An Agent Skill for Voice-Preserving Humanities Academic Writing"
-version: 5.0.1
+version: 5.0.2
 date-released: 2026-07-13
 authors:
   - family-names: Shen
@@ -56,7 +56,7 @@ url: "https://github.com/tizzy916/humanities-writing-companion"
 
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.20280773
+    value: 10.5281/zenodo.20280772
     description: "Zenodo archive (Concept DOI; resolves to latest release)"
 
 references:

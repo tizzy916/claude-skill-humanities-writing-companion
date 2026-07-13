@@ -46,7 +46,7 @@ repository walks this list top to bottom, in order — no step is optional, and 
 ## 5 · Post-release verification (online)
 
 - [ ] Zenodo archive check: a new version appears under the Concept DOI
-      [10.5281/zenodo.20280773](https://doi.org/10.5281/zenodo.20280773), a version-specific DOI
+      [10.5281/zenodo.20280772](https://doi.org/10.5281/zenodo.20280772), a version-specific DOI
       is minted, and the metadata (title / version / abstract) matches `CITATION.cff` and `.zenodo.json`
 - [ ] Verify the GitHub release page for `vX.Y.Z`: release notes render correctly, the tag points
       at the intended commit, and the README DOI badge / "Cite this repository" button resolves

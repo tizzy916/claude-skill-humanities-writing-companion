@@ -5,7 +5,7 @@
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
 [![Skill format: Agent Skills](https://img.shields.io/badge/skill%20format-Agent%20Skills%20(SKILL.md)-orange)](https://agentskills.io)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280773.svg)](https://doi.org/10.5281/zenodo.20280773)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280772.svg)](https://doi.org/10.5281/zenodo.20280772)
 [![Wiki](https://img.shields.io/badge/📖_Wiki-教程与指南-blue)](https://github.com/tizzy916/humanities-writing-companion/wiki)
 
 **[📖 Wiki 教程](https://github.com/tizzy916/humanities-writing-companion/wiki)** · **[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
@@ -489,9 +489,9 @@ humanities-writing-companion/
   title        = {Humanities Writing Companion: An Agent Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {5.0.1},
-  doi          = {10.5281/zenodo.20280773},
-  url          = {https://doi.org/10.5281/zenodo.20280773}
+  version      = {5.0.2},
+  doi          = {10.5281/zenodo.20280772},
+  url          = {https://doi.org/10.5281/zenodo.20280772}
 }
 ```
 
