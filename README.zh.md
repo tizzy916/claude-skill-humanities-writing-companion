@@ -1,14 +1,14 @@
 # 人文学科写作伙伴 · Humanities Writing Companion
 
-> 一个 Claude Code / Claude Agent SDK skill，专为以长篇论证性文本为主要交付物的人文学者设计——历史、哲学、文学、文化研究、艺术史、宗教学、古典学。
+> 一个为人文学者设计的 agent skill，服务于以长篇论证性文本为主要交付物的写作——历史、哲学、文学、文化研究、艺术史、宗教学、古典学。采用开放的 [Agent Skills](https://agentskills.io)（SKILL.md）格式——Claude Code、Claude Agent SDK 以及任何支持该格式的 agent 都可以使用。
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
-[![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
+[![Skill format: Agent Skills](https://img.shields.io/badge/skill%20format-Agent%20Skills%20(SKILL.md)-orange)](https://agentskills.io)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280773.svg)](https://doi.org/10.5281/zenodo.20280773)
-[![Wiki](https://img.shields.io/badge/📖_Wiki-教程与指南-blue)](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)
+[![Wiki](https://img.shields.io/badge/📖_Wiki-教程与指南-blue)](https://github.com/tizzy916/humanities-writing-companion/wiki)
 
-**[📖 Wiki 教程](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)** · **[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
+**[📖 Wiki 教程](https://github.com/tizzy916/humanities-writing-companion/wiki)** · **[English README](./README.md)** · **[Skill 源文件 · 英文](./SKILL.md)** · **[Skill 源文件 · 中文](./SKILL.zh.md)**
 
 ---
 
@@ -320,7 +320,7 @@ skill 的回应,自上而下,四层:
 ### 作为 Claude Code skill 安装
 
 ```bash
-git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.git \
+git clone https://github.com/tizzy916/humanities-writing-companion.git \
   ~/.claude/skills/humanities-writing-companion
 
 chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
@@ -329,7 +329,7 @@ chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
 或者作为项目级 skill（仅当前 vault / project 可用）：
 
 ```bash
-git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.git \
+git clone https://github.com/tizzy916/humanities-writing-companion.git \
   ./.claude/skills/humanities-writing-companion
 ```
 
@@ -339,7 +339,7 @@ Claude Code 启动时会自动扫描 `~/.claude/skills/` 和 `./.claude/skills/`
 
 ### 不用 git（ZIP 下载）
 
-无需 git：在 [GitHub 仓库页面](https://github.com/tizzy916/claude-skill-humanities-writing-companion) 点击 **Code → Download ZIP**，解压后把解压出的文件夹移动到 `~/.claude/skills/humanities-writing-companion`（项目级安装则放到 `./.claude/skills/humanities-writing-companion`），然后给 shell 脚本加执行权限：
+无需 git：在 [GitHub 仓库页面](https://github.com/tizzy916/humanities-writing-companion) 点击 **Code → Download ZIP**，解压后把解压出的文件夹移动到 `~/.claude/skills/humanities-writing-companion`（项目级安装则放到 `./.claude/skills/humanities-writing-companion`），然后给 shell 脚本加执行权限：
 
 ```bash
 chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
@@ -352,6 +352,10 @@ Claude 桌面版与 claude.ai 也支持自定义 skill：把 skill 文件夹（�
 ### Claude Agent SDK 接入
 
 `SKILL.md` 可直接加载到系统提示词中。skill 是纯文本，无运行时依赖。
+
+### 其他 agent（开放 SKILL.md 格式）
+
+本 skill 采用开放的 [Agent Skills](https://agentskills.io) 格式：一个包含 `SKILL.md` 以及纯文本 `references/`、`scripts/` 的文件夹。任何支持该格式的 agent——或者只要能把 `SKILL.md`（及按需路由到的 `references/*.md`）读入上下文——都可以使用：把本仓库 clone 到你的 agent 发现 skills 的目录即可。`scripts/` 工具链只依赖 POSIX shell 和 Python 3，没有任何 Claude 专属依赖。
 
 ### 验证安装
 
@@ -482,10 +486,10 @@ humanities-writing-companion/
 ```bibtex
 @software{shen_humanities_writing_companion_2026,
   author       = {Shen, Cong},
-  title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
+  title        = {Humanities Writing Companion: An Agent Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {5.0.0},
+  version      = {5.0.1},
   doi          = {10.5281/zenodo.20280773},
   url          = {https://doi.org/10.5281/zenodo.20280773}
 }
@@ -494,7 +498,7 @@ humanities-writing-companion/
 **纯文本署名**(用于 skill 元数据、页脚等):
 ```
 Based on Humanities Writing Companion by Shen Cong
-https://github.com/tizzy916/claude-skill-humanities-writing-companion
+https://github.com/tizzy916/humanities-writing-companion
 ```
 
 完整机读元数据见 [`CITATION.cff`](./CITATION.cff)(GitHub 的 "Cite this repository" 按钮会自动调用该文件)。

@@ -178,7 +178,7 @@ The academic blog sits between "rigorous scholarship" and "readability."
 
 ## Test-report template
 
-Please use the following template to submit a cross-domain test report (open a new topic under [Discussions / Show and tell](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/show-and-tell)):
+Please use the following template to submit a cross-domain test report (open a new topic under [Discussions / Show and tell](https://github.com/tizzy916/humanities-writing-companion/discussions/categories/show-and-tell)):
 
 ```markdown
 # 跨学科测试报告 · [你的学科 / 写作类型]

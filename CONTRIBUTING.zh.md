@@ -61,7 +61,7 @@ skill 当前有 12 个工作模式（A-L）。如果你发现了 SKILL.md 没有
 > 不是这些贡献"不好"，而是它们偏离 skill 的设计立场。提了不一定会被合并。
 
 - ❌ **把 skill 变得更"通用"**——例如加一个"通用润色模式"、扩展到实证社科或 STEM。skill 故意有立场（**人文学科** + 思想优先 + 文风保持），不试图取悦所有写作场景。要做实证研究流水线请去 [academic-research-skills](https://github.com/Imbad0202/academic-research-skills)。
-- ❌ **替换现有模块为 LLM 调用**——skill 用纯文本 prompt 描述工作模式，故意**不**依赖运行时 LLM 调用（这让它能在 Agent SDK / Claude Code / Claude.ai 等任何 Claude 接入点工作）。
+- ❌ **替换现有模块为 LLM 调用**——skill 用纯文本 prompt 描述工作模式，故意**不**依赖运行时 LLM 调用（这让它能在 Claude Agent SDK / Claude Code / Claude.ai 及任何兼容 SKILL.md 的 agent 中工作）。
 - ❌ **"AI 智能润色"功能**——skill 的核心是反对"AI 自动润色"叙事的。润色应该是作者驱动的对话过程。
 - ❌ **添加付费/订阅集成**——skill 是开源公共物品。
 

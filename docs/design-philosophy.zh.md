@@ -195,7 +195,7 @@ skill 不试图隐形。它提供的是一种**可被研究的协作过程**—�
 
 ## 这份文档之后
 
-如果你读到这里，并且觉得这套立场可以接受，欢迎在自己的写作中尝试。如果你觉得某条原则不对——尤其是觉得**第一条原则**（思想优先于格式）在你的学科里不成立——请去 [Discussions / Ideas](https://github.com/tizzy916/claude-skill-humanities-writing-companion/discussions/categories/ideas) 反驳我。skill 的设计立场不是不可挑战的，但挑战需要在同一层级上发生（设计哲学层面），而不是停留在"加这个功能"的请求层面。
+如果你读到这里，并且觉得这套立场可以接受，欢迎在自己的写作中尝试。如果你觉得某条原则不对——尤其是觉得**第一条原则**（思想优先于格式）在你的学科里不成立——请去 [Discussions / Ideas](https://github.com/tizzy916/humanities-writing-companion/discussions/categories/ideas) 反驳我。skill 的设计立场不是不可挑战的，但挑战需要在同一层级上发生（设计哲学层面），而不是停留在"加这个功能"的请求层面。
 
 最后一个邀请：如果你的论文本身研究人-AI 关系 / 写作技术 / 认知主体性，欢迎把这份 skill 当作可被研究的对象。它的所有设计决策都记录在仓库里，所有演化痕迹都可见。你可以引用它（[CITATION.cff](../CITATION.cff)），可以批评它，可以 fork 它做出与之竞争的版本——它的存在不是为了被采纳，是为了让对话能在一个**有具体设计立场**的对手之间发生。
 

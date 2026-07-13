@@ -61,7 +61,7 @@ New scripts must be **zero- or low-dependency** (zsh / Python 3 standard library
 > It's not that these contributions are "bad" — they simply diverge from the skill's design stance. Proposing them does not guarantee a merge.
 
 - ❌ **Making the skill more "general-purpose"** — e.g., adding a "general polishing mode" or extending it to empirical social science or STEM. The skill is deliberately opinionated (**humanities** + thought-first + voice-preserving) and does not try to please every writing scenario. For an empirical research pipeline, go to [academic-research-skills](https://github.com/Imbad0202/academic-research-skills).
-- ❌ **Replacing existing modules with LLM calls** — the skill describes its working modes as plain-text prompts and deliberately does **not** rely on runtime LLM calls (this is what lets it work at any Claude entry point: Agent SDK / Claude Code / Claude.ai).
+- ❌ **Replacing existing modules with LLM calls** — the skill describes its working modes as plain-text prompts and deliberately does **not** rely on runtime LLM calls (this is what lets it work at any entry point: Claude Agent SDK / Claude Code / Claude.ai / any SKILL.md-compatible agent).
 - ❌ **"AI smart-polishing" features** — the skill's core premise is a rejection of the "AI auto-polish" narrative. Polishing should be an author-driven, dialogic process.
 - ❌ **Adding paid / subscription integrations** — the skill is an open-source public good.
 

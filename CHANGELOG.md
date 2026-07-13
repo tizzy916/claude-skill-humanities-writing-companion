@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [5.0.1] — 2026-07-13
+
+**Platform-neutral repositioning. Docs and metadata only — no skill content changed.**
+
+### Changed
+
+- **Repository renamed**: `claude-skill-humanities-writing-companion` → `humanities-writing-companion` (GitHub redirects all old URLs). Every hardcoded repository URL updated: READMEs, CITATION.cff, .zenodo.json, docs/, issue-template config, and the `citation-verify.py` User-Agent.
+- **Positioning de-branded from Claude**: the skill is written in the open [Agent Skills](https://agentskills.io) (SKILL.md) format and is not Claude-only. Updated accordingly: README taglines and format badge, citation titles ("A Claude Skill…" → "An Agent Skill…") in CITATION.cff / .zenodo.json / README BibTeX, the `claude-skill` keyword (→ `agent-skill`), the GitHub repo description, and CONTRIBUTING's entry-point list. New "Other agents (open SKILL.md format)" install note in both READMEs. Factual Claude Code / claude.ai / Agent SDK install instructions are retained.
+
+---
+
 ## [5.0.0] — 2026-07-03
 
 **Progressive-disclosure restructure. Ships together with 4.3.0 (below) in a single release.**

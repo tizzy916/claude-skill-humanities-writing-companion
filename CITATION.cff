@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this skill in your research or writing, please cite it as below."
 type: software
-title: "Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing"
-version: 5.0.0
-date-released: 2026-07-03
+title: "Humanities Writing Companion: An Agent Skill for Voice-Preserving Humanities Academic Writing"
+version: 5.0.1
+date-released: 2026-07-13
 authors:
   - family-names: Shen
     given-names: Cong
@@ -11,7 +11,7 @@ authors:
     affiliation: "Tianyu Vision (TIANYU VISION); MA, History of Science, Tsinghua University"
     website: "https://tianyu.art/"
 abstract: >
-  An end-to-end Claude Code / Claude Agent SDK skill for humanities
+  An end-to-end agent skill, in the open Agent Skills (SKILL.md) format, for humanities
   scholars (history, philosophy, literature, cultural studies, art history,
   religious studies, classics, intellectual history, science studies, and
   adjacent fields) whose primary deliverable is a long-form argumentative
@@ -35,7 +35,7 @@ abstract: >
   citation verification). Bilingual: SKILL.md, README, and references in
   English and Chinese.
 keywords:
-  - claude-skill
+  - agent-skill
   - claude-code
   - humanities
   - academic-writing
@@ -51,8 +51,8 @@ keywords:
   - prompt-engineering
   - bilingual
 license: CC-BY-NC-4.0
-repository-code: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
-url: "https://github.com/tizzy916/claude-skill-humanities-writing-companion"
+repository-code: "https://github.com/tizzy916/humanities-writing-companion"
+url: "https://github.com/tizzy916/humanities-writing-companion"
 
 identifiers:
   - type: doi

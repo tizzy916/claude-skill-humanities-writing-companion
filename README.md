@@ -1,14 +1,14 @@
 # Humanities Writing Companion · 人文学科写作伙伴
 
-> A Claude Code / Claude Agent SDK skill for humanities scholars whose primary deliverable is a long-form argumentative text — history, philosophy, literature, cultural studies, art history, religious studies, classics.
+> An agent skill for humanities scholars whose primary deliverable is a long-form argumentative text — history, philosophy, literature, cultural studies, art history, religious studies, classics. Written in the open [Agent Skills](https://agentskills.io) (SKILL.md) format — works with Claude Code, the Claude Agent SDK, and any agent that supports the format.
 
 [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](./LICENSE)
-[![Skill format: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)](https://docs.claude.com/en/docs/claude-code)
+[![Skill format: Agent Skills](https://img.shields.io/badge/skill%20format-Agent%20Skills%20(SKILL.md)-orange)](https://agentskills.io)
 [![Status: stable](https://img.shields.io/badge/status-stable-green)]()
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20280773.svg)](https://doi.org/10.5281/zenodo.20280773)
-[![Wiki](https://img.shields.io/badge/📖_Wiki-tutorials_%26_guides-blue)](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)
+[![Wiki](https://img.shields.io/badge/📖_Wiki-tutorials_%26_guides-blue)](https://github.com/tizzy916/humanities-writing-companion/wiki)
 
-**[📖 Wiki](https://github.com/tizzy916/claude-skill-humanities-writing-companion/wiki)** · **[中文版 README](./README.zh.md)** · **[Skill source · English](./SKILL.md)** · **[Skill source · 中文](./SKILL.zh.md)**
+**[📖 Wiki](https://github.com/tizzy916/humanities-writing-companion/wiki)** · **[中文版 README](./README.zh.md)** · **[Skill source · English](./SKILL.md)** · **[Skill source · 中文](./SKILL.zh.md)**
 
 ---
 
@@ -325,7 +325,7 @@ What changed: a clichéd "double-edged sword" framing replaced by Stiegler's act
 ### As a Claude Code skill
 
 ```bash
-git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.git \
+git clone https://github.com/tizzy916/humanities-writing-companion.git \
   ~/.claude/skills/humanities-writing-companion
 
 chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
@@ -334,7 +334,7 @@ chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
 Or as a project-level skill (vault / project only):
 
 ```bash
-git clone https://github.com/tizzy916/claude-skill-humanities-writing-companion.git \
+git clone https://github.com/tizzy916/humanities-writing-companion.git \
   ./.claude/skills/humanities-writing-companion
 ```
 
@@ -344,7 +344,7 @@ Claude Code auto-scans `~/.claude/skills/` and `./.claude/skills/` on startup. A
 
 ### Without git (ZIP download)
 
-No git required: on the [GitHub repository page](https://github.com/tizzy916/claude-skill-humanities-writing-companion), click **Code → Download ZIP**, unzip, and move the unzipped folder to `~/.claude/skills/humanities-writing-companion` (or `./.claude/skills/humanities-writing-companion` for project-level install). Then make the shell scripts executable:
+No git required: on the [GitHub repository page](https://github.com/tizzy916/humanities-writing-companion), click **Code → Download ZIP**, unzip, and move the unzipped folder to `~/.claude/skills/humanities-writing-companion` (or `./.claude/skills/humanities-writing-companion` for project-level install). Then make the shell scripts executable:
 
 ```bash
 chmod +x ~/.claude/skills/humanities-writing-companion/scripts/*.sh
@@ -357,6 +357,10 @@ The Claude desktop app and claude.ai also support custom skills: package the ski
 ### Claude Agent SDK
 
 `SKILL.md` can be loaded into your system prompt directly. The skill is plain text — no runtime dependencies.
+
+### Other agents (open SKILL.md format)
+
+This skill is written in the open [Agent Skills](https://agentskills.io) format: a folder containing `SKILL.md` plus plain-text `references/` and `scripts/`. Any agent that supports the format — or that can simply read `SKILL.md` (and, when routed there, `references/*.md`) into context — can use it: clone this repo into wherever your agent discovers skills. The `scripts/` toolchain assumes only a POSIX shell and Python 3, nothing Claude-specific.
 
 ### Verify the installation
 
@@ -487,10 +491,10 @@ If your research uses this skill, please cite it in the methodology section.
 ```bibtex
 @software{shen_humanities_writing_companion_2026,
   author       = {Shen, Cong},
-  title        = {Humanities Writing Companion: A Claude Skill for Voice-Preserving Humanities Academic Writing},
+  title        = {Humanities Writing Companion: An Agent Skill for Voice-Preserving Humanities Academic Writing},
   year         = {2026},
   publisher    = {Zenodo},
-  version      = {5.0.0},
+  version      = {5.0.1},
   doi          = {10.5281/zenodo.20280773},
   url          = {https://doi.org/10.5281/zenodo.20280773}
 }
@@ -499,7 +503,7 @@ If your research uses this skill, please cite it in the methodology section.
 **Plain-text attribution** (for skill metadata, footers, etc.):
 ```
 Based on Humanities Writing Companion by Shen Cong
-https://github.com/tizzy916/claude-skill-humanities-writing-companion
+https://github.com/tizzy916/humanities-writing-companion
 ```
 
 See [`CITATION.cff`](./CITATION.cff) for full machine-readable metadata (GitHub's "Cite this repository" button will use it automatically).

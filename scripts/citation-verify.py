@@ -55,7 +55,7 @@ from difflib import SequenceMatcher
 
 CROSSREF_URL = "https://api.crossref.org/works"
 OPENALEX_URL = "https://api.openalex.org/works"
-USER_AGENT = "humanities-writing-companion/4.0 (https://github.com/tizzy916/claude-skill-humanities-writing-companion; mailto:shencong916@gmail.com)"
+USER_AGENT = "humanities-writing-companion/4.0 (https://github.com/tizzy916/humanities-writing-companion; mailto:shencong916@gmail.com)"
 
 
 class QueryError(Exception):
